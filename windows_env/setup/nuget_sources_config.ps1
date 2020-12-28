@@ -1,3 +1,5 @@
+. .\windows_env\skip_step.ps1
+proposeSkip "Register nuget"
 
 if ($email) {
     $nugetUser = $email

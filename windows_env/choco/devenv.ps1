@@ -15,9 +15,11 @@ cinst netfx-4.7.2-devpack
 
 # javascript
 cinst nodejs
-cinst type --version 3.7.2
-npm install -g coffee@1.12.6
+# TODO: restart PC or do something to NPM can be recognized
+cinst typescript --version 3.7.2
+npm install -g coffeescript@1.12.6
 npm install -g yo
+npm install -g tslint
 
 # ci / cd
 cinst psake

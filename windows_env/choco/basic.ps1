@@ -3,6 +3,7 @@ cinst sysinternals
 cinst microsoft-windows-terminal
 cinst 7zip
 cinst git
+cinst tortoisesvn
 cinst get-childitemcolor
 cinst mousewithoutborders
 cinst winscp

@@ -1,21 +1,26 @@
+# TODO: auto download/install chocolatey  Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+
+Write-Host "Unblocking files"
+gci -Recurse . | Unblock-File
 
 # #################
 # Install tools
 # #################
 choco feature enable -n=allowGlobalConfirmation
 
-. .\choco\win_features.ps1
-. .\choco\basic.ps1
-. .\choco\communication.ps1
-. .\choco\devenv.ps1
-. .\choco\javascript.ps1
-. .\choco\terminal.ps1
+. .\windows_env\choco\win_features.ps1
+. .\windows_env\choco\basic.ps1
+. .\windows_env\choco\communication.ps1
+. .\windows_env\choco\devenv.ps1
+. .\windows_env\choco\terminal.ps1
+. .\windows_env\choco\personal.ps1
 
 # #################
 # Private Data Sources
 # #################
-. .\setup\generate_ssh_key.ps1
-. .\setup\nuget_sources_config.ps1
-. .\setup\capslock_to_esc.ps1
-. .\setup\uninstall_ms_clutter.ps1
+. .\windows_env\setup\generate_ssh_key.ps1
+. .\windows_env\setup\environment_variables.ps1
+. .\windows_env\setup\nuget_sources_config.ps1
+. .\windows_env\setup\capslock_to_esc.ps1
+. .\windows_env\setup\uninstall_ms_clutter.ps1
 

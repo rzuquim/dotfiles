@@ -7,8 +7,8 @@ function confirm($path) {
 # ##############
 # Git
 # ##############
-
 if (confirm("~/.gitconfig")) {
+  Read-Host -Prompt "Check if .gitconfig is properly configured (email, user...) and press enter to continue."
   cp .\common\.gitconfig ~/.gitconfig -Force
 }
 

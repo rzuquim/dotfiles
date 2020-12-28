@@ -6,7 +6,12 @@
 
 ### Setup Windows env
 
-You can clone the repository wherever you want.
+Install chocolatey
+```
+https://chocolatey.org/install
+```
+
+Then clone the repository wherever you want and run **bootstrap.ps1**
 
 ```powershell
 git clone git@github.com:rzuquim/dotfiles.git; cd dotfiles; ./bootstrap.ps1
