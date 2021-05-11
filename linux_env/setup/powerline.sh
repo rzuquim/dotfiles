@@ -1,3 +1,5 @@
+sudo apt-get install fonts-powerline
+
 pip install --user powerline-status
 pip install powerline-gitstatus
 
