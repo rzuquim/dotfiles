@@ -51,3 +51,15 @@ echo \
 sudo apt-get update
 sudo groupadd docker
 sudo usermod -aG docker $USER
+pip install docker-compose
+
+
+# teams
+wget –O teams.deb https://packages.microsoft.com/repos/ms-teams/pool/main/t/teams/teams_1.3.00.5153_amd64.deb
+sudo apt install ./teams_1.3.00.5153_amd64.deb
+rm ./teams_1.3.00.5153_amd64.deb
+
+# z
+mkdir ~/apps/z
+wget -O ~/apps/z/z.sh https://raw.githubusercontent.com/rupa/z/master/z.sh
+

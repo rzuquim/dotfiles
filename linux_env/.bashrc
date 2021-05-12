@@ -46,6 +46,7 @@ alias grep='grep --color=auto'
 alias python=python3
 alias pip=pip3
 alias clip='xclip -sel clip'
+alias goto='z'
 
 # --------------------
 # docker
@@ -111,8 +112,15 @@ if [ -f $HOME/.local/lib/python3.9/site-packages/powerline/bindings/bash/powerli
   source $HOME/.local/lib/python3.9/site-packages/powerline/bindings/bash/powerline.sh
 fi
 
+
 # ---------------------
 # poetry
 # --------------------
 
 PATH=$PATH:$HOME/.poetry/bin
+
+
+# ---------------------
+# z
+# --------------------
+. ~/apps/z/z.sh
