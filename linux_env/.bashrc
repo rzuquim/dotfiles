@@ -1,3 +1,8 @@
+# tmux as default
+if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+    tmux attach -t default || tmux new -s default
+fi
+
 # environment
 # export WSLENV=$WSLENV:LOG_OUTPUT/p
 DEV_ENV='/mnt/d/dev'
@@ -86,6 +91,7 @@ mkd () {
 alias vimrc='vim ~/.vimrc'
 alias bashrc='vim ~/.bashrc'
 alias bash-refresh='source ~/.bashrc'
+alias inoa-vpn='sudo openvpn --config /etc/secrets/inoa-vpn-g2-beta2.ovpn --auth-user-pass /etc/secrets/vpn-pwd &'
 
 # ---------------------
 # env config
@@ -124,3 +130,8 @@ PATH=$PATH:$HOME/.poetry/bin
 # z
 # --------------------
 . ~/apps/z/z.sh
+
+# ---------------------
+# LS_COLORS
+# ---------------------
+export LS_COLORS='rs=0:di=01;97;104:'
