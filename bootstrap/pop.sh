@@ -61,15 +61,15 @@ echo
 KNOWN_HOSTS_FILE=~/.ssh/known_hosts
 
 if [ ! -d ~/.ssh ]; then
-  echo -e "${CYAN}Creating .ssh folder${NC}"
-  mkdir -p ~/.ssh
-  chmod 700 ~/.ssh
+    echo -e "${CYAN}Creating .ssh folder${NC}"
+    mkdir -p ~/.ssh
+    chmod 700 ~/.ssh
 fi
 
 # Check if github.com is already in known_hosts
 if [ ! -f "$KNOWN_HOSTS_FILE" ] || ! grep -q "^github.com " "$KNOWN_HOSTS_FILE"; then
-  echo -e "${CYAN}Adding github.com to known_hosts${NC}"
-  ssh-keyscan github.com >> "$KNOWN_HOSTS_FILE"
+    echo -e "${CYAN}Adding github.com to known_hosts${NC}"
+    ssh-keyscan github.com >> "$KNOWN_HOSTS_FILE"
 fi
 
 # ---------------------------------
@@ -95,7 +95,7 @@ while [ "$CLONE_SUCCESSFUL" == false ]; do
     # Check if an SSH key already exists
     if [ ! -f ~/.ssh/id_ed25519 ]; then
         echo -e "${CYAN}No SSH key found. Generating a new SSH key...${NC}"
-        ssh-keygen -t ed25519 -C "$INOA_EMAIL" -f ~/.ssh/id_ed25519
+        ssh-keygen -t ed25519 -C "$MY_EMAIL" -f ~/.ssh/id_ed25519
         echo -e "${GREEN}SSH key generated and added to the ssh-agent.${NC}"
         echo
     fi
@@ -113,4 +113,7 @@ done
 echo -e "${VIOLET}---------------------------------${NC}"
 echo -e "${VIOLET}dotfiles cloned${NC}"
 echo -e "${VIOLET}---------------------------------${NC}"
+
+cd dotfiles
+source ./init_pop.sh
 
