@@ -9,10 +9,6 @@ source "./utils/colors.sh"
 # ---------------------------------
 # SETUP
 # ---------------------------------
-source "./pop/install_setup.sh"
-
-# ---------------------------------
-# DO
-# ---------------------------------
 source "./pop/install.sh"
+source "./pop/config.sh"
 

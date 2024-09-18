@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source "./pop/install_setup.sh"
+
 # NOTE: some of those packages need to be installed in this order
 
 BASIC_PACKAGES=(
