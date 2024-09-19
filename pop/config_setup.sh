@@ -80,3 +80,21 @@ setup_dock() {
 
     gsettings set org.gnome.shell favorite-apps "$docks_app_join"
 }
+
+set_default_profile() {
+    if [ -f "$HOME/.profile" ]; then
+        read -p "Replace current ~/.profile with the my default? [Y/n] " response
+        response=${response:-Y}
+        if [[ $response =~ ^[Yy]$ ]]; then
+            rm ~/.profile
+        fi
+    fi
+
+    if [ ! -L "$HOME/.profile" ]; then
+        echo "Linking my ~/.profile"
+        ln -s ~/.config/profile.sh ~/.profile
+    else
+        echo "Profile already setup"
+    fi
+}
+
