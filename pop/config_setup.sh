@@ -98,3 +98,45 @@ set_default_profile() {
     fi
 }
 
+set_git_config() {
+    mkdir -p ~/me/dev/
+    if [ ! -L ~/.gitconfig ]; then
+        echo -e "${CYAN}Setting up git...${NC}"
+        ln -s ~/.config/git/gitconfig.toml ~/.gitconfig > /dev/null
+    else
+        echo "${YELLOW}Git already configured${NC}"
+    fi
+
+    if [ ! -f $GIT_WHO_AM_I  ]; then
+        echo "${CYAN}Setting up git whoami${NC}"
+        echo '[user]' > $GIT_WHO_AM_I
+        echo "email = $MY_EMAIL" >> $GIT_WHO_AM_I
+        echo "email = $MY_NAME" >> $GIT_WHO_AM_I
+    else
+        echo "${YELLOW}Git whoiam already configured${NC}"
+    fi
+
+    # Work
+    read -p "Enter your company name: " COMPANY_NAME
+    read -p "Enter your email: " COMPANY_EMAIL
+
+    mkdir -p ~/${COMPANY_NAME}
+    WORK_CONFIG="~/.config/git/work.toml"
+    if [ ! -f "$WORK_CONFIG" ]; then
+        echo "Setting up git for $COMPANY_NAME..."
+        echo "[user]" > "$COMPANY_CONFIG"
+        echo "email = $COMPANY_EMAIL" >> "$COMPANY_CONFIG"
+        echo "name = $MY_NAME" >> "$COMPANY_CONFIG"
+    else
+        echo "Git config for $COMPANY_NAME already configured"
+    fi
+
+    # Check if a work SSH key already exists
+    if [ ! -f ~/.ssh/id_work_ed25519 ]; then
+        echo -e "${CYAN}No work SSH key found. Generating a new SSH key...${NC}"
+        ssh-keygen -t ed25519 -C "$COMPANY_EMAIL" -f ~/.ssh/id_work_ed25519
+        echo -e "${GREEN}SSH key generated and added to the ssh-agent.${NC}"
+        echo
+    fi
+}
+

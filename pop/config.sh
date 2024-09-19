@@ -19,6 +19,7 @@ if [[ $response =~ ^[Yy]$ ]]; then
     set_default_terminal "$HOME/.cargo/bin/alacritty"
     set_default_shell "/usr/bin/zsh"
     set_default_profile
+    set_git_config
 else
     echo -e "${RED}Won't apply shell configuration!${NC}"
 fi
