@@ -2,7 +2,7 @@
 
 source "./pop/config_setup.sh"
 
-echo "${RED}This will overwrite existing files in your home directory.${NC}"
+echo -e "${RED}This will overwrite existing files in your home directory.${NC}"
 echo
 
 echo -e "${VIOLET}*Configuration${NC}"
@@ -24,6 +24,7 @@ else
     echo -e "${RED}Won't apply shell configuration!${NC}"
 fi
 
+echo
 echo -e "${VIOLET}* Appearance${NC}"
 echo
 read -p "Apply default appearance? [Y/n] " response

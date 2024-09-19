@@ -18,7 +18,7 @@ set_default_terminal() {
             sudo ln -s "$set_terminal" "$bin_link" > /dev/null
         fi
     else
-        echo "${GREEN}Alacritty is already the default terminal emulator.${NC}"
+        echo -e "${GREEN}Alacritty is already the default terminal emulator.${NC}"
     fi
 }
 
@@ -35,7 +35,7 @@ set_default_shell() {
         echo "Please enter your user's password"
         chsh -s $zsh_path
     else
-        echo "${GREEN}Zsh is already the default shell.${NC}"
+        echo -e "${GREEN}Zsh is already the default shell.${NC}"
     fi
 }
 
@@ -82,19 +82,19 @@ setup_dock() {
 }
 
 set_default_profile() {
-    if [ -f "$HOME/.profile" ]; then
-        read -p "Replace current ~/.profile with the my default? [Y/n] " response
-        response=${response:-Y}
-        if [[ $response =~ ^[Yy]$ ]]; then
-            rm ~/.profile
+    if [ ! -L ~/.profile ]; then
+        if [ -f ~/.profile ]; then
+            read -p "Replace current ~/.profile with the my default? [Y/n] " response
+            response=${response:-Y}
+            if [[ $response =~ ^[Yy]$ ]]; then
+                rm ~/.profile
+            fi
         fi
-    fi
 
-    if [ ! -L "$HOME/.profile" ]; then
         echo "Linking my ~/.profile"
         ln -s ~/.config/profile.sh ~/.profile
     else
-        echo "Profile already setup"
+        echo -e "${YELLOW}Profile already setup${NC}"
     fi
 }
 
@@ -104,16 +104,16 @@ set_git_config() {
         echo -e "${CYAN}Setting up git...${NC}"
         ln -s ~/.config/git/gitconfig.toml ~/.gitconfig > /dev/null
     else
-        echo "${YELLOW}Git already configured${NC}"
+        echo -e "${YELLOW}Git already configured${NC}"
     fi
 
     if [ ! -f $GIT_WHO_AM_I  ]; then
-        echo "${CYAN}Setting up git whoami${NC}"
+        echo -e "${CYAN}Setting up git whoami${NC}"
         echo '[user]' > $GIT_WHO_AM_I
         echo "email = $MY_EMAIL" >> $GIT_WHO_AM_I
         echo "email = $MY_NAME" >> $GIT_WHO_AM_I
     else
-        echo "${YELLOW}Git whoiam already configured${NC}"
+        echo -e "${YELLOW}Git whoiam already configured${NC}"
     fi
 
     # Work
@@ -139,4 +139,3 @@ set_git_config() {
         echo
     fi
 }
-
