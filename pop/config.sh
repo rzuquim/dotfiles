@@ -21,3 +21,19 @@ if [[ $response =~ ^[Yy]$ ]]; then
 else
     echo -e "${RED}Won't apply shell configuration!${NC}"
 fi
+
+echo -e "${VIOLET}* Appearance${NC}"
+echo
+read -p "Apply default appearance? [Y/n] " response
+response=${response:-Y}
+if [[ $response =~ ^[Yy]$ ]]; then
+    rsync \
+        --exclude ".git/" \
+        --exclude ".DS_Store" \
+        --ignore-existing \
+        -avh --no-perms ./gnome/ $HOME/.local > /dev/null
+
+    setup_dock
+else
+    echo -e "${RED}Won't apply appearance configuration!${NC}"
+fi

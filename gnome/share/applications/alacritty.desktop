@@ -1,0 +1,20 @@
+[Desktop Entry]
+Type=Application
+Exec=/usr/local/bin/alacritty
+Keywords=shell;prompt;command;commandline;cmd;
+# Icon=Alacritty
+Icon=org.gnome.Terminal
+Terminal=false
+Categories=System;TerminalEmulator;
+
+Name=Terminal (Alacritty)
+GenericName=Terminal
+Comment=A fast, cross-platform, OpenGL terminal emulator
+StartupNotify=true
+StartupWMClass=Alacritty
+Actions=New;
+
+[Desktop Action New]
+Name=New Terminal
+Exec=/usr/local/bin/alacritty
+
