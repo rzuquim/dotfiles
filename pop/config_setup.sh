@@ -99,7 +99,7 @@ set_default_profile() {
 }
 
 set_git_config() {
-    mkdir -p ~/me/dev/
+    mkdir -p ~/me
     if [ ! -L ~/.gitconfig ]; then
         echo -e "${CYAN}Setting up git...${NC}"
         ln -s ~/.config/git/gitconfig.toml ~/.gitconfig > /dev/null
@@ -107,35 +107,58 @@ set_git_config() {
         echo -e "${YELLOW}Git already configured${NC}"
     fi
 
+    GIT_WHO_AM_I="$HOME/.config/git/whoami.toml"
     if [ ! -f $GIT_WHO_AM_I  ]; then
         echo -e "${CYAN}Setting up git whoami${NC}"
         echo '[user]' > $GIT_WHO_AM_I
         echo "email = $MY_EMAIL" >> $GIT_WHO_AM_I
-        echo "email = $MY_NAME" >> $GIT_WHO_AM_I
+        echo "name = $MY_NAME" >> $GIT_WHO_AM_I
     else
         echo -e "${YELLOW}Git whoiam already configured${NC}"
     fi
 
     # Work
     read -p "Enter your company name: " COMPANY_NAME
-    read -p "Enter your email: " COMPANY_EMAIL
-
     mkdir -p ~/${COMPANY_NAME}
-    WORK_CONFIG="~/.config/git/work.toml"
+    WORK_CONFIG="$HOME/.config/git/$COMPANY_NAME.toml"
     if [ ! -f "$WORK_CONFIG" ]; then
+        read -p "Enter your email: " COMPANY_EMAIL
+
         echo "Setting up git for $COMPANY_NAME..."
-        echo "[user]" > "$COMPANY_CONFIG"
-        echo "email = $COMPANY_EMAIL" >> "$COMPANY_CONFIG"
-        echo "name = $MY_NAME" >> "$COMPANY_CONFIG"
+        echo '[user]' > $WORK_CONFIG
+        echo "email = $COMPANY_EMAIL" >> $WORK_CONFIG
+        echo "name = $MY_NAME" >> $WORK_CONFIG
+
+        echo "[includeIf \"gitdir:~/$COMPANY_NAME/\"]" >> ~/.config/git/gitconfig.toml
+        echo "    path = $WORK_CONFIG" >> ~/.config/git/gitconfig.toml
     else
         echo "Git config for $COMPANY_NAME already configured"
     fi
 
     # Check if a work SSH key already exists
-    if [ ! -f ~/.ssh/id_work_ed25519 ]; then
+    COMPANY_SSH_DIR=~/.ssh/$COMPANY_NAME
+    COMPANY_SSH_FILE=$COMPANY_SSH_DIR/id_ed25519
+    mkdir -p $COMPANY_SSH_DIR
+    if [ ! -f "$COMPANY_SSH_FILE" ]; then
         echo -e "${CYAN}No work SSH key found. Generating a new SSH key...${NC}"
-        ssh-keygen -t ed25519 -C "$COMPANY_EMAIL" -f ~/.ssh/id_work_ed25519
+        ssh-keygen -t ed25519 -C "$COMPANY_EMAIL" -f $COMPANY_SSH_FILE
         echo -e "${GREEN}SSH key generated and added to the ssh-agent.${NC}"
         echo
     fi
+
+    MAIN_SSH_FILE=~/.ssh/id_ed25519
+    MY_LOGIN="${MY_EMAIL%%@*}"
+    PERSONAL_SSH_DIR=~/.ssh/$MY_LOGIN/
+    if [ -f "$MAIN_SSH_FILE" ] && [ ! -L "$MAIN_SSH_FILE" ]; then
+        echo -e "${CYAN}Moving personal ssh file to specific file...${NC}"
+        mv $MAIN_SSH_FILE "$PERSONAL_SSH_DIR/id_ed25519"
+        mv "$MAIN_SSH_FILE.pub" "$PERSONAL_SSH_DIR/id_ed25519.pub"
+
+        ln -s "$PERSONAL_SSH_DIR/id_ed25519" "$MAIN_SSH_FILE"
+        ln -s "$PERSONAL_SSH_DIR/id_ed25519.pub" "$MAIN_SSH_FILE.pub"
+
+        echo -e "${GREEN}Personal ssh files moved to .${NC}"
+        echo
+    fi
 }
+
