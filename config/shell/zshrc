@@ -16,6 +16,9 @@ export CM_DEBUG=0
 export CM_OUT_CLIP=0
 export CM_MAX_CLIPS=100
 
+# ignoring keybinded commands on history
+setopt histignorespace
+
 # user configuration
 eval "$(starship init zsh)"
 
@@ -42,6 +45,12 @@ alias o=xdg-open
 alias ..='cd ..'
 alias ...='cd ..; cd ..'
 alias ....='cd ..; cd ..; cd ..'
+
+# aliases 
+alias w=work
+alias we=work_and_editor
+alias g=git
+alias gui=gitui
 
 # ---------------------
 # navigation
@@ -116,3 +125,17 @@ if [[ -f "$HOME/.config/shell/custom.sh" ]]; then
     source "$HOME/.config/shell/custom.sh"
 fi
 
+# --------------------
+# keybindings
+# --------------------
+
+bindkey -v               # vim mode on zsh
+bindkey -s '^a' ' fg^M'  # running fg
+
+# --------------------
+# context navigation
+# --------------------
+if [[ -f "$HOME/.ctx" ]]; then
+    local current_workspace=`cat ~/.ctx | awk '{ print $2 }'`
+    cd $current_workspace
+fi
