@@ -18,3 +18,8 @@ if [[ -f "$HOME/.context" ]]; then
     rm ~/.context
 fi
 
+if [[ -f "$HOME/.config/shell/sh/bg-random.sh" ]]; then
+    source "$HOME/.config/shell/sh/bg-random.sh"
+    bg-random
+fi
+
