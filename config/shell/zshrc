@@ -69,21 +69,6 @@ function search {
    rg -p "$@" -A 3 -B 3 --color=always | less -RMFXK
 }
 
-# --------------------
-# zsh improvements
-# --------------------
-source ~/.zsh/autosuggestions/zsh-autosuggestions.zsh
-source ~/.zsh/history-substring-search/zsh-history-substring-search.zsh
-bindkey '\eOA' history-substring-search-up # or '^[[A' 
-bindkey '\eOB' history-substring-search-down # or '^[[B'
-HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
-
-# completions
-source ~/.zsh/completions/zsh-completions.plugin.zsh
-fpath=(~/.zsh/completions/src ~/.docker/completions $fpath)
-autoload -Uz compinit
-compinit
-
 # dotnet completions
 _dotnet_zsh_complete()
 {

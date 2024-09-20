@@ -149,6 +149,7 @@ set_git_config() {
     MAIN_SSH_FILE=~/.ssh/id_ed25519
     MY_LOGIN="${MY_EMAIL%%@*}"
     PERSONAL_SSH_DIR=~/.ssh/$MY_LOGIN/
+    mkdir -p $PERSONAL_SSH_DIR
     if [ -f "$MAIN_SSH_FILE" ] && [ ! -L "$MAIN_SSH_FILE" ]; then
         echo -e "${CYAN}Moving personal ssh file to specific file...${NC}"
         mv $MAIN_SSH_FILE "$PERSONAL_SSH_DIR/id_ed25519"
