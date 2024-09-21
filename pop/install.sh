@@ -42,6 +42,7 @@ BASIC_PACKAGES=(
 
     # terminal
     "zsh | custom"
+    "oh-my-zsh | custom"
     "starship | cargo"
     "fonts-firacode | custom"
     "gitui | cargo"
@@ -68,6 +69,9 @@ BASIC_PACKAGES=(
     "coffeescript@1.12.6 | npm"
     "typescript@4.4 | npm"
     "klogg | custom"
+
+    # gnome
+    "chrome-gnome-shell"
 )
 
 echo

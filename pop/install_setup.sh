@@ -13,6 +13,8 @@ is_installed() {
         return 0
     elif [ "$1" = "nodejs" ] && command -v node >/dev/null 2>&1; then
         return 0
+    elif [ "$1" = "oh-my-zsh" ] && [ -d "$HOME/.oh-my-zsh/" ]; then
+        return 0
     else
         return 1
     fi
@@ -54,6 +56,9 @@ custom_install() {
             ;;
         zsh)
             zsh_install
+            ;;
+        oh-my-zosh)
+            omz_install
             ;;
         rustup)
             rust_install
@@ -113,6 +118,10 @@ zsh_install() {
     PROFILE=$(gsettings get org.gnome.Terminal.ProfilesList default | tr -d \')
     gsettings set "org.gnome.Terminal.Legacy.Profile:/org/gnome/Terminal/Legacy/Profiles:/:$PROFILE_ID/" use-custom-command true
     gsettings set "org.gnome.Terminal.Legacy.Profile:/org/gnome/Terminal/Legacy/Profiles:/:$PROFILE_ID/" custom-command 'zsh'
+}
+
+omz_install() {
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 }
 
 rust_install() {
