@@ -121,6 +121,7 @@ zsh_install() {
 }
 
 omz_install() {
+    # BUG: not working
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 }
 

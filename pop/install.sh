@@ -71,6 +71,12 @@ BASIC_PACKAGES=(
     "klogg | custom"
 
     # gnome
+    # TODO: setup and configure the extensions I use: 
+    #       - https://extensions.gnome.org/extension/517/caffeine/
+    #       - https://extensions.gnome.org/extension/1160/dash-to-panel/
+    #       - https://extensions.gnome.org/extension/1460/vitals/
+    #       - https://extensions.gnome.org/extension/16/auto-move-windows/
+    #       - disable: Cosmic Dock
     "chrome-gnome-shell"
 )
 
