@@ -11,7 +11,6 @@ gsettings set org.gnome.shell.keybindings focus-active-notification "[]"
 gsettings set org.gnome.shell.keybindings toggle-message-tray "['<Super>n']"
 
 gsettings set org.gnome.shell.extensions.pop-shell tile-enter "['<Super>KP_Enter']"
-gsettings set org.gnome.settings-daemon.plugins.media-keys terminal "['<Super>Return']"
 
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-1 "['<Super>1']"
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-2 "['<Super>2']"
