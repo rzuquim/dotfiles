@@ -172,3 +172,16 @@ set_git_config() {
     fi
 }
 
+set_nvim_config() {
+    if [ ! -L ~/.config/nvim ]; then
+        if [ ! -d ~/me/nvim ]; then
+            echo -e "${CYAN}Cloning nvim config...${NC}"
+            git clone git@github.com:rzuquim/nvim.git ~/me/nvim
+        fi
+
+        echo "Linking ~/.config/nvim"
+        ln -s ~/me/nvim ~/.config/nvim
+    else
+        echo -e "${YELLOW}Nvim already configured${NC}"
+    fi
+}
