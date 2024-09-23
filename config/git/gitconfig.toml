@@ -43,54 +43,54 @@
     colorMoved = default
 
 [alias]
-  #commit every change
-  aa = !git add -A
-  ci = !git add -A && git commit -m
-  c = commit -m
-  amend = commit -a --amend
-  m = merge --ff-only
+    #commit every change
+    aa = !git add -A
+    ci = !git add -A && git commit -m
+    c = commit -m
+    amend = commit -a --amend
+    m = merge --ff-only
 
-  #status
-  s = status -sb
+    #status
+    s = status -sb
 
-  #branch
-  b = "!git for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))' refs/heads/* refs/remotes/*/*"
+    #branch
+    b = "!git for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))' refs/heads/* refs/remotes/*/*"
 
-  move-branch = branch -f
-  squash = rebase -i HEAD~5
+    move-branch = branch -f
+    squash = rebase -i HEAD~5
 
-  #small log with relative date
-  ls = log --graph --pretty=format:"%C(yellow)%h%Creset\\ -%Cred%d\\ %C(magenta)[%cn]\\ %Creset%s\\ %Cgreen(%ad)" --decorate --date=relative --max-count=50
-  new = log --pretty=format:"%C(yellow)%h%Creset\\ %s" origin/latest..HEAD
-  missing = log --pretty=format:"%C(yellow)%h%Creset\\ %s" HEAD..origin/latest
-  short-hash = "!git rev-parse --short HEAD | clip"
+    #small log with relative date
+    ls = log --graph --pretty=format:"%C(yellow)%h%Creset\\ -%Cred%d\\ %C(magenta)[%cn]\\ %Creset%s\\ %Cgreen(%ad)" --decorate --date=relative --max-count=50
+    new = log --pretty=format:"%C(yellow)%h%Creset\\ %s" origin/latest..HEAD
+    missing = log --pretty=format:"%C(yellow)%h%Creset\\ %s" HEAD..origin/latest
+    short-hash = "!git rev-parse --short HEAD | clip"
 
-  #list all aliases
-  aliases = "!git config -l | grep alias | cut -c 7-"
+    #list all aliases
+    aliases = "!git config -l | grep alias | cut -c 7-"
 
-  #check-out this awesome new branch!
-  co = checkout
+    #check-out this awesome new branch!
+    co = checkout
 
-  #delete local branch
-  del-branch = branch -D
+    #delete local branch
+    del-branch = branch -D
 
-  #mergetool and diff tool
-  dt = difftool --no-prompt
-  mt = mergetool
-  changes = difftool --no-prompt HEAD^ HEAD
+    #mergetool and diff tool
+    dt = difftool --no-prompt
+    mt = mergetool
+    changes = difftool --no-prompt HEAD^ HEAD
 
-  #revert changes to last commit
-  undo = checkout --
-  wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard && git clean -fd
-  soft-unstage = !git reset --soft HEAD^ && git reset
-  fuck-local = !git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)
-  clean-ignored = clean -fXd
+    #revert changes to last commit
+    undo = checkout --
+    wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard && git clean -fd
+    soft-unstage = !git reset --soft HEAD^ && git reset
+    fuck-local = !git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)
+    clean-ignored = clean -fXd
 
-  #get from origin
-  po = pull origin
-  f = fetch origin
-  fp = fetch origin --prune
+    #get from origin
+    po = pull origin
+    f = fetch origin
+    fp = fetch origin --prune
 
-  #diff cached (only staging)
-  diff-staging = diff --cached
+    #diff cached (only staging)
+    diff-staging = diff --cached
 
