@@ -66,16 +66,14 @@ setup_dock() {
 
     DOCK_APPS=(
         'alacritty'
-        'google-chrome'
+        # 'google-chrome'
+        'brave_brave'
         'rider_rider'
         'code_code'
-        'telegram-desktop_telegram-desktop'
-        'teams-for-linux_teams-for-linux'
+        # 'telegram-desktop_telegram-desktop'
         'Zoom'
         'remmina_remmina'
         'org.gnome.Nautilus'
-        'pop-cosmic-workspaces'
-        'pop-cosmic-applications'
         'gnome-control-center'
     )
 
@@ -88,6 +86,9 @@ setup_dock() {
     echo "Setting docks as: $docks_app_join"
 
     gsettings set org.gnome.shell favorite-apps "$docks_app_join"
+    gsettings set org.gnome.shell.extensions.pop-shell show-title false
+    gsettings set org.gnome.shell.extensions.pop-shell gap-inner uint32 5
+    gsettings set org.gnome.shell.extensions.pop-shell tile-by-default true
 }
 
 set_default_profile() {
@@ -185,3 +186,4 @@ set_nvim_config() {
         echo -e "${YELLOW}Nvim already configured${NC}"
     fi
 }
+

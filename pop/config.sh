@@ -21,6 +21,7 @@ if [[ $response =~ ^[Yy]$ ]]; then
     set_default_profile
     set_git_config
     set_nvim_config
+    source "./pop/gnome_bind_keymaps.sh"
 else
     echo -e "${RED}Won't apply shell configuration!${NC}"
 fi
@@ -38,6 +39,8 @@ if [[ $response =~ ^[Yy]$ ]]; then
         -avh --no-perms ./gnome/ $HOME/.local > /dev/null
 
     setup_dock
+    # TODO: remove animations
+    # TODO: configure extensions
 else
     echo -e "${RED}Won't apply appearance configuration!${NC}"
 fi
