@@ -6,7 +6,8 @@ function work() {
 
     # navigating to work dir
     cd $(
-        fd --type directory \
+        ~/.cargo/bin/fd \
+            --type directory \
             --unrestricted \
             --max-depth 5 \
             --exclude .cache --exclude .asdf --exclude .local --exclude .cargo --exclude node-modules \
