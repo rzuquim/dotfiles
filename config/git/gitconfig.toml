@@ -1,12 +1,16 @@
 [include]
     path = ~/.config/git/whoami.toml
 
+[core]
+    editor = nvim
+    pager = delta
+    autocrlf = input
+
 [blame]
     coloring = highlightRecent
     showEmail = true
     showName = false
     date = relative
-
 
 [color "blame"]
     highlightRecent = green,12 month ago,white,1 month ago,black red
@@ -16,10 +20,6 @@
 
 [push]
     default = current
-
-[core]
-    editor = nvim
-    pager = delta
 
 [interactive]
     diffFilter = delta --color-only
