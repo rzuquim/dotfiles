@@ -62,6 +62,9 @@ alias w=work
 alias we=work_and_editor
 alias g=git
 alias gui=gitui
+alias dn=dotnet
+alias dnb='dotnet build'
+alias dnr='dotnet run -v q --property WarningLevel=0'
 
 # ---------------------
 # navigation
