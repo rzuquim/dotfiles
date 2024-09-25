@@ -10,3 +10,5 @@ gsettings set org.gnome.shell.keybindings show-screenshot-ui '[]'
 gsettings set org.gnome.shell.keybindings screenshot-window '[]'
 gsettings set org.gnome.shell.keybindings screenshot '[]'
 
+gsettings set org.gnome.GWeather temperature-unit centigrade
+
