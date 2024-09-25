@@ -42,7 +42,6 @@ if [[ $response =~ ^[Yy]$ ]]; then
     setup_dock
     set_shortcuts
     # TODO: remove animations
-    # TODO: configure extensions
 else
     echo -e "${RED}Won't apply appearance configuration!${NC}"
 fi

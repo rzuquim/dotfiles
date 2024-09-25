@@ -65,16 +65,16 @@ setup_dock() {
     done
 
     DOCK_APPS=(
-        'alacritty'
+        # 'alacritty'
         # 'google-chrome'
-        'brave_brave'
-        'rider_rider'
-        'code_code'
+        # 'brave_brave'
+        # 'rider_rider'
+        # 'code_code'
         # 'telegram-desktop_telegram-desktop'
-        'Zoom'
-        'remmina_remmina'
-        'org.gnome.Nautilus'
-        'gnome-control-center'
+        # 'Zoom'
+        # 'remmina_remmina'
+        # 'org.gnome.Nautilus'
+        # 'gnome-control-center'
     )
 
     docks_app_join="["
@@ -196,7 +196,6 @@ set_shortcuts() {
         "PrintScreen into clipboard;flameshot full --clipboard;<Ctrl>Print"
         "Clipboard History;copyq toggle;<Super>v"
         "Terminal;alacritty;<Super>Return"
-        "Browser;brave;<Super>q"
     )
 
     # Loop through the custom shortcuts and add them

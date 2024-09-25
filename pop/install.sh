@@ -77,6 +77,9 @@ BASIC_PACKAGES=(
     #       - https://extensions.gnome.org/extension/1460/vitals/
     #       - https://extensions.gnome.org/extension/16/auto-move-windows/
     #       - disable: Cosmic Dock
+    #
+    # TODO: "Settings > Desktop > Dock > Uncheck Enable Dock" (to make dash-to-panel work after a reboot)
+    # TODO: Set extension configs
     "chrome-gnome-shell"
 )
 
