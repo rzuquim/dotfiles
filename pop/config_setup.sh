@@ -233,3 +233,23 @@ add_custom_shortcut() {
     gsettings set $base_gsettings:$custom_keybinding_path binding "$binding"
 }
 
+setup_startup_apps() {
+    local startup_apps=(
+        "$HOME/.local/share/applications/whatsapp-for-linux_whatsapp-for-linux.desktop"
+        "$HOME/.local/share/applications/telegram-desktop_telegram-desktop.desktop"
+        "/usr/share/applications/com.github.hluk.copyq.desktop"
+        '/usr/share/applications/librewolf.desktop'
+    )
+
+    if [ ! -d "$HOME/.config/autostart" ]; then
+        mkdir -p "$HOME/.config/autostart"
+    fi
+
+    for index in "${!startup_apps[@]}"; do
+        local app="${startup_apps[$index]}"
+        echo -e "Adding app to startup: $app"
+        local file_name=$(basename "$app")
+        ln -sf "$app" "$HOME/.config/autostart/${file_name}"
+    done
+}
+
