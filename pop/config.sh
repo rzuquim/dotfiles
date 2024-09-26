@@ -23,6 +23,9 @@ if [[ $response =~ ^[Yy]$ ]]; then
     set_nvim_config
     source "./pop/gnome_bind_keymaps.sh"
     source "./pop/gnome_config.sh"
+    # TODO: support cedila: https://github.com/rzuquim/blog/blob/main/2023-06-25/kb_config/keyboard_config.pt_BR.md
+    # TODO: quotations without space: /usr/share/X11/xkb/symbols/us replace dead_diaeresis with quotedbl
+    #       name[Group1]= "English (US, intl., with dead keys)";
 else
     echo -e "${RED}Won't apply shell configuration!${NC}"
 fi
