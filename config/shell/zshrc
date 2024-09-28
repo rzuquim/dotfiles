@@ -75,9 +75,7 @@ export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --e
 function config {
     cd ~/.config
     cd $(
-        ls --icons | awk '{ print $7 " " $8 }' |
-        fzf |
-        awk '{ print $2 }'
+        /bin/ls | fzf 
     ) && nvim .
 }
 
