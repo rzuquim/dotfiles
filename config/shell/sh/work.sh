@@ -29,13 +29,13 @@ function work_and_editor() {
     # ------------------------------
     # dotnet
     # ------------------------------
-    sln_files_search=$(fd --max-depth 1 --extension sln)
-    sln_files=($sln_files_search)
-
-    if [ ${#sln_files[@]} -eq 1 ]; then
-        rider "./$sln_files" > /dev/null 2>&1 &
-        return
-    fi
+    # sln_files_search=$(fd --max-depth 1 --extension sln)
+    # sln_files=($sln_files_search)
+    #
+    # if [ ${#sln_files[@]} -eq 1 ]; then
+    #     rider "./$sln_files" > /dev/null 2>&1 &
+    #     return
+    # fi
 
     # ------------------------------
     # else
