@@ -75,6 +75,9 @@ custom_install() {
         klogg)
             klogg_install
             ;;
+        tmux)
+            tmux_install
+            ;;
     esac
 }
 
@@ -177,4 +180,9 @@ klogg_install() {
 
     sudo apt-get update
     sudo apt install -y klogg
+}
+
+tmux_install() {
+    sudo apt install -y tmux
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 }

@@ -7,6 +7,7 @@ source "./pop/install_setup.sh"
 BASIC_PACKAGES=(
     # tools
     "git | apt"
+    "tmux | custom"
     "snapd | apt"
     "rustup | custom"
     "nodejs | custom"
