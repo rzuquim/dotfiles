@@ -56,6 +56,7 @@ function work_on_tmux_session() {
         echo -e $session_name
         current_dir=$(basename "$(pwd)")
         final_name="[$current_dir] $session_name"
+        final_name=echo $final_name | tr '.' '_'
 
         # editor window
         tmux new-session -s "$final_name" -d
