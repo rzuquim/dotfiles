@@ -60,6 +60,7 @@ alias ...='cd ..; cd ..'
 alias ....='cd ..; cd ..; cd ..'
 alias w=work
 alias we=work_and_editor
+alias wt=work_on_tmux_session
 alias g=git
 alias gui=gitui
 alias dn=dotnet

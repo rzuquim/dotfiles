@@ -29,16 +29,54 @@ function work_and_editor() {
     # ------------------------------
     # dotnet
     # ------------------------------
-    # sln_files_search=$(fd --max-depth 1 --extension sln)
-    # sln_files=($sln_files_search)
-    #
-    # if [ ${#sln_files[@]} -eq 1 ]; then
-    #     rider "./$sln_files" > /dev/null 2>&1 &
-    #     return
-    # fi
+    sln_files_search=$(fd --max-depth 1 --extension sln)
+    sln_files=($sln_files_search)
+
+    if [ ${#sln_files[@]} -eq 1 ]; then
+        rider "./$sln_files" > /dev/null 2>&1 &
+        return
+    fi
 
     # ------------------------------
     # else
     # ------------------------------
     nvim .
 }
+
+function work_on_tmux_session() {
+    selected=$(\
+            tmux ls 2>/dev/null | cut -d: -f1 | \
+            { echo "--- NEW ---"; cat; } | \
+        fzf)
+
+    if [[ "$selected" == "--- NEW ---" ]]; then
+        work
+        echo -n "Enter new session name: "
+        read session_name
+        echo -e $session_name
+        current_dir=$(basename "$(pwd)")
+        final_name="[$current_dir] $session_name"
+
+        # editor window
+        tmux new-session -s "$final_name" -d
+        tmux rename-window -t "$final_name:1" "editor"
+        tmux send-keys -t "$final_name:1" "nvim" C-m
+
+        # jobs window
+        tmux new-window -t "$final_name:2" -n "jobs"
+        tmux split-window -h -t "$final_name:2"
+        # TODO: auto-discover: run and tests
+        tmux send-keys -t "$final_name:2.0" "watch_run" C-m
+        tmux send-keys -t "$final_name:2.1" "watch_tests" C-m
+
+        # git window
+        tmux new-window -t "$final_name:3" -n "gitui"
+        tmux send-keys -t "$final_name:3" "gitui" C-m
+
+        # Attach to the session
+        tmux attach-session -t "$final_name:1"
+    else
+        tmux attach-session -t "$selected"
+    fi
+}
+
