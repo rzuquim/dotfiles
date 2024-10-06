@@ -22,6 +22,9 @@ setopt histignorespace
 # user configuration
 eval "$(starship init zsh)"
 
+. "$HOME/.atuin/bin/env"
+eval "$(atuin init zsh)"
+
 # ----------------
 # oh-my-zsh
 # ----------------

@@ -17,6 +17,8 @@ is_installed() {
         return 0
     elif [ "$1" = "luarocks" ] && command -v luarocks >/dev/null 2>&1; then
         return 0
+    elif [ "$1" = "atuin" ] && command -v atuin >/dev/null 2>&1; then
+        return 0
     else
         return 1
     fi
@@ -82,6 +84,9 @@ custom_install() {
             ;;
         luarocks)
             luarocks_install
+            ;;
+        atuin)
+            atuin_install
             ;;
     esac
 }
@@ -173,7 +178,7 @@ zoom_install() {
 
     sudo mkdir -p $debdir
     ( echo 'APT::Update::Pre-Invoke {"cd '$debdir' && wget -qN '$url' && apt-ftparchive packages . > Packages && apt-ftparchive release . > Release";};' | sudo tee $aptconf
-    echo 'deb [trusted=yes lang=none] file:'$debdir' ./' | sudo tee $sourcelist
+        echo 'deb [trusted=yes lang=none] file:'$debdir' ./' | sudo tee $sourcelist
     ) >/dev/null
 
     sudo apt update
@@ -192,6 +197,7 @@ tmux_install() {
     sudo apt install -y tmux
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 }
+
 luarocks_install() {
     sudo apt install build-essential libreadline-dev unzip
     if [ ! -d ~/.rzuquim/tmp ]; then
@@ -212,4 +218,8 @@ luarocks_install() {
     make
     sudo make install
     popd
+}
+
+atuin_install() {
+    curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
 }

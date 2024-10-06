@@ -33,6 +33,7 @@ BASIC_PACKAGES=(
     "libxkbcommon-dev | apt"
     "copyq | custom"
     "zoom | custom"
+    "atuin | custom"
 
     # communications
     "easy-rsa | apt"
