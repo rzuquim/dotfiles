@@ -1,11 +1,6 @@
 [include]
     path = ~/.config/git/whoami.toml
 
-[core]
-    editor = nvim
-    pager = delta
-    autocrlf = input
-
 [blame]
     coloring = highlightRecent
     showEmail = true
@@ -20,6 +15,11 @@
 
 [push]
     default = current
+
+[core]
+    editor = nvim -u ~/.config/nvim/init_simple.lua
+    pager = delta
+    autocrlf = input
 
 [interactive]
     diffFilter = delta --color-only
@@ -36,11 +36,14 @@
     keepBackup = false
 
 [mergetool "nvimdiff"]
-    layout = "LOCAL,BASE,REMOTE / MERGED"
+    cmd = "nvim -u ~/.config/nvim/init_simple.lua -d \"$LOCAL\" \"$BASE\" \"$REMOTE\" \"$MERGED\""
 
 [diff]
-    tool = delta
+    tool = nvimdiff
     colorMoved = default
+
+[difftool "nvimdiff"]
+    cmd = "nvim -u ~/.config/nvim/init_simple.lua -d \"$LOCAL\" \"$REMOTE\""
 
 [alias]
     #commit every change
@@ -94,3 +97,5 @@
     #diff cached (only staging)
     diff-staging = diff --cached
 
+[init]
+	defaultBranch = main
