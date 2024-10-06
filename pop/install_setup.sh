@@ -19,6 +19,8 @@ is_installed() {
         return 0
     elif [ "$1" = "atuin" ] && command -v atuin >/dev/null 2>&1; then
         return 0
+    elif [ "$1" = "kitty" ] && command -v kitty >/dev/null 2>&1; then
+        return 0
     else
         return 1
     fi
@@ -87,6 +89,9 @@ custom_install() {
             ;;
         atuin)
             atuin_install
+            ;;
+        kitty)
+            kitty_install
             ;;
     esac
 }
@@ -222,4 +227,15 @@ luarocks_install() {
 
 atuin_install() {
     curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
+}
+
+kitty_install() {
+    curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+    mkdir ~/.local/bin
+    ln -sf ~/.local/kitty.app/bin/kitty ~/.local/kitty.app/bin/kitten ~/.local/bin/
+    cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications/
+    cp ~/.local/kitty.app/share/applications/kitty-open.desktop ~/.local/share/applications/
+    sed -i "s|Icon=kitty|Icon=$(readlink -f ~)/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty*.desktop
+    sed -i "s|Exec=kitty|Exec=$(readlink -f ~)/.local/kitty.app/bin/kitty|g" ~/.local/share/applications/kitty*.desktop
+    echo 'kitty.desktop' > ~/.config/xdg-terminals.list
 }

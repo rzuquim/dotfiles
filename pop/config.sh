@@ -16,7 +16,7 @@ if [[ $response =~ ^[Yy]$ ]]; then
         --ignore-existing \
         -avh --no-perms ./config/ $HOME/.config > /dev/null
 
-    set_default_terminal "$HOME/.cargo/bin/alacritty"
+    set_default_terminal "~/.local/bin/kitty"
     set_default_shell "/usr/bin/zsh"
     set_default_profile
     set_git_config

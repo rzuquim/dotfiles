@@ -49,6 +49,7 @@ BASIC_PACKAGES=(
     "fonts-firacode | custom"
     "gitui | cargo"
     "alacritty | cargo"
+    "kitty | custom"
     "eza | cargo"
     "ripgrep | apt"
     "bat | apt"
