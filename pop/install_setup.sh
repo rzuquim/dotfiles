@@ -15,6 +15,8 @@ is_installed() {
         return 0
     elif [ "$1" = "oh-my-zsh" ] && [ -d "$HOME/.oh-my-zsh/" ]; then
         return 0
+    elif [ "$1" = "luarocks" ] && command -v luarocks >/dev/null 2>&1; then
+        return 0
     else
         return 1
     fi
@@ -78,6 +80,9 @@ custom_install() {
         tmux)
             tmux_install
             ;;
+        luarocks)
+            luarocks_install
+            ;;
     esac
 }
 
@@ -111,6 +116,7 @@ nodejs_install() {
     nvm install 18.12.1
     nvm alias default 18.12.1
     nvm use
+    npm install -g neovim
 }
 
 zsh_install() {
@@ -185,4 +191,25 @@ klogg_install() {
 tmux_install() {
     sudo apt install -y tmux
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+}
+luarocks_install() {
+    sudo apt install build-essential libreadline-dev unzip
+    if [ ! -d ~/.rzuquim/tmp ]; then
+        mkdir ~/.rzuquim/tmp
+    fi
+
+    pushd ~/.rzuquim/tmp
+    curl -L -R -O https://www.lua.org/ftp/lua-5.4.7.tar.gz
+    tar zxf lua-5.4.7.tar.gz
+    cd lua-5.4.7
+    make all test
+    sudo make install
+    cd ..
+    curl -R -O https://luarocks.github.io/luarocks/releases/luarocks-3.11.1.tar.gz
+    tar zxf luarocks-3.11.1.tar.gz
+    cd luarocks-3.11.1
+    ./configure --with-lua-include=/usr/local/include
+    make
+    sudo make install
+    popd
 }

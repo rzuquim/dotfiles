@@ -70,6 +70,7 @@ BASIC_PACKAGES=(
     "coffeescript@1.12.6 | npm"
     "typescript@4.4 | npm"
     "klogg | custom"
+    "luarocks | custom"
 
     # gnome
     # TODO: setup and configure the extensions I use: 
