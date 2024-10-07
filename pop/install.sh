@@ -47,6 +47,8 @@ BASIC_PACKAGES=(
     "oh-my-zsh | custom"
     "starship | cargo"
     "fonts-firacode | custom"
+    "jetbrains-mono | custom"
+    "hack-font | custom"
     "gitui | cargo"
     "alacritty | cargo"
     "kitty | custom"

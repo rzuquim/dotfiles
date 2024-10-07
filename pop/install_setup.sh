@@ -21,6 +21,10 @@ is_installed() {
         return 0
     elif [ "$1" = "kitty" ] && command -v kitty >/dev/null 2>&1; then
         return 0
+    elif [ "$1" = "jetbrains-mono" ] && [ -f "$HOME/.local/share/fonts/JetBrainsMono-Regular.ttf" ]; then
+        return 0
+    elif [ "$1" = "hack-font" ] && [ -f "$HOME/.local/share/fonts/HackNerdFontMono-Regular.ttf" ]; then
+        return 0
     else
         return 1
     fi
@@ -74,6 +78,12 @@ custom_install() {
             ;;
         fonts-firacode)
             firacode_install
+            ;;
+        jetbrains-mono)
+            jetbrainsmono_install
+            ;;
+        hack-font)
+            hackfont_install
             ;;
         zoom)
             zoom_install
@@ -205,11 +215,9 @@ tmux_install() {
 
 luarocks_install() {
     sudo apt install build-essential libreadline-dev unzip
-    if [ ! -d ~/.rzuquim/tmp ]; then
-        mkdir ~/.rzuquim/tmp
-    fi
-
+    mkdir ~/.rzuquim/tmp
     pushd ~/.rzuquim/tmp
+
     curl -L -R -O https://www.lua.org/ftp/lua-5.4.7.tar.gz
     tar zxf lua-5.4.7.tar.gz
     cd lua-5.4.7
@@ -238,4 +246,29 @@ kitty_install() {
     sed -i "s|Icon=kitty|Icon=$(readlink -f ~)/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty*.desktop
     sed -i "s|Exec=kitty|Exec=$(readlink -f ~)/.local/kitty.app/bin/kitty|g" ~/.local/share/applications/kitty*.desktop
     echo 'kitty.desktop' > ~/.config/xdg-terminals.list
+}
+
+
+jetbrainsmono_install() {
+    mkdir ~/.rzuquim/tmp
+    pushd ~/.rzuquim/tmp
+
+    wget https://download.jetbrains.com/fonts/JetBrainsMono-2.304.zip
+    unzip JetBrainsMono-2.304.zip -d jetbrains-mono
+    cd jetbrains-mono/fonts/ttf/
+
+    mv JetBrainsMono-*.ttf ~/.local/share/fonts/
+    popd
+}
+
+hackfont_install() {
+    mkdir ~/.rzuquim/tmp
+    pushd ~/.rzuquim/tmp
+
+    wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hack.zip
+    unzip Hack.zip -d hack-font
+    cd hack-font
+
+    mv Hack*.ttf ~/.local/share/fonts/
+    popd
 }
