@@ -19,7 +19,6 @@ export CM_MAX_CLIPS=100
 # ignoring keybinded commands on history
 setopt histignorespace
 
-# user configuration
 eval "$(starship init zsh)"
 
 . "$HOME/.atuin/bin/env"
@@ -64,6 +63,7 @@ alias ....='cd ..; cd ..; cd ..'
 alias w=work
 alias we=work_and_editor
 alias wt=work_on_tmux_session
+alias n=fd_and_navigate
 alias g=git
 alias gui=gitui
 alias dn=dotnet
