@@ -34,6 +34,7 @@ BASIC_PACKAGES=(
     "copyq | custom"
     "zoom | custom"
     "atuin | custom"
+    "pandoc | custom"
 
     # communications
     "easy-rsa | apt"

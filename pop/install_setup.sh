@@ -103,6 +103,9 @@ custom_install() {
         kitty)
             kitty_install
             ;;
+        pandoc)
+            pandoc_install
+            ;;
     esac
 }
 
@@ -272,3 +275,13 @@ hackfont_install() {
     mv Hack*.ttf ~/.local/share/fonts/
     popd
 }
+
+pandoc_install() {
+    mkdir ~/.rzuquim/tmp
+    pushd ~/.rzuquim/tmp
+    wget https://github.com/jgm/pandoc/releases/download/3.5/pandoc-3.5-1-amd64.deb
+    sudo dpkg -i pandoc-3.5-1-amd64.deb
+    sudo apt install texlive-xetex
+    popd
+}
+
