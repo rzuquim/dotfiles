@@ -106,6 +106,9 @@ custom_install() {
         pandoc)
             pandoc_install
             ;;
+        flatpak)
+            flatpak_install
+            ;;
     esac
 }
 
@@ -283,5 +286,11 @@ pandoc_install() {
     sudo dpkg -i pandoc-3.5-1-amd64.deb
     sudo apt install texlive-xetex
     popd
+}
+
+flatpak_install() {
+    sudo apt install flatpak
+    sudo apt install gnome-software-plugin-flatpak
+    sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 }
 

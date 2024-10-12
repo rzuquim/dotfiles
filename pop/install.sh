@@ -9,6 +9,7 @@ BASIC_PACKAGES=(
     "git | apt"
     "tmux | custom"
     "snapd | apt"
+    "flatpak | custom"
     "rustup | custom"
     "nodejs | custom"
     "python3 | apt"
@@ -44,6 +45,10 @@ BASIC_PACKAGES=(
     "remmina | snap"
     "telegram-desktop | snap"
     "whatsapp-for-linux | snap"
+
+    # media
+    # "flatpak install flathub org.qbittorrent.qBittorrent --user -y | flatpak"
+    # "flatpak install flathub io.mpv.Mpv --user -y | flatpak"
 
     # terminal
     "zsh | custom"
