@@ -17,8 +17,6 @@ BASIC_PACKAGES=(
     "curl | apt"
     "btop | apt"
     "dos2unix | apt"
-    "google-chrome-stable | custom"
-    "brave | snap"
     "build-essential | apt"
     "ca-certificates | apt"
     "flameshot | apt"
@@ -35,6 +33,10 @@ BASIC_PACKAGES=(
     "zoom | custom"
     "atuin | custom"
     "pandoc | custom"
+
+    # browser
+    "google-chrome-stable | custom"
+    "librewolf | apt"
 
     # communications
     "easy-rsa | apt"
