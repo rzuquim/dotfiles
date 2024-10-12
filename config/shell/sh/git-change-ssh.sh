@@ -9,7 +9,7 @@ git-change-ssh-key() {
         return 1
     fi
 
-    # Check if private/public keys are not links
+    # check if private/public keys are not links
     if [ -f "$pvt_key" ] && [ ! -L "$pvt_key" ]; then
         echo "Private key is not a link!"
         return 1
@@ -20,7 +20,7 @@ git-change-ssh-key() {
         return 1
     fi
 
-    # Remove existing private/public keys if they exist
+    # remove existing private/public keys if they exist
     if [ -f "$pvt_key" ]; then
         rm "$pvt_key"
     fi
@@ -29,7 +29,32 @@ git-change-ssh-key() {
         rm "$pub_key"
     fi
 
-    # Create symlinks to the desired secrets
+    # create symlinks to the desired secrets
     ln -s "$HOME/.ssh/$1/id_ed25519" "$pvt_key"
     ln -s "$HOME/.ssh/$1/id_ed25519.pub" "$pub_key"
+}
+
+git-ssh-key-toggle() {
+    curr=$(/bin/ls -l ~/.ssh/id_ed25519 | awk '{print $NF}' | awk -F'/' '{print $(NF-1)}' )
+    opts=$(/bin/ls -d ~/.ssh/*/ | xargs -n 1 basename)
+
+    # erases the current option from opts
+    opts=("${opts[@]/$curr/}")
+
+    # removes the empty entry after erasing
+    opts=($(echo "${opts[@]}" | awk 'NF'))
+
+    case "${#opts[@]}" in
+        0)
+            echo "No available shh keys"
+            ;;
+        1)
+            selected="${opts[1]}"
+            git-change-ssh-key "$selected"
+            ;;
+        *)
+            selected=$(printf "%s\n" "${directories[@]}" | fzf)
+            git-change-ssh-key "$selected"
+            ;;
+    esac
 }
