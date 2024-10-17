@@ -1,33 +1,55 @@
 #!/bin/bash
 
 is_installed() {
-    if dpkg -l "$1" 2>/dev/null | grep -q "^ii"; then
-        return 0
-    elif snap list "$1" &>/dev/null; then
-        return 0
-    elif cargo install --list 2>/dev/null | grep "^$1" &>/dev/null; then
-        return 0
-    elif npm list -g --depth=0 2>/dev/null | grep "$1@" &>/dev/null; then
-        return 0
-    elif npm list -g --depth=0 2>/dev/null | grep "$1" &>/dev/null; then
-        return 0
-    elif [ "$1" = "nodejs" ] && command -v node >/dev/null 2>&1; then
-        return 0
-    elif [ "$1" = "oh-my-zsh" ] && [ -d "$HOME/.oh-my-zsh/" ]; then
-        return 0
-    elif [ "$1" = "luarocks" ] && command -v luarocks >/dev/null 2>&1; then
-        return 0
-    elif [ "$1" = "atuin" ] && command -v atuin >/dev/null 2>&1; then
-        return 0
-    elif [ "$1" = "kitty" ] && command -v kitty >/dev/null 2>&1; then
-        return 0
-    elif [ "$1" = "jetbrains-mono" ] && [ -f "$HOME/.local/share/fonts/JetBrainsMono-Regular.ttf" ]; then
-        return 0
-    elif [ "$1" = "hack-font" ] && [ -f "$HOME/.local/share/fonts/HackNerdFontMono-Regular.ttf" ]; then
-        return 0
-    else
-        return 1
-    fi
+    package_name=$1
+    package_check=$2
+
+    case "$package_check" in
+        apt)
+            if dpkg -l "$package_name" 2>/dev/null | grep -q "^ii"; then
+                return 0
+            fi
+            ;;
+        snap)
+            if snap list "$package_name" &>/dev/null; then
+                return 0
+            fi
+            ;;
+        cargo)
+            if cargo install --list 2>/dev/null | grep "^$package_name" &>/dev/null; then
+                return 0
+            fi
+            ;;
+        npm)
+            if npm list -g --depth=0 2>/dev/null | grep "$package_name" &>/dev/null; then
+                return 0
+            fi
+            ;;
+        custom)
+            if [ "$package_name" = "nodejs" ] && command -v node >/dev/null 2>&1; then
+                return 0
+            elif [ "$package_name" = "oh-my-zsh" ] && [ -d "$HOME/.oh-my-zsh/" ]; then
+                return 0
+            elif [ "$package_name" = "luarocks" ] && command -v luarocks >/dev/null 2>&1; then
+                return 0
+            elif [ "$package_name" = "atuin" ] && command -v atuin >/dev/null 2>&1; then
+                return 0
+            elif [ "$package_name" = "kitty" ] && command -v kitty >/dev/null 2>&1; then
+                return 0
+            elif [ "$package_name" = "jetbrains-mono" ] && [ -f "$HOME/.local/share/fonts/JetBrainsMono-Regular.ttf" ]; then
+                return 0
+            elif [ "$package_name" = "hack-font" ] && [ -f "$HOME/.local/share/fonts/HackNerdFontMono-Regular.ttf" ]; then
+                return 0
+            else
+                return 1
+            fi
+            ;;
+        *)
+            echo "Unknown package manager '$package_manager' for '$package_name'."
+            ;;
+    esac
+
+    return 1
 }
 
 install_with_apt() {
@@ -57,62 +79,82 @@ custom_install() {
     case "$1" in
         docker-ce)
             docker_install
+            return 0
             ;;
         google-chrome-stable)
             chrome_install
+            return 0
             ;;
         nodejs)
             nodejs_install
+            return 0
             ;;
         zsh)
             zsh_install
+            return 0
             ;;
         oh-my-zosh)
             omz_install
+            return 0
             ;;
         rustup)
             rust_install
+            return 0
             ;;
         copyq)
             copyq_install
+            return 0
             ;;
         fonts-firacode)
             firacode_install
+            return 0
             ;;
         jetbrains-mono)
             jetbrainsmono_install
+            return 0
             ;;
         hack-font)
             hackfont_install
+            return 0
             ;;
         zoom)
             zoom_install
+            return 0
             ;;
         klogg)
             klogg_install
+            return 0
             ;;
         tmux)
             tmux_install
+            return 0
             ;;
         luarocks)
             luarocks_install
+            return 0
             ;;
         atuin)
             atuin_install
+            return 0
             ;;
         kitty)
             kitty_install
+            return 0
             ;;
         pandoc)
             pandoc_install
+            return 0
             ;;
         flatpak)
             flatpak_install
+            return 0
             ;;
-        ctop)
+        docker-ctop)
             ctop_install
+            return 0
             ;;
     esac
+    return 1
 }
 
 docker_install() {
@@ -299,12 +341,8 @@ flatpak_install() {
 
 ctop_install() {
     sudo apt-get install ca-certificates curl gnupg lsb-release
-    curl -fsSL https://azlux.fr/repo.gpg.key | sudo gpg --dearmor -o /usr/share/keyrings/azlux-archive-keyring.gpg
-    echo \
-        "deb [arch=$(dpkg --print-architecture) \
-            signed-by=/usr/share/keyrings/azlux-archive-keyring.gpg] http://packages.azlux.fr/debian \
-            $(lsb_release -cs) main" \
-        | sudo tee /etc/apt/sources.list.d/azlux.list >/dev/null
+    curl https://azlux.fr/repo.gpg | sudo apt-key add -
+    sudo apt-add-repository deb http://packages.azlux.fr/debian stable main
     sudo apt-get update
     sudo apt-get install docker-ctop
 }

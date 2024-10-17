@@ -7,10 +7,10 @@ source "./pop/install_setup.sh"
 BASIC_PACKAGES=(
     # tools
     "git | apt"
-    "tmux | custom"
+    "tmux | custom | apt"
     "snapd | apt"
-    "flatpak | custom"
-    "rustup | custom"
+    "flatpak | custom | apt"
+    "rustup | custom | snap"
     "nodejs | custom"
     "python3 | apt"
     "python3.10-venv | apt"
@@ -29,17 +29,17 @@ BASIC_PACKAGES=(
     "libfontconfig1-dev | apt"
     "libxcb-xfixes0-dev | apt"
     "libxkbcommon-dev | apt"
-    "copyq | custom"
-    "zoom | custom"
+    "copyq | custom | apt"
+    "zoom | custom | apt"
     "atuin | custom"
-    "pandoc | custom"
+    "pandoc | custom | apt"
 
     # monitoring
     "btop | apt"
-    "ctop | custom"
+    "docker-ctop | custom | apt"
 
     # browser
-    "google-chrome-stable | custom"
+    "google-chrome-stable | custom | apt"
     "librewolf | apt"
 
     # communications
@@ -54,10 +54,10 @@ BASIC_PACKAGES=(
     # "flatpak install flathub io.mpv.Mpv --user -y | flatpak"
 
     # terminal
-    "zsh | custom"
+    "zsh | custom | apt"
     "oh-my-zsh | custom"
     "starship | cargo"
-    "fonts-firacode | custom"
+    "fonts-firacode | custom | apt"
     "jetbrains-mono | custom"
     "hack-font | custom"
     "gitui | cargo"
@@ -79,12 +79,12 @@ BASIC_PACKAGES=(
     "rider | snap"
 
     # devtools
-    "docker-ce | custom"
+    "docker-ce | custom | apt"
     "prettier | npm"
     "commitizen@4.2.2 | npm"
     "coffeescript@1.12.6 | npm"
     "typescript@4.4 | npm"
-    "klogg | custom"
+    "klogg | custom | apt"
     "luarocks | custom"
 
     # gnome
@@ -97,19 +97,25 @@ BASIC_PACKAGES=(
     #
     # TODO: "Settings > Desktop > Dock > Uncheck Enable Dock" (to make dash-to-panel work after a reboot)
     # TODO: Set extension configs
-    "chrome-gnome-shell"
+    "chrome-gnome-shell | apt"
 )
 
 echo
 echo -e "${CYAN}* Installing apps${NC}"
 echo "We are going to install the following apps:"
 
+TO_INSTALL=()
 for package in "${BASIC_PACKAGES[@]}"; do
     package_name=$(echo "$package" | cut -d '|' -f 1 | xargs)
-    if is_installed "$package_name"; then
+    package_manager=$(echo "$package" | cut -d '|' -f 2 | xargs)
+    package_check=$(echo "$package" | cut -d '|' -f 3 | xargs)
+    package_check=${package_check:-${package_manager}}
+
+    if is_installed "$package_name" "$package_check"; then
         echo -e "  - $package_name ${GREEN}(Already installed)${NC}"
     else
         echo -e "  - $package_name"
+        TO_INSTALL+=("$package_name | $package_manager")
     fi
 done
 
@@ -126,18 +132,16 @@ fi
 sudo apt update -y
 sudo apt upgrade
 
-for package in "${BASIC_PACKAGES[@]}"; do
+for package in "${TO_INSTALL[@]}"; do
     package_name=$(echo "$package" | cut -d '|' -f 1 | xargs)
-
-    if is_installed "$package_name"; then
-        continue
-    fi
-
-    custom_install "$package_name"
-
     package_manager=$(echo "$package" | cut -d '|' -f 2 | xargs)
 
     echo "Installing $package_name with $package_manager..."
+
+    if custom_install "$package_name" "$package_manager"; then
+        continue
+    fi
+
     case "$package_manager" in
         apt)
             install_with_apt "$package_name"
@@ -154,10 +158,9 @@ for package in "${BASIC_PACKAGES[@]}"; do
         npm)
             install_with_npm "$package_name"
             ;;
-        custom)
-            ;;
         *)
             echo "Unknown package manager '$package_manager' for '$package_name'."
             ;;
     esac
 done
+
