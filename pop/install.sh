@@ -16,7 +16,6 @@ BASIC_PACKAGES=(
     "python3.10-venv | apt"
     "dotnet-sdk-8.0 | apt"
     "curl | apt"
-    "btop | apt"
     "dos2unix | apt"
     "build-essential | apt"
     "ca-certificates | apt"
@@ -35,6 +34,10 @@ BASIC_PACKAGES=(
     "atuin | custom"
     "pandoc | custom"
 
+    # monitoring
+    "btop | apt"
+    "ctop | custom"
+
     # browser
     "google-chrome-stable | custom"
     "librewolf | apt"
@@ -44,7 +47,7 @@ BASIC_PACKAGES=(
     "openvpn | apt"
     "remmina | snap"
     "telegram-desktop | snap"
-    "whatsapp-for-linux | snap"
+    "whatsapp-for-linux | snap" # FIX: https://github.com/eneshecan/whatsapp-for-linux/issues/131#issuecomment-906992739
 
     # media
     # "flatpak install flathub org.qbittorrent.qBittorrent --user -y | flatpak"
@@ -85,7 +88,7 @@ BASIC_PACKAGES=(
     "luarocks | custom"
 
     # gnome
-    # TODO: setup and configure the extensions I use: 
+    # TODO: setup and configure the extensions I use:
     #       - https://extensions.gnome.org/extension/517/caffeine/
     #       - https://extensions.gnome.org/extension/1160/dash-to-panel/
     #       - https://extensions.gnome.org/extension/1460/vitals/
@@ -126,11 +129,11 @@ sudo apt upgrade
 for package in "${BASIC_PACKAGES[@]}"; do
     package_name=$(echo "$package" | cut -d '|' -f 1 | xargs)
 
-    if is_installed "$package_name"; then 
+    if is_installed "$package_name"; then
         continue
     fi
 
-    custom_install "$package_name" 
+    custom_install "$package_name"
 
     package_manager=$(echo "$package" | cut -d '|' -f 2 | xargs)
 
