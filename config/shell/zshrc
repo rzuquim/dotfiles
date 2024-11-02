@@ -66,6 +66,7 @@ alias w=work
 alias we=work_and_editor
 alias wt=work_on_tmux_session
 alias n=fd_and_navigate
+alias b=back_to_folder
 
 # git
 alias g=git

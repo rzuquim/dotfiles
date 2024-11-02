@@ -23,3 +23,17 @@ function fd_and_navigate() {
     )
 }
 
+function back_to_folder() {
+    local filter=$1
+
+    local target_index=$(
+        dirs -v |
+        fzf --ansi --query="$filter" --select-1 |
+        awk '{print $1}'  # Extract the index number
+    )
+
+    for ((i = 0; i < target_index; i++)); do
+        popd > /dev/null
+    done
+}
+
