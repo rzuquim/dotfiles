@@ -55,7 +55,7 @@ alias grep='rg --color=auto'
 alias cat='batcat'
 alias clip='xclip -sel c'
 alias home='cd ~'
-alias root='cd /'
+alias tree='tree --dirsfirst'
 alias o=xdg-open
 alias ..='cd ..'
 alias ...='cd ..; cd ..'
