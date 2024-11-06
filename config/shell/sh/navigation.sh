@@ -16,7 +16,7 @@ function fd_and_navigate() {
             --type directory \
             --unrestricted \
             --max-depth 10 \
-            --exclude .cache --exclude .asdf --exclude .local --exclude .cargo --exclude node-modules \
+            --exclude .cache --exclude .asdf --exclude .local --exclude .cargo --exclude node_modules \
             --exclude .config --exclude bin --exclude obj --exclude .zsh --exclude .nvm --exclude .git \
             . "$start_dir" |
         fzf --ansi --query="$filter" --select-1

@@ -10,7 +10,7 @@ function work() {
             --type directory \
             --unrestricted \
             --max-depth 5 \
-            --exclude .cache --exclude .asdf --exclude .local --exclude .cargo --exclude node-modules \
+            --exclude .cache --exclude .asdf --exclude .local --exclude .cargo --exclude node_modules \
             --exclude .config --exclude bin --exclude obj --exclude .zsh --exclude .nvm \
             --prune ^.git$ $HOME |
         awk 'BEGIN {COLOR="\033[32m"; RESET="\033[0m";} NF{NF-=2} { print COLOR "[" $NF "] " RESET $0 }' \
