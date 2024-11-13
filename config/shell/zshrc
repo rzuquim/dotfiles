@@ -1,23 +1,24 @@
-# If you come from bash you might have to change your $PATH.
-export VISUAL=nvim
-export EDITOR="$VISUAL"
-export PATH=$HOME/.local/bin:$HOME/bin:/usr/local/bin:$HOME/.cargo/bin:$HOME/.dotnet/bin:$PATH
-export BROWSER="google-chrome"
 
-# History
-export HISTFILE=~/.config/.zsh_history
-export HISTSIZE=100
-export SAVEHIST=1000
-export HISTCONTROL=ignoreboth # ignoring history duplicate
+source ~/.config/shell/env.sh
 
-# clipboard config
-export CM_SELECTIONS="clipboard"
-export CM_DEBUG=0
-export CM_OUT_CLIP=0
-export CM_MAX_CLIPS=100
+local zsh_profile_loaded_today=0
+PROFILE_MARKER="/tmp/.zsh_profile_loaded_today"
+
+if [[ ! -f "$PROFILE_MARKER" ]]; then
+    touch "$PROFILE_MARKER"
+    zmodload zsh/zprof
+    zsh_profile_loaded_today=1
+fi
+
+if [[ -f "$HOME/.config/shell/custom.sh" ]]; then
+    source "$HOME/.config/shell/custom.sh"
+fi
 
 # ignoring keybinded commands on history
 setopt histignorespace
+
+# BUG: for some reason this is not working on .xinitrc (on popos) so i am placing the cmd here
+# setxkbmap -option caps:escape
 
 eval "$(starship init zsh)"
 
@@ -55,6 +56,7 @@ alias grep='rg --color=auto'
 alias cat='batcat'
 alias clip='xclip -sel c'
 alias home='cd ~'
+alias root='cd /'
 alias tree='tree --dirsfirst'
 alias o=xdg-open
 alias ..='cd ..'
@@ -133,8 +135,6 @@ fi
 # --------------------
 # env vars
 # --------------------
-source ~/.config/shell/env.sh
-
 # --------------------
 # helpers
 # --------------------
@@ -147,10 +147,6 @@ done
 # --------------------
 export NVM_DIR=~/.nvm
 source "$NVM_DIR/nvm.sh"
-
-if [[ -f "$HOME/.config/shell/custom.sh" ]]; then
-    source "$HOME/.config/shell/custom.sh"
-fi
 
 # --------------------
 # keybindings
@@ -165,4 +161,8 @@ bindkey -s '^a' ' fg^M'  # running fg
 if [[ -f "$HOME/.ctx" ]]; then
     local current_workspace=`cat ~/.ctx | awk '{ print $2 }'`
     cd $current_workspace
+fi
+
+if [[ $zsh_profile_loaded_today -eq 1 ]]; then
+    zprof
 fi
