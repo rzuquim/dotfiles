@@ -1,5 +1,34 @@
 #!/bin/sh
 
+exclude_folders=(
+    .cache .asdf .local .cargo node_modules
+    .config bin obj .zsh .nvm
+)
+
+exclude_args=()
+for folder in "${exclude_folders[@]}"; do
+    exclude_args+=(--exclude "$folder")
+done
+
+function node_setup_if_pertinent() {
+    if command -v nvm &> /dev/null; then
+        return
+    fi
+
+    found_files=$(
+        ~/.cargo/bin/fd \
+            --type file \
+            --unrestricted \
+            --max-depth 5 \
+            "${exclude_args[@]}" \
+        "(package|tsconfig)\.json$" .)
+
+    if [[ -n $found_files ]]; then
+        export NVM_DIR=~/.nvm
+        source "$NVM_DIR/nvm.sh"
+    fi
+}
+
 function work() {
     local filter=$1
     echo -n 'work ' > ~/.ctx
@@ -10,14 +39,15 @@ function work() {
             --type directory \
             --unrestricted \
             --max-depth 5 \
-            --exclude .cache --exclude .asdf --exclude .local --exclude .cargo --exclude node_modules \
-            --exclude .config --exclude bin --exclude obj --exclude .zsh --exclude .nvm \
+            "${exclude_args[@]}" \
             --prune ^.git$ $HOME |
         awk 'BEGIN {COLOR="\033[32m"; RESET="\033[0m";} NF{NF-=2} { print COLOR "[" $NF "] " RESET $0 }' \
             FS='/' OFS='/' |
         fzf --ansi --query="$filter" --select-1 |
         awk '{ print $2 }'
     )
+
+    node_setup_if_pertinent
 
     # adding work folder on context
     pwd | xargs echo -n >> ~/.ctx
@@ -56,7 +86,7 @@ function work_on_tmux_session() {
         echo -e $session_name
         current_dir=$(basename "$(pwd)")
         final_name="[$current_dir] $session_name"
-        final_name=echo $final_name | tr '.' '_'
+        final_name=$(echo $final_name | tr '.' '_')
 
         # editor window
         tmux new-session -s "$final_name" -d

@@ -137,20 +137,11 @@ if [[ -f "$HOME/.context" ]]; then
 fi
 
 # --------------------
-# env vars
-# --------------------
-# --------------------
 # helpers
 # --------------------
 for file in ~/.config/shell/sh/*.sh; do
     . "$file"
 done
-
-# --------------------
-# node
-# --------------------
-export NVM_DIR=~/.nvm
-source "$NVM_DIR/nvm.sh"
 
 # --------------------
 # keybindings
