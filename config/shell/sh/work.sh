@@ -1,34 +1,14 @@
-
 #!/bin/sh
 
 exclude_folders=(
     .cache .asdf .local .cargo node_modules
-    .config bin obj .zsh .nvm
+    .config bin obj .zsh .nvm .vscode
 )
 
 exclude_args=()
 for folder in "${exclude_folders[@]}"; do
     exclude_args+=(--exclude "$folder")
 done
-
-function node_setup_if_pertinent() {
-    if command -v nvm &> /dev/null; then
-        return
-    fi
-
-    found_files=$(
-        ~/.cargo/bin/fd \
-            --type file \
-            --unrestricted \
-            --max-depth 5 \
-            "${exclude_args[@]}" \
-        "(package|tsconfig)\.json$" .)
-
-    if [[ -n $found_files ]]; then
-        export NVM_DIR=~/.nvm
-        source "$NVM_DIR/nvm.sh"
-    fi
-}
 
 function work() {
     local filter=$1
@@ -53,7 +33,9 @@ function work() {
     fi
 
     cd $selected
+
     node_setup_if_pertinent
+    dotnet_setup_if_pertinent
 
     # adding work folder on context
     pwd | xargs echo -n >> ~/.ctx
