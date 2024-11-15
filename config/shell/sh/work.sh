@@ -1,3 +1,4 @@
+
 #!/bin/sh
 
 exclude_folders=(
@@ -34,7 +35,7 @@ function work() {
     echo -n 'work ' > ~/.ctx
 
     # navigating to work dir
-    cd $(
+    local selected=$(
         ~/.cargo/bin/fd \
             --type directory \
             --unrestricted \
@@ -47,14 +48,24 @@ function work() {
         awk '{ print $2 }'
     )
 
+    if [[ $? -ne 0 || -z $selected ]]; then
+        return -1
+    fi
+
+    cd $selected
     node_setup_if_pertinent
 
     # adding work folder on context
     pwd | xargs echo -n >> ~/.ctx
+    return 0
 }
 
 function work_and_editor() {
     work $1
+
+    if [[ $? -ne 0 ]]; then
+        return -1
+    fi
 
     # ------------------------------
     # dotnet
@@ -74,13 +85,21 @@ function work_and_editor() {
 }
 
 function work_on_tmux_session() {
-    selected=$(\
+    local selected=$(\
             tmux ls 2>/dev/null | cut -d: -f1 | \
             { echo "--- NEW ---"; cat; } | \
         fzf)
 
+    if [[ $? -ne 0 || -z $selected ]]; then
+        return -1
+    fi
+
     if [[ "$selected" == "--- NEW ---" ]]; then
         work
+
+        if [[ -z $selected ]]; then
+            return -1
+        fi
         echo -n "Enter new session name: "
         read session_name
         echo -e $session_name
