@@ -1,6 +1,10 @@
 
 source ~/.config/shell/env.sh
 
+# to set users on docker stuff
+export UID=$(id -u) 
+export GID=$(id -g)
+
 local zsh_profile_loaded_today=0
 PROFILE_MARKER="/tmp/.zsh_profile_loaded_today"
 
@@ -18,7 +22,7 @@ fi
 setopt histignorespace
 
 # BUG: for some reason this is not working on .xinitrc (on popos) so i am placing the cmd here
-# setxkbmap -option caps:escape
+setxkbmap -option caps:escape
 
 eval "$(starship init zsh)"
 
