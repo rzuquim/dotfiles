@@ -45,56 +45,56 @@
     cmd = "nvim -u ~/.config/nvim/init_simple.lua -d \"$LOCAL\" \"$REMOTE\""
 
 [alias]
-    #commit every change
+    # commit
     aa = !git add -A
     ci = !git add -A && git commit -m
     c = commit -m
     amend = commit -a --amend
     m = merge --ff-only
 
-    #status
+    # status
     s = status -sb
 
-    #branch
+    # branch
     b = "!git for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))' refs/heads/* refs/remotes/*/*"
 
     move-branch = branch -f
     squash = rebase -i HEAD~5
 
-    #small log with relative date
-    ls = log --graph --pretty=format:"%C(yellow)%h%Creset\\ -%Cred%d\\ %C(magenta)[%cn]\\ %Creset%s\\ %Cgreen(%ad)" --decorate --date=relative --max-count=50
-    new = log --pretty=format:"%C(yellow)%h%Creset\\ %s" origin/latest..HEAD
+    # log
+    ls = log --graph --pretty=format:"%C(yellow)%h%Creset\\ -%Cred%d\\ %C(magenta)[%cn]\\ %Creset%s\\ %Cgreen(%ad)" --decorate --date=relative --max-count=30
     missing = log --pretty=format:"%C(yellow)%h%Creset\\ %s" HEAD..origin/latest
     short-hash = "!git rev-parse --short HEAD | clip"
 
-    #list all aliases
-    aliases = "!git config -l | grep alias | cut -c 7-"
-
-    #check-out this awesome new branch!
+    # check-out
     co = checkout
+    new = "!f() { git checkout -b $1 && git push origin && git branch --set-upstream-to=origin/$1; }; f"
 
-    #delete local branch
+    # delete
     del-branch = branch -D
+    purge = !git branch -D $1 && git push origin --delete $1
 
-    #mergetool and diff tool
+    # diff
     dt = difftool --no-prompt
     mt = mergetool
     changes = difftool --no-prompt HEAD^ HEAD
+    changes-staging = diff --cached
 
-    #revert changes to last commit
+    # revert
     undo = checkout --
-    wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard && git clean -fd
+    wipe = !git add -A && git commit -qm 'chore: wipe backup' && git reset HEAD~1 --hard && git clean -fd
     soft-unstage = !git reset --soft HEAD^ && git reset
     fuck-local = !git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)
-    clean-ignored = clean -fXd
+    cc = clean -fXd
 
-    #get from origin
-    po = pull origin
-    f = fetch origin
-    fp = fetch origin --prune
+    # origin
+    f = fetch origin --prune
 
-    #diff cached (only staging)
-    diff-staging = diff --cached
+    # utils
+    aliases = "!git config -l | grep alias | cut -c 7-"
+
+[includeIf "gitdir:~/inoa/"]
+    path = ~/.config/git/inoa.toml
 
 [init]
-	defaultBranch = main
+    defaultBranch = main
