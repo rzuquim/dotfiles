@@ -93,13 +93,6 @@ alias dit=docker_interactive
 # using fd as default fzf finder (following links, including hidden files and excluding useless directories)
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude node_modules --exclude .git'
 
-function config {
-    cd ~/.config
-    cd $(
-        /bin/ls | fzf 
-    ) && nvim .
-}
-
 # create a dir even if it does not exist
 function mkd {
     mkdir -p -- "$1" &&

@@ -112,3 +112,23 @@ function work_on_tmux_session() {
     fi
 }
 
+function config {
+    local config_dir="$HOME/.config"
+    local selected=$(/bin/ls "$config_dir" | fzf)
+
+    if [[ $? -ne 0 || -z "$selected" ]]; then
+        echo "Selection canceled or invalid."
+        return 1
+    fi
+
+    local full_path="$config_dir/$selected"
+
+    if [[ -d "$full_path" ]]; then
+        cd "$full_path" || return 1
+        nvim .
+    else
+        cd "$config_dir" || return 1
+        nvim "$full_path"
+    fi
+}
+
