@@ -13,6 +13,7 @@ BASIC_PACKAGES=(
     "rustup | custom | snap"
     "nodejs | custom"
     "python3 | apt"
+    "python3-pip | apt"
     "python3.10-venv | apt"
     "dotnet-sdk-8.0 | apt"
     "curl | apt"
@@ -24,6 +25,7 @@ BASIC_PACKAGES=(
     "p7zip-full | apt"
     "p7zip-rar | apt"
     "cmake | apt"
+    "wkhtmltopdf | apt"
     "pkg-config | apt"
     "libfreetype6-dev | apt"
     "libfontconfig1-dev | apt"
@@ -52,6 +54,8 @@ BASIC_PACKAGES=(
     # media
     # "flatpak install flathub org.qbittorrent.qBittorrent --user -y | flatpak"
     # "flatpak install flathub io.mpv.Mpv --user -y | flatpak"
+    "presenterm | cargo"
+    # "presenterm-export | pip"
 
     # terminal
     "zsh | custom | apt"
