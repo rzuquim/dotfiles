@@ -17,3 +17,7 @@ export CM_DEBUG=0
 export CM_OUT_CLIP=0
 export CM_MAX_CLIPS=100
 
+# mobile dev
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools

@@ -82,15 +82,6 @@ BASIC_PACKAGES=(
     "code | snap"
     "rider | snap"
 
-    # devtools
-    "docker-ce | custom | apt"
-    "prettier | npm"
-    "commitizen@4.2.2 | npm"
-    "coffeescript@1.12.6 | npm"
-    "typescript@4.4 | npm"
-    "klogg | custom | apt"
-    "luarocks | custom"
-
     # gnome
     # TODO: setup and configure the extensions I use:
     #       - https://extensions.gnome.org/extension/517/caffeine/
@@ -102,6 +93,16 @@ BASIC_PACKAGES=(
     # TODO: "Settings > Desktop > Dock > Uncheck Enable Dock" (to make dash-to-panel work after a reboot)
     # TODO: Set extension configs
     "chrome-gnome-shell | apt"
+
+    # devtools
+    "docker-ce | custom | apt"
+    "prettier | npm"
+    "commitizen@4.2.2 | npm"
+    "coffeescript@1.12.6 | npm"
+    "typescript@4.4 | npm"
+    "klogg | custom | apt"
+    "luarocks | custom"
+    "android-studio | custom" # NOTE: leaving the interactive installers last
 )
 
 echo

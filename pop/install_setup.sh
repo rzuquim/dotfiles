@@ -40,6 +40,8 @@ is_installed() {
                 return 0
             elif [ "$package_name" = "hack-font" ] && [ -f "$HOME/.local/share/fonts/HackNerdFontMono-Regular.ttf" ]; then
                 return 0
+            elif [ "$package_name" = "android-studio" ] && [ -d "$HOME/.local/bin/android-studio" ]; then
+                return 0
             else
                 return 1
             fi
@@ -115,6 +117,10 @@ custom_install() {
             ;;
         hack-font)
             hackfont_install
+            return 0
+            ;;
+        android-studio)
+            androidstudio_install
             return 0
             ;;
         zoom)
@@ -345,4 +351,16 @@ ctop_install() {
     sudo apt-add-repository deb http://packages.azlux.fr/debian stable main
     sudo apt-get update
     sudo apt-get install docker-ctop
+}
+
+androidstudio_install() {
+    # docs: https://developer.android.com/studio/install#64bit-libs
+    sudo apt-get install libc6:i386 libncurses5:i386 libstdc++6:i386 lib32z1 libbz2-1.0:i386
+    wget \
+        https://redirector.gvt1.com/edgedl/android/studio/ide-zips/2024.2.1.12/android-studio-2024.2.1.12-linux.tar.gz \
+        -O /tmp/android-studio.tar.gz
+    mkdir -p "$HOME/.local/bin/android-studio"
+    tar zxf /tmp/android-studio.tar.gz --directory="$HOME/.local/bin/"
+    bash "$HOME/.local/bin/android-studio/bin/studio.sh"
+    ln -s $HOME/.local/bin/android-studio/bin/studio $HOME/.local/bin/androidstudio
 }
