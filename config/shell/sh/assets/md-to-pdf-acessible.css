@@ -1,0 +1,5 @@
+@import url("md-to-pdf.css");
+
+:root {
+  --font-size-regular: 18pt;
+}
