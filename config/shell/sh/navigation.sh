@@ -11,16 +11,22 @@ function fd_and_navigate() {
     fi
 
     # navigating to work dir
-    cd $(
+    local selected=$(
         ~/.cargo/bin/fd \
             --type directory \
             --unrestricted \
             --max-depth 10 \
             --exclude .cache --exclude .asdf --exclude .local --exclude .cargo --exclude node_modules \
-            --exclude .config --exclude bin --exclude obj --exclude .zsh --exclude .nvm --exclude .git \
+            --exclude .config --exclude obj --exclude .zsh --exclude .nvm --exclude .git \
             . "$start_dir" |
         fzf --ansi --query="$filter" --select-1
     )
+
+    if [[ $? -ne 0 || -z $selected ]]; then
+        return -1
+    fi
+
+    cd $selected
 }
 
 function back_to_folder() {
@@ -31,6 +37,10 @@ function back_to_folder() {
         fzf --ansi --query="$filter" --select-1 |
         awk '{print $1}'  # Extract the index number
     )
+
+    if [[ $? -ne 0 || -z $target_index ]]; then
+        return -1
+    fi
 
     for ((i = 0; i < target_index; i++)); do
         popd > /dev/null
