@@ -1,5 +1,18 @@
 #!/bin/sh
 
+exclude_args_nav=()
+
+function setup_nav() {
+    local exclude_folders_nav=(
+        .cache .asdf .local .cargo node_modules .git
+        .config obj .zsh .nvm .vscode target .github
+    )
+
+    for folder in "${exclude_folders_nav[@]}"; do
+        exclude_args_nav+=(--exclude "$folder")
+    done
+}
+
 function fd_and_navigate() {
     local filter=$1
 
@@ -16,8 +29,7 @@ function fd_and_navigate() {
             --type directory \
             --unrestricted \
             --max-depth 10 \
-            --exclude .cache --exclude .asdf --exclude .local --exclude .cargo --exclude node_modules \
-            --exclude .config --exclude obj --exclude .zsh --exclude .nvm --exclude .git \
+            "${exclude_args_nav[@]}" \
             . "$start_dir" |
         fzf --ansi --query="$filter" --select-1
     )
@@ -47,3 +59,4 @@ function back_to_folder() {
     done
 }
 
+setup_nav

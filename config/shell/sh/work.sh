@@ -1,14 +1,17 @@
 #!/bin/sh
 
-exclude_folders=(
-    .cache .asdf .local .cargo node_modules
-    .config bin obj .zsh .nvm .vscode
-)
+exclude_args_work=()
 
-exclude_args=()
-for folder in "${exclude_folders[@]}"; do
-    exclude_args+=(--exclude "$folder")
-done
+function setup_work() {
+    local exclude_folders=(
+        .cache .asdf .local .cargo node_modules
+        .config bin obj .zsh .nvm .vscode target .github
+    )
+
+    for folder in "${exclude_folders[@]}"; do
+        exclude_args_work+=(--exclude "$folder")
+    done
+}
 
 function work() {
     local filter=$1
@@ -20,7 +23,7 @@ function work() {
             --type directory \
             --unrestricted \
             --max-depth 5 \
-            "${exclude_args[@]}" \
+            "${exclude_args_work[@]}" \
             --prune ^.git$ $HOME |
         awk 'BEGIN {COLOR="\033[32m"; RESET="\033[0m";} NF{NF-=2} { print COLOR "[" $NF "] " RESET $0 }' \
             FS='/' OFS='/' |
@@ -132,3 +135,4 @@ function config {
     fi
 }
 
+setup_work

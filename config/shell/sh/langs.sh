@@ -10,7 +10,7 @@ function node_setup_if_pertinent() {
             --type file \
             -1 \
             --max-depth 4 \
-            "${exclude_args[@]}" \
+            "${exclude_args_work[@]}" \
         "(package|tsconfig)\.json$" .)
 
     if [[ -n $found_files ]]; then
@@ -29,7 +29,7 @@ function dotnet_setup_if_pertinent(){
             --type file \
             -1 \
             --max-depth 3 \
-            "${exclude_args[@]}" \
+            "${exclude_args_work[@]}" \
         "\.(sln|csproj)$" .)
 
     if [[ -z $found_files ]]; then
