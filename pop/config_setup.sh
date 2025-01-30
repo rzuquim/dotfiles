@@ -195,7 +195,7 @@ set_shortcuts() {
         "PrintScreen into file;flameshot full --path $HOME/Pictures/Screenshots/;<Shift>Print"
         "PrintScreen into clipboard;flameshot full --clipboard;<Ctrl>Print"
         "Clipboard History;copyq toggle;<Super>v"
-        "Terminal;kitty;<Super>Return"
+        "Terminal;alacritty;<Super>Return"
     )
 
     # Loop through the custom shortcuts and add them
