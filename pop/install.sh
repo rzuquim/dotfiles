@@ -79,6 +79,7 @@ BASIC_PACKAGES=(
 
     # editors
     "nvim | snap"
+    "neovide | cargo"
     "code | snap"
     "rider | snap"
 
