@@ -42,6 +42,8 @@ is_installed() {
                 return 0
             elif [ "$package_name" = "android-studio" ] && [ -d "$HOME/.local/bin/android-studio" ]; then
                 return 0
+            elif [ "$package_name" = "devour" ] && [ -f "/usr/local/bin/devour" ]; then
+                return 0
             else
                 return 1
             fi
@@ -121,6 +123,10 @@ custom_install() {
             ;;
         android-studio)
             androidstudio_install
+            return 0
+            ;;
+        devour)
+            devour_install
             return 0
             ;;
         zoom)
@@ -363,4 +369,15 @@ androidstudio_install() {
     tar zxf /tmp/android-studio.tar.gz --directory="$HOME/.local/bin/"
     bash "$HOME/.local/bin/android-studio/bin/studio.sh"
     ln -s $HOME/.local/bin/android-studio/bin/studio $HOME/.local/bin/androidstudio
+}
+
+devour_install() {
+    if [ ! -d ~/.devour ]; then
+        mkdir -p ~/.devour
+        git clone https://github.com/salman-abedin/devour.git ~/.devour
+    fi
+
+    pushd ~/.devour
+    sudo make install
+    popd
 }

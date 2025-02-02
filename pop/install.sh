@@ -76,6 +76,8 @@ BASIC_PACKAGES=(
     "tree | apt"
     "xclip | apt"
     "git-delta | cargo"
+    "xdo | apt"
+    "devour | custom"
 
     # editors
     "nvim | snap"

@@ -89,6 +89,10 @@ alias dnr='dotnet run -v q --property WarningLevel=0'
 alias d=docker
 alias dit=docker_interactive
 
+# swallow apps
+alias nv='devour neovide'
+alias mpv='devour mpv'
+
 # ---------------------
 # navigation
 # ---------------------
