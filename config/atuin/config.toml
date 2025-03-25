@@ -110,6 +110,7 @@ history_filter = [
   "^g",
   "^git",
   "^fg$",
+  "torrent",
   "^\\.\\.",
   "^\\.\\.\\."
 ]
