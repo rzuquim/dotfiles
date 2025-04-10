@@ -32,16 +32,16 @@ echo -e "${RED}                    |_|                  ${NC}"
 
 echo "Bootstraping Arch"
 
-# ------------
-# system clock
-# ------------
+# ---------------------------------
+# SYSTEM CLOCK
+# ---------------------------------
 echo -e "${CYAN}Syncing system clock...${NC}"
 timedatectl set-ntp true
 timedatectl set-timezone Brazil/East
 
-# ------------
-# disks
-# ------------
+# ---------------------------------
+# DISKS
+# ---------------------------------
 echo -e "${CYAN}Partitioning disks...${NC}"
 disks=($(lsblk -dno NAME,MODEL | grep -Ev 'USB|loop' | awk '{print "/dev/"$1}'))
 
@@ -56,48 +56,85 @@ echo $disks
 read -p "A clean installation will ERASE ALL DATA on the disks. Are you sure? [y/N] " response
 response=${response:-N}
 if [[ $response =~ ^[Yy]$ ]]; then
-    # Partition the first disk: 1GiB EFI + rest for LVM
-    first_disk="${disks[0]}"
-    echo -e "${CYAN}Erasing disk:${NC} $first_disk"
-    sgdisk --zap-all "$first_disk"
-
-    echo -e "${CYAN}Creating EFI partition on:${NC} $first_disk"
-    sgdisk -n1:0:+1GiB -t1:ef00 -c1:EFI "$first_disk"
-
-    echo -e "${CYAN}Creating LVM partition on:${NC} $first_disk"
-    sgdisk -n2:0:0     -t2:8e00 -c2:LVM "$first_disk"
-
-    # Partition remaining disks as LVM only
-    for disk in "${disks[@]:1}"; do
+    # ---------------------------------
+    # PARTITIONS
+    # ---------------------------------
+    for disk in "${disks[@]}"; do
         echo -e "${CYAN}Erasing disk:${NC} $disk"
         sgdisk --zap-all "$disk"
-        echo -e "${CYAN}Creating LVM partition on:${NC} $disk"
+    done
+
+    first_disk="${disks[0]}"
+
+    # NOTE: we are creating the EFI partition on the end to ensure every LVM partition index is 1
+    #       when we have multiple disks
+    echo -e "${CYAN}Creating LVM partition (everything except last 1GiB) on:${NC} $first_disk"
+    sgdisk -n1:0:-1GiB -t1:8e00 -c1:LVM "$first_disk"
+
+    echo -e "${CYAN}Creating EFI partition (last 1GiB) on:${NC} $first_disk"
+    sgdisk -n2:-1GiB:0 -t2:ef00 -c2:EFI "$first_disk"
+
+    for disk in "${disks[@]:1}"; do
+        echo -e "${CYAN}Creating LVM partition${NC} $disk"
         sgdisk -n1:0:0 -t1:8e00 -c1:LVM "$disk"
     done
 
-    echo -e -n "${CYAN}Formatting UEFI partition as FAT32...${NC}"
-    sleep 2 # Wait for partitions to appear
-    mkfs.fat -F32 "${first_disk}1"
-    echo -e "${GREEN}DONE${NC}"
+    # NOTE: a reboot might be necessary to reload the partition table (since the partitions are cached by the kernel)
+    # for disk in "${disks[@]}"; do
+    #     echo -e "${CYAN}Telling kernel to reload partition table${NC}"
+    #     partprobe "$disk"
+    # done
 
-    echo -e "${CYAN}Creating physical volumes for LVM on ${NC} ${first_disk}2"
-    pvcreate "${first_disk}2"
+    # ---------------------------------
+    # ENCRYPTION
+    # ---------------------------------
+    # TODO: use yubikey instead of passphrase
+    echo -e "${CYAN}Encrypting LVM partitions with LUKS"
+    echo -e "${YELLOW}USE THE SAME PASSPHRASE FOR EVERY DISK!${NC}"
 
-    for disk in "${disks[@]:1}"; do
-        echo -e "${CYAN}Creating physical volumes for LVM on ${NC} ${disk}1"
-        pvcreate "${disk}1"
+    for i in "${!disks[@]}"; do
+        disk="${disks[$i]}"
+        # NOTE: assuming partition 1 is the LVM on all disks (see note above placing EFI partition on index 2)
+        part="${disk}1"
+        mapper_name="cryptlvm$i"
+
+        echo -e "${CYAN}Encrypting ${NC} $part"
+        cryptsetup luksFormat "$part"
+        cryptsetup open "$part" "$mapper_name"
+        crypt_devices+=("/dev/mapper/$mapper_name")
+    done
+    echo -e "${GREEN}Encrypted partitions: ${NC}$crypt_devices"
+
+    # ---------------------------------
+    # LVM VOLUMES (on encrypted container)
+    # ---------------------------------
+    for dev in "${crypt_devices[@]}"; do
+        echo -e "${CYAN}Creating physical volume on ${NC} $dev"
+        pvcreate "$dev"
     done
 
     echo -e "${CYAN}Creating volume group and logical volume${NC}"
-    vgcreate vg0 "${first_disk}2" # TODO: add more disks
+    vgcreate vg0 "${crypt_devices[@]}"
     lvcreate -l 100%FREE -n root vg0
+    echo -e "${GREEN}DONE${NC}"
+
+    sleep 2 # Wait for partitions to appear
+
+    # ---------------------------------
+    # FORMATTING AND MOUNTING
+    # ---------------------------------
+    echo -e "${CYAN}Formatting UEFI partition as FAT32...${NC}"
+    mkfs.fat -F32 "${first_disk}2"
+    echo -e "${GREEN}DONE${NC}"
 
     echo -e "${CYAN}Formatting virtual volume as good old ext4${NC}"
     mkfs.ext4 /dev/vg0/root
+    echo -e "${GREEN}DONE${NC}"
+
     echo -e "${CYAN}Mounting the main disk on /mnt and UEFI on /mnt/boot${NC}"
     mount /dev/vg0/root /mnt
     mkdir /mnt/boot
-    mount "${first_disk}1" /mnt/boot
+    mount "${first_disk}2" /mnt/boot
 else
     exit 1
 fi
