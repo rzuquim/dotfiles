@@ -11,15 +11,17 @@
 Open a terminal, paste this and hope for the best.
 
 ```bash
-. <(curl -sL https://boot.rzuquim.com/pop.sh)
+bash <(curl -sL https://boot.rzuquim.com/pop.sh)
 ```
 
 ### Setup [arch](https://archlinux.org/)
 
-Open a terminal, paste this and hope for the best.
+After booting on the live environment, setup the [internet connection](https://wiki.archlinux.org/title/Iwd#iwctl):
+
+Install curl (`pacman -Sy curl`), run the boot script and hope for the best.
 
 ```bash
-. <(curl -sL https://boot.rzuquim.com/arch.sh)
+bash <(curl -sL https://boot.rzuquim.com/arch.sh)
 ```
 
 > If the domain is not available use the raw file on the
