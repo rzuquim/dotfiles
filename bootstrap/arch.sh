@@ -115,26 +115,44 @@ if [[ $response =~ ^[Yy]$ ]]; then
 
     echo -e "${CYAN}Creating volume group and logical volume${NC}"
     vgcreate vg0 "${crypt_devices[@]}"
+
+    # NOTE: using a chat GPT suggested heuristic for the swap size (assuming we won't use hybernation)
+    mem_total_mb=$(grep MemTotal /proc/meminfo | awk '{print int($2 / 1024)}')
+    if [ "$mem_total_mb" -le 2048 ]; then
+        swap_size_mb=$((mem_total_mb * 2))
+    elif [ "$mem_total_mb" -le 8192 ]; then
+        swap_size_mb=$((mem_total_mb))
+    else
+        swap_size_mb=8192
+    fi
+
+    echo -e "${CYAN}Creating swap logical volume of${NC} $swap_size_mb ${CYAN} for a memory of ${NC} ${mem_total_mb}MB"
+    lvcreate -L "${swap_size_mb}M" -n swap vg0
+
+    echo -e "${CYAN}Creating root logical volume"
     lvcreate -l 100%FREE -n root vg0
     echo -e "${GREEN}DONE${NC}"
 
-    sleep 2 # Wait for partitions to appear
+    sleep 2 # Wait to ensure volumes are available
 
     # ---------------------------------
     # FORMATTING AND MOUNTING
     # ---------------------------------
     echo -e "${CYAN}Formatting UEFI partition as FAT32...${NC}"
     mkfs.fat -F32 "${first_disk}2"
-    echo -e "${GREEN}DONE${NC}"
 
-    echo -e "${CYAN}Formatting virtual volume as good old ext4${NC}"
+    echo -e "${CYAN}Formatting virtual swap volume${NC}"
+    mkswap /dev/vg0/swap
+
+    echo -e "${CYAN}Formatting virtual root volume as good old ext4${NC}"
     mkfs.ext4 /dev/vg0/root
-    echo -e "${GREEN}DONE${NC}"
 
-    echo -e "${CYAN}Mounting the main disk on /mnt and UEFI on /mnt/boot${NC}"
+    echo -e "${CYAN}Mounting the disks and enabling swap:${NC} /mnt /mnt/boot"
     mount /dev/vg0/root /mnt
-    mkdir /mnt/boot
-    mount "${first_disk}2" /mnt/boot
+    mount --mkdir "${first_disk}2" /mnt/boot
+    swapon /dev/vg0/swap
+
+    echo -e "${GREEN}DONE${NC}"
 else
     exit 1
 fi
