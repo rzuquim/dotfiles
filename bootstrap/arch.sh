@@ -17,7 +17,7 @@ NC='\033[0m' # No Color
 
 if [ ! -t 0 ]; then
     echo "Please run this script interactively."
-    echo ". <(curl -sL https://raw.githubusercontent.com/rzuquim/dotfiles/master/bootstrap/arch.sh)"
+    echo "bash <(curl -sL https://boot.rzuquim.com/arch.sh)"
     exit 1
 fi
 
@@ -159,3 +159,18 @@ fi
 
 echo -e "${VIOLET}Disks prepared and mounted. Ready to install Arch!${NC}"
 
+# ---------------------------------
+# INSTALLATION
+# ---------------------------------
+echo -e "${CYAN}Installing arch${NC}"
+# NOTE: updating the keyring to prevent corrupted packages
+pacman -Sy archlinux-keyring
+pacstrap -K /mnt base linux linux-firmware
+genfstab -U /mnt >> /mnt/etc/fstab
+
+echo -e "${VIOLET}Arch installed!${NC}"
+echo -e "${RED}CHROOT! ${NC}${GREEN}CHROOT! ${NC}${CYAN}CHROOT! ${NC}${YELLOW}CHROOT!${NC}"
+echo "Run 'arch-chroot /mnt' to actually enter on the installed system"
+echo -e "${CYAN}arch-chroot /mnt${NC}"
+echo "Once you are there run the setup script:"
+echo "bash <(curl -sL https://boot.rzuquim.com/arch_setup.sh)"
