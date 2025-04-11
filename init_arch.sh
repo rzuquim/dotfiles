@@ -46,3 +46,9 @@ cd "${WORKSPACE}/dotfiles"
 git pull
 
 source "./utils/setup_whoiam.sh"
+
+for f in ./arch/*.sh; do
+    echo -e "${CYAN}Setting up ${NC} ${f}"
+    source "$f";
+    echo -e "${GREEN}DONE${NC}"
+done
