@@ -9,24 +9,26 @@
 
 # Setup
 
-- [ ] basic
+- [x] basic
   - [x] timezone and hardware clock
   - [x] basic Locale configuration
   - [x] hostname and hosts
   - [x] keymap and console font
-  - [ ] network setup with systemd-networkd or NetworkManager
-  - [ ] sudo
   - [x] root password prompt (interactive)
   - [x] create users
-  - [ ] install of essential packages (like sudo)
-  - [ ] advanced Locale configuration (aka ç)
-- [ ] boot
-  - [ ] initramfs (https://wiki.archlinux.org/title/Dm-crypt/Encrypting_an_entire_system#LVM_on_LUKS)
-  - bootloader (systemd-boot)
+- [x] boot
+  - [x] microcode
+  - [x] initramfs (https://wiki.archlinux.org/title/Dm-crypt/Encrypting_an_entire_system#LVM_on_LUKS)
+  - [x] bootloader (systemd-boot)
+  - [x] lts boot fallback
+- [ ] security
+  - [ ] sudo
 - [ ] network
+  - [ ] network setup with systemd-networkd or NetworkManager
 - [ ] graphics
 - [ ] audio
 - [ ] locale
+  - [ ] advanced Locale configuration (aka ç)
 - [ ] bluetooth
 - [ ] wm
 - [ ] tools

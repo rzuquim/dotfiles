@@ -1,0 +1,6 @@
+title   Arch Linux
+linux   /vmlinuz-linux
+initrd  $MICROCODE_IMG
+initrd  /initramfs-linux.img
+options cryptdevice=UUID=$LUKS_PARTITION_UUID:cryptlvm0 root=/dev/mapper/vg0-root quiet rw
+

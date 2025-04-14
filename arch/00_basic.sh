@@ -69,4 +69,7 @@ if [[ -z "$ARCH_NO_BASIC" ]]; then
             fi
         done
     fi
+
+    echo -e "${YELLOW}Making sure lts kernel is installed for fallback${NC}"
+    pacman -Sy --noconfirm --needed linux-lts linux-lts-headers
 fi
