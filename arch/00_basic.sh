@@ -42,5 +42,31 @@ if [[ -z "$ARCH_NO_BASIC" ]]; then
         envsubst < ./arch/assets/etc_hosts > /etc/hosts
     fi
 
-    # more basic stuff here
+    echo -e "${YELLOW}Setting up users and passwords${NC}"
+    if ! passwd -S me 2>/dev/null | grep -vq 'NP'; then
+        while true; do
+            read -s -p "Enter password: " password1
+            echo
+            read -s -p "Confirm password: " password2
+            echo
+            if [[ "$password1" == "$password2" ]]; then
+                break
+            else
+                echo -e "${RED}Passwords do not match. Please try again.${NC}"
+            fi
+        done
+
+        echo "root:$password1" | chpasswd
+        echo "Root password set."
+
+        users=(me stream fun)
+
+        for user in "${users[@]}"; do
+            if ! id "$user" &>/dev/null; then
+                useradd -m -G wheel,audio,video,storage -s /bin/bash "$user"
+                echo "$user:$password1" | chpasswd
+                echo -e "${VIOLET}Created user '$user' and set password.${NC}"
+            fi
+        done
+    fi
 fi
