@@ -8,7 +8,6 @@ DOTFILES_REPO=git@github.com:rzuquim/dotfiles.git
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 CYAN="\e[38;2;173;216;230m"
-INDIGO="\e[38;2;75;0;130m"
 VIOLET="\e[38;2;238;130;238m"
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
