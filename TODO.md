@@ -25,13 +25,15 @@
   - [x] sudo
   - [x] firewall (nftables)
   - [x] ssh (TOTP + pvt key only)
+  - [ ] easy method to exchange public keys between machines
   - [ ] auditd
   - [ ] fail2ban
   - [ ] chkrootkit / rkhunter
   - [ ] lock down cron jobs and atd
-- [ ] network
-  - [ ] install systemd-networkd
-  - [ ] wifi setup
+- [x] network
+  - [x] NetworkManager
+  - [ ] local DNS server to resolve computer names
+  - [ ] use systemd-networkd ?
 - [ ] graphics
 - [ ] audio
 - [ ] wm
@@ -49,7 +51,6 @@
   - [ ] consolidation and reporting
   - [ ] grafana for details
   - [ ] rate limit
-
 
 # Home
 

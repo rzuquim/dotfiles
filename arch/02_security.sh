@@ -39,6 +39,8 @@ if [[ -z "$ARCH_NO_SECURITY" ]]; then
     cp ./arch/assets/etc_ssh_sshd_config /etc/ssh/sshd_config
     cp ./arch/assets/etc_pam.d_sshd /etc/pam.d/sshd
 
+    systemctl enable sshd
+
     if [ ! -f /home/me/.google_authenticator ]; then
         totp_issuer=$(cat /etc/hostname)
         # TODO: rate-limit / rate-time

@@ -1,6 +1,16 @@
 #!/bin/bash
 
-echo "${BASH_SOURCE[0]}"
+if [[ -n "$ARCH_INTERACTIVE" ]]; then
+    # code to check if the basic config should be applied
+    read -p "Apply network configs? [y/N] " response
 
-# pacman -S networkmanager
-# systemctl enable NetworkManager
+    response=${response:-N}
+    if [[ $response =~ ^[Nn]$ ]]; then
+        ARCH_NO_NETWORK=true
+    fi
+fi
+
+if [[ -z "$ARCH_NO_NETWORK" ]]; then
+    pacman -Sy --noconfirm --needed networkmanager
+    systemctl enable NetworkManager
+fi
