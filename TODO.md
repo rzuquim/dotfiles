@@ -21,20 +21,35 @@
   - [x] initramfs (https://wiki.archlinux.org/title/Dm-crypt/Encrypting_an_entire_system#LVM_on_LUKS)
   - [x] bootloader (systemd-boot)
   - [x] lts boot fallback
-- [ ] security
-  - [ ] sudo
+- [x] security
+  - [x] sudo
+  - [x] firewall (nftables)
+  - [x] ssh (TOTP + pvt key only)
+  - [ ] auditd
+  - [ ] fail2ban
+  - [ ] chkrootkit / rkhunter
+  - [ ] lock down cron jobs and atd
 - [ ] network
-  - [ ] network setup with systemd-networkd or NetworkManager
+  - [ ] install systemd-networkd
+  - [ ] wifi setup
 - [ ] graphics
 - [ ] audio
-- [ ] locale
-  - [ ] advanced Locale configuration (aka ç)
-- [ ] bluetooth
 - [ ] wm
 - [ ] tools
 - [ ] code
 - [ ] video
 - [ ] gaming
+- [ ] bluetooth
+- [ ] locale
+  - [ ] advanced Locale configuration (aka ç)
+- [ ] monitoring (https://chatgpt.com/c/67f95efd-e364-8002-adca-957945f4aa39)
+  - [ ] eBPF for process logging (bpftrace)
+  - [ ] eBPF for network usage logging
+  - [ ] resources usage
+  - [ ] consolidation and reporting
+  - [ ] grafana for details
+  - [ ] rate limit
+
 
 # Home
 

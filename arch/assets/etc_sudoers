@@ -1,0 +1,10 @@
+Defaults	env_reset
+Defaults	mail_badpass
+Defaults	secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+Defaults	timestamp_timeout=15
+Defaults	use_pty
+Defaults	insults
+
+%wheel	ALL=(ALL:ALL) ALL
+
+@includedir /etc/sudoers.d

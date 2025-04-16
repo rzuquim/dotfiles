@@ -164,7 +164,7 @@ echo -e "${VIOLET}Disks prepared and mounted. Ready to install Arch!${NC}"
 # ---------------------------------
 echo -e "${CYAN}Installing arch${NC}"
 # NOTE: updating the keyring to prevent corrupted packages
-pacman -Sy archlinux-keyring
+pacman -Sy --noconfirm archlinux-keyring
 pacstrap -K /mnt base linux linux-firmware
 genfstab -U /mnt >> /mnt/etc/fstab
 
