@@ -41,8 +41,13 @@ if [[ -z "$ARCH_NO_BOOT" ]]; then
         fi
         cp ./arch/assets/etc_mkinitcpio_conf /etc/mkinitcpio.conf
 
-        mkinitcpio -P
-        bootctl install
+        mkinitcpio -p linux
+        # BUG: not respecting mkinitcpio.conf module order (no keyboard available)
+        mkinitcpio -p linux-lts
+
+        if [ ! -f /boot/loader/loader.conf ]; then
+            bootctl install
+        fi
 
         if [ ! -f /boot/loader/loader.conf.bkp ]; then
             cp /boot/loader/loader.conf /boot/loader/loader.conf.bkp

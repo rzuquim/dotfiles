@@ -13,4 +13,5 @@ fi
 if [[ -z "$ARCH_NO_NETWORK" ]]; then
     pacman -Sy --noconfirm --needed networkmanager
     systemctl enable NetworkManager
+    nmcli radio wifi on
 fi

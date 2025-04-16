@@ -20,7 +20,7 @@
   - [x] microcode
   - [x] initramfs (https://wiki.archlinux.org/title/Dm-crypt/Encrypting_an_entire_system#LVM_on_LUKS)
   - [x] bootloader (systemd-boot)
-  - [x] lts boot fallback
+  - [ ] lts boot fallback
 - [x] security
   - [x] sudo
   - [x] firewall (nftables)
