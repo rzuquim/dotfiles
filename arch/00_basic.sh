@@ -30,7 +30,9 @@ if [[ -z "$ARCH_NO_BASIC" ]]; then
 
     if [ ! -f "/etc/vconsole.conf" ]; then
         echo "KEYMAP=br-abnt2" > /etc/vconsole.conf
-        echo "FONT=lat9w-16" >> /etc/vconsole.conf
+        echo "FONT=ter-132n" >> /etc/vconsole.conf
+
+        pacman -Sy --noconfirm --needed terminus-font
     fi
 
     echo -e "${YELLOW}Setting hostname and hosts file${NC}"

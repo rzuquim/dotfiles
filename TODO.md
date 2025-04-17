@@ -16,6 +16,7 @@
   - [x] keymap and console font
   - [x] root password prompt (interactive)
   - [x] create users
+  - [x] tty font
 - [x] boot
   - [x] microcode
   - [x] initramfs (https://wiki.archlinux.org/title/Dm-crypt/Encrypting_an_entire_system#LVM_on_LUKS)
