@@ -95,4 +95,21 @@ if [[ -z "$ARCH_NO_TOOLS" ]]; then
 
         pacman --noconfirm --needed -U "$paru_pkg"
     fi
+
+    # FIX: not working
+    #
+    # BROWSER_DEPENDENCIES=(
+    #     "pipewire-jack"
+    #     "gnu-free-fonts"
+    # )
+    #
+    # BROWSER_PACKAGES=(
+    #     "xwayland-run-git"
+    #     "librewolf-bin"
+    #     "brave-bin"
+    # )
+    #
+    # echo -e "${CYAN}Installing browsers:${NC} ${BROWSER_PACKAGES[@]}"
+    # pacman -Sy --noconfirm --needed ${BROWSER_DEPENDENCIES[@]}
+    # su - me -c "paru -Sy --noconfirm --needed --sudo true ${BROWSER_PACKAGES[@]}"
 fi
