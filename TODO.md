@@ -42,8 +42,13 @@
   - [x] basic tools
   - [x] text editors
   - [x] aur
+  - [ ] browsers
 - [ ] graphics
+  - [x] intel support
+  - [ ] nvidia support
+  - [ ] amd support
 - [ ] audio
+  - [ ] pipewire
 - [ ] wm
 - [ ] code
 - [ ] video
