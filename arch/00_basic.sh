@@ -74,4 +74,10 @@ if [[ -z "$ARCH_NO_BASIC" ]]; then
 
     echo -e "${YELLOW}Making sure lts kernel is installed for fallback${NC}"
     pacman -Sy --noconfirm --needed linux-lts linux-lts-headers
+
+    echo -e "${YELLOW}Enabling multilib repository on pacman${NC}"
+    if [ ! -f "/etc/pacman.conf.bkp" ]; then
+        cp /etc/pacman.conf /etc/pacman.conf.bkp
+        cp ./arch/assets/etc_pacman_conf /etc/pacman.conf
+    fi
 fi
