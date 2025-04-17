@@ -25,7 +25,10 @@
 - [x] security
   - [x] sudo
   - [x] firewall (nftables)
-  - [x] ssh (TOTP + pvt key only)
+  - [x] ssh
+  - [ ] ssh TOTP
+  - [ ] sudo TOTP
+  - [ ] cannot sudo over ssh
   - [ ] easy method to exchange public keys between machines
   - [ ] auditd
   - [ ] fail2ban

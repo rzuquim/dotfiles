@@ -17,9 +17,13 @@ MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com
 # - Disable password login
 # - Require both key and TOTP
 PermitRootLogin no
-PasswordAuthentication no
+PasswordAuthentication yes
 PubkeyAuthentication yes
-AuthenticationMethods publickey,keyboard-interactive
+# TODO: sync keys
+# TODO: TOTP
+# AuthenticationMethods publickey,keyboard-interactive
+# AuthenticationMethods password,keyboard-interactive
+AuthenticationMethods password
 
 # TOTP via PAM
 ChallengeResponseAuthentication yes

@@ -11,6 +11,8 @@ if [[ -n "$ARCH_INTERACTIVE" ]]; then
 fi
 
 if [[ -z "$ARCH_NO_NETWORK" ]]; then
+    echo -e "${CYAN}Installing network manager${NC}"
+
     pacman -Sy --noconfirm --needed networkmanager
     systemctl enable NetworkManager
     nmcli radio wifi on
