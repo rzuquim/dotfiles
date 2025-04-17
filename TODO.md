@@ -38,10 +38,13 @@
   - [x] NetworkManager
   - [ ] local DNS server to resolve computer names
   - [ ] use systemd-networkd ?
+- [ ] tools
+  - [x] basic tools
+  - [x] text editors
+  - [x] aur
 - [ ] graphics
 - [ ] audio
 - [ ] wm
-- [ ] tools
 - [ ] code
 - [ ] video
 - [ ] gaming
