@@ -47,11 +47,26 @@
   - [x] intel support
   - [ ] nvidia support
   - [ ] amd support
+- [x] wm
+  - [x] hyprland
+  - [ ] autostart (systemd startup)
+  - [ ] app launcher
+  - [ ] config
+  - [ ] color picker
+  - [ ] status bar
+  - [ ] multi monitor
+  - [ ] wallpaper
+  - [ ] notificatioon
+  - [ ] lock screen
+  - [ ] clipboard manager
+  - [ ] electron support (https://wiki.hyprland.org/Getting-Started/Master-Tutorial/#force-apps-to-use-wayland)
+  - [ ] authentication agent (https://wiki.hyprland.org/Useful-Utilities/Must-have/#authentication-agent)
 - [ ] audio
   - [ ] pipewire
-- [ ] wm
 - [ ] code
 - [ ] video
+  - [ ] sceen sharing
+  - [ ] video conf
 - [ ] gaming
 - [ ] bluetooth
 - [ ] locale
