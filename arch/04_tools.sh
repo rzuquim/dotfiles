@@ -32,10 +32,11 @@ if [[ -z "$ARCH_NO_TOOLS" ]]; then
         "openvpn"
         "bat"
         "wget"
+        "rsync"
     )
 
     echo -e "${CYAN}Installing basic tools:${NC} ${BASIC_PACKAGES[@]}"
-    pacman -Sy --noconfirm --needed ${BASIC_PACKAGES[@]}
+    pacman -S --noconfirm --needed ${BASIC_PACKAGES[@]}
 
     DEV_PACKAGES=(
         "nvim"
@@ -51,7 +52,7 @@ if [[ -z "$ARCH_NO_TOOLS" ]]; then
     )
 
     echo -e "${CYAN}Installing dev tools:${NC} ${DEV_PACKAGES[@]}"
-    pacman -Sy --noconfirm --needed ${DEV_PACKAGES[@]}
+    pacman -S --noconfirm --needed ${DEV_PACKAGES[@]}
 
     TERMINAL_PACKAGES=(
         "alacritty"
@@ -61,7 +62,7 @@ if [[ -z "$ARCH_NO_TOOLS" ]]; then
     )
 
     echo -e "${CYAN}Installing dev tools:${NC} ${TERMINAL_PACKAGES[@]}"
-    pacman -Sy --noconfirm --needed ${TERMINAL_PACKAGES[@]}
+    pacman -S --noconfirm --needed ${TERMINAL_PACKAGES[@]}
 
     FONTS_PACKAGES=(
         "ttf-font-awesome"
@@ -72,7 +73,7 @@ if [[ -z "$ARCH_NO_TOOLS" ]]; then
     )
 
     echo -e "${CYAN}Installing fonts:${NC} ${FONTS_PACKAGES[@]}"
-    pacman -Sy --noconfirm --needed ${FONTS_PACKAGES[@]}
+    pacman -S --noconfirm --needed ${FONTS_PACKAGES[@]}
 
     echo -e "${CYAN}Installing AUR helper:${NC} paru"
     if ! command -v paru >/dev/null 2>&1; then

@@ -13,7 +13,7 @@ fi
 
 if [[ -z "$ARCH_NO_SECURITY" ]]; then
     echo -e "${CYAN}Setting up sudo${NC}"
-    pacman -Sy --noconfirm --needed sudo
+    pacman -S --noconfirm --needed sudo
 
     if [ ! -f /etc/sudoers.bkp ]; then
         cp /etc/sudoers /etc/sudoers.bkp
@@ -21,7 +21,7 @@ if [[ -z "$ARCH_NO_SECURITY" ]]; then
     cp ./arch/assets/etc_sudoers /etc/sudoers
 
     echo -e "${CYAN}Setting up firewall (nftables)${NC}"
-    pacman -Sy --noconfirm --needed nftables
+    pacman -S --noconfirm --needed nftables
     systemctl enable nftables
 
 
@@ -31,7 +31,7 @@ if [[ -z "$ARCH_NO_SECURITY" ]]; then
     cp ./arch/assets/etc_nftables_conf /etc/nftables.conf
 
     echo -e "${CYAN}Setting up SSH (using TOTP)${NC}"
-    pacman -Sy --noconfirm --needed openssh libpam-google-authenticator qrencode
+    pacman -S --noconfirm --needed openssh libpam-google-authenticator qrencode
 
     if [ ! -f /etc/ssh/sshd_config.bkp ]; then
         cp  /etc/ssh/sshd_config /etc/ssh/sshd_config.bkp

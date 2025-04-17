@@ -30,16 +30,16 @@ if [[ -z "$ARCH_NO_GRAPHICS" ]]; then
 
     case "$gpu_vendor" in
         nvidia)
-            pacman -Sy --noconfirm --needed nvidia-dkms dkms nvidia-utils libva-nvidia-driver lib32-nvidia-utils
+            pacman -S --noconfirm --needed nvidia-dkms dkms nvidia-utils libva-nvidia-driver lib32-nvidia-utils
             ;;
 
         amd)
-            pacman -Sy --noconfirm --needed \
+            pacman -S --noconfirm --needed \
                 mesa lib32-mesa libva-mesa-driver xf86-video-amdgpu xf86-video-ati vulkan-radeon lib32-vulkan-radeon
             ;;
 
         intel)
-            pacman -Sy --noconfirm --needed  \
+            pacman -S --noconfirm --needed  \
                 mesa lib32-mesa libva-intel-driver intel-media-driver vulkan-intel lib32-vulkan-intel
             ;;
     esac

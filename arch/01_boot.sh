@@ -28,13 +28,13 @@ if [[ -z "$ARCH_NO_BOOT" ]]; then
 
     if ! pacman -Q "$microcode_pkg" &>/dev/null; then
         echo -e "${YELLOW}Setting up CPU microcode updates${NC}"
-        pacman -Sy --noconfirm "$microcode_pkg"
+        pacman -S --noconfirm "$microcode_pkg"
     fi
 
     # Boot loader
     if [ ! -f "/boot/loader/entries/arch.conf" ]; then
         echo -e "${YELLOW}Setting up boot loader (systemd-boot)${NC}"
-        pacman -Sy --noconfirm --needed lvm2
+        pacman -S --noconfirm --needed lvm2
 
         if [ ! -f /etc/mkinitcpio.conf.bkp ]; then
             cp /etc/mkinitcpio.conf /etc/mkinitcpio.conf.bkp

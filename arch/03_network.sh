@@ -13,7 +13,7 @@ fi
 if [[ -z "$ARCH_NO_NETWORK" ]]; then
     echo -e "${CYAN}Installing network manager${NC}"
 
-    pacman -Sy --noconfirm --needed networkmanager
+    pacman -S --noconfirm --needed networkmanager
     systemctl enable NetworkManager
     nmcli radio wifi on
 fi

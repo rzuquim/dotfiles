@@ -32,7 +32,7 @@ if [[ -z "$ARCH_NO_BASIC" ]]; then
         echo "KEYMAP=br-abnt2" > /etc/vconsole.conf
         echo "FONT=ter-132n" >> /etc/vconsole.conf
 
-        pacman -Sy --noconfirm --needed terminus-font
+        pacman -S --noconfirm --needed terminus-font
     fi
 
     echo -e "${YELLOW}Setting hostname and hosts file${NC}"
@@ -73,7 +73,7 @@ if [[ -z "$ARCH_NO_BASIC" ]]; then
     fi
 
     echo -e "${YELLOW}Making sure lts kernel is installed for fallback${NC}"
-    pacman -Sy --noconfirm --needed linux-lts linux-lts-headers
+    pacman -S --noconfirm --needed linux-lts linux-lts-headers
 
     echo -e "${YELLOW}Enabling multilib repository on pacman${NC}"
     if [ ! -f "/etc/pacman.conf.bkp" ]; then
