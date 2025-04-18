@@ -34,6 +34,7 @@
   - [ ] fail2ban
   - [ ] chkrootkit / rkhunter
   - [ ] lock down cron jobs and atd
+  - [ ] different passwords for each user (pwd prefix)
 - [x] network
   - [x] NetworkManager
   - [ ] local DNS server to resolve computer names
@@ -49,10 +50,8 @@
   - [ ] amd support
 - [x] wm
   - [x] hyprland
-  - [ ] autostart (systemd startup)
-  - [ ] app launcher
-  - [ ] config
-  - [ ] color picker
+  - [x] autostart (systemd startup)
+  - [x] app launcher
   - [ ] status bar
   - [ ] multi monitor
   - [ ] wallpaper
@@ -61,13 +60,20 @@
   - [ ] clipboard manager
   - [ ] electron support (https://wiki.hyprland.org/Getting-Started/Master-Tutorial/#force-apps-to-use-wayland)
   - [ ] authentication agent (https://wiki.hyprland.org/Useful-Utilities/Must-have/#authentication-agent)
+  - [ ] color picker
 - [ ] audio
-  - [ ] pipewire
+  - [x] pipewire
+  - [x] wirepumbler
+  - [x] equalizing audio per app (pulsemixer)
+  - [ ] default output device (hdmi, headset, etc)
+  - [ ] input device (mic, etc)
+- [ ] gaming
 - [ ] code
 - [ ] video
   - [ ] sceen sharing
   - [ ] video conf
-- [ ] gaming
+- [ ] shell
+  - [ ] zsh
 - [ ] bluetooth
 - [ ] locale
   - [ ] advanced Locale configuration (aka ç)
@@ -81,5 +87,5 @@
 
 # Home
 
-- [ ] Zoom
+- [ ] Zoom on screen
 - [ ] Notes on screen
