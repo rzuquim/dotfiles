@@ -68,6 +68,14 @@
   - [ ] default output device (hdmi, headset, etc)
   - [ ] input device (mic, etc)
 - [ ] gaming
+  - [x] steam
+  - [ ] steamcmd
+  - [x] gamemod
+  - [x] mangohud
+  - [x] working basic game (marvel snap)
+  - [ ] working triple A game (GoW)
+  - [ ] customize mangohub shortcuts
+  - [ ] steam available only for fun user
 - [ ] code
 - [ ] video
   - [ ] sceen sharing
