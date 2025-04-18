@@ -25,9 +25,9 @@ PubkeyAuthentication yes
 # AuthenticationMethods password,keyboard-interactive
 AuthenticationMethods password
 
-# TOTP via PAM
-ChallengeResponseAuthentication yes
-UsePAM yes
+# TODO: TOTP via PAM
+# ChallengeResponseAuthentication yes
+# UsePAM yes
 
 # Optional: Allow only 'me' user
 AllowUsers me

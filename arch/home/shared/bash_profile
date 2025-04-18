@@ -1,0 +1,16 @@
+# NOTE: declaring that we are using wayland to the apps
+export XDG_CURRENT_DESKTOP=Hyprland
+export XDG_SESSION_TYPE=wayland
+export GDK_BACKEND=wayland,x11
+export QT_QPA_PLATFORM=wayland
+export SDL_VIDEODRIVER=wayland
+export MOZ_ENABLE_WAYLAND=1
+
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+    is_ssh=1
+fi
+
+# NOTE: Using bash_profile only to launch session (the daily drive will be zsh)
+if [ -n $is_ssh ] && [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ] && uwsm check may-start; then
+    exec uwsm start hyprland.desktop
+fi

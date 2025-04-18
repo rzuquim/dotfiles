@@ -32,6 +32,7 @@ if [[ -z "$ARCH_NO_TOOLS" ]]; then
         "openvpn"
         "bat"
         "wget"
+        "less"
         "rsync"
     )
 

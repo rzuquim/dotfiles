@@ -38,8 +38,6 @@ if [ ! -d "${WORKSPACE}/dotfiles" ]; then
 fi
 
 cd "${WORKSPACE}/dotfiles"
-# NOTE: making sure we are on the last version
-git pull
 
 source "./utils/setup_whoiam.sh"
 
