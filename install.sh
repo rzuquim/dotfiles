@@ -33,7 +33,6 @@ echo -e "${CYAN}Bootstraping Arch${NC}"
 echo "-----------------"
 echo
 
-
 for f in ./install/*.sh; do
     echo -e "${CYAN}Running ${NC} ${f}"
     source "$f";
