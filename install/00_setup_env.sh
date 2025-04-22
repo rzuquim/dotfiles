@@ -30,3 +30,16 @@ if [[ ! $response =~ ^[Yy]$ ]]; then
     exit 1
 fi
 
+echo -e "${YELLOW}Enter a passphrase prefix:${NC}"
+echo "(It will be used for disk encryption and for the user's passwords)"
+read -s -p "Passphrase: " passphrase
+echo
+read -s -p "Confirm passphrase: " passphrase_confirm
+echo
+
+if [[ "$passphrase" != "$passphrase_confirm" ]]; then
+    echo -e "${RED}Passphrases do not match. Aborting.${NC}"
+    exit 1
+fi
+
+luks_pass="${passphrase}_LUKS"
