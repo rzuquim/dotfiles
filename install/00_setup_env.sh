@@ -18,6 +18,8 @@ else
     storage_disks=()
 fi
 
+first_disk="${disks[0]}"
+
 echo -e "${YELLOW}Main disks:${NC} ${disks[@]}"
 echo -e "${YELLOW}Storage disks${NC}: ${storage_disks[@]}"
 echo

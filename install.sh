@@ -31,11 +31,12 @@ echo
 echo "-----------------"
 echo -e "${CYAN}Bootstraping Arch${NC}"
 echo "-----------------"
-echo
 
 for f in ./install/*.sh; do
+    echo
     echo -e "${CYAN}Running ${NC} ${f}"
     source "$f";
     echo -e "${GREEN}DONE${NC}"
+    echo
 done
 
