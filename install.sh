@@ -12,8 +12,8 @@ if [ ! -t 0 ]; then
 fi
 
 pacman-key --init
-pacman -Sy --noconfirm archlinux-keyring
 pacman -Sy --noconfirm
+pacman -S --noconfirm archlinux-keyring
 
 if [ ! -d "$DOTFILES_LOCATION" ]; then
     echo -e "Installing git and cloning dotfiles"
@@ -42,3 +42,7 @@ for f in ./install/*.sh; do
     echo
 done
 
+echo -e "${YELLOW}Now we can continue with the post-installation steps. Run:${NC}"
+echo "arch-chroot /mnt"
+echo "bash <(curl -sL https://boot.rzuquim.com/setup.sh)"
+echo

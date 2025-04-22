@@ -23,7 +23,7 @@ function do_encrypt() {
     fi
     mapper_name="cryptlvm$i"
 
-    echo -e "${CYAN}Encrypting ${NC} $part ${CYAN}=>${NC} $mapper_name"
+    echo -e "${YELLOW}Encrypting ${NC} $part ${YELLOW}=>${NC} $mapper_name"
     echo -n "$luks_pass" | cryptsetup luksFormat "$part" --batch-mode --key-file=-
     echo -n "$luks_pass" | cryptsetup open "$part" "$mapper_name" --key-file=-
 
