@@ -11,6 +11,8 @@ if [ ! -t 0 ]; then
     exit 1
 fi
 
+pacman-key --init
+pacman -Sy --noconfirm archlinux-keyring
 pacman -Sy --noconfirm
 
 if [ ! -d "$DOTFILES_LOCATION" ]; then
