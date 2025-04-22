@@ -1,4 +1,6 @@
 #!/bin/bash
 
-echo "${BASH_SOURCE[0]}"
+echo -e "${YELLOW}Syncing system clock...${NC}"
+timedatectl set-ntp true
+timedatectl set-timezone Brazil/East
 
