@@ -14,10 +14,9 @@ fi
 pacman -Sy --noconfirm
 
 if [ ! -d "$DOTFILES_LOCATION" ]; then
-    echo -e "${CYAN}Installing git and cloning dotfiles${NC}"
+    echo -e "Installing git and cloning dotfiles"
     pacman -S --noconfirm --needed git
     git clone --depth 1 https://github.com/rzuquim/dotfiles.git $DOTFILES_LOCATION
-    echo -e "${GREEN}DONE${NC}"
 fi
 
 cd "$DOTFILES_LOCATION"

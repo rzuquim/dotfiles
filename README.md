@@ -1,3 +1,5 @@
+[<img align="right" src="./_assets/svg/logo.svg" width="100" alt="Rafael Zuquim" />](https://rzuquim.com)
+
 # rzuquim’s dotfiles
 
 ## Installation
