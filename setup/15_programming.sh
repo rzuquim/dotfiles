@@ -46,9 +46,4 @@ if [ ! -d "/home/me/.config" ]; then
     su - me -c "mkdir /home/me/.config"
 fi
 
-if [ ! -d /home/me/.config/nvim ]; then
-    # TODO: setup private key before cloning
-    # echo -e "${YELLOW}Cloning nvim config${NC}"
-    # su - me -c \
-        #     "git clone git@github.com:rzuquim/nvim.git /home/me/.config/nvim"
-fi
+# TODO: setup private key and clone nvim repo
