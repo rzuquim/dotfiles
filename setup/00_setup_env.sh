@@ -66,10 +66,6 @@ if [ ! -f "$GIT_WHO_AM_I" ]; then
         read -p "Please enter your email: " MY_EMAIL
         read -p "Please enter your first and last names: " MY_NAME
     fi
-
-    mkdir -p /home/me/.config/git
-    echo "$MY_EMAIL" > $GIT_WHO_AM_I
-    echo "$MY_NAME" >> $GIT_WHO_AM_I
 else
     MY_EMAIL=$(head -n 1 $GIT_WHO_AM_I)
     MY_NAME=$(tail -n 1 $GIT_WHO_AM_I)

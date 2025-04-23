@@ -19,6 +19,11 @@ for user in "${users[@]}"; do
 
     if [ "$user" = "me" ]; then
         usermod -a -G wheel $user
+        su - me -c "mkdir -p /home/me/.config/git"
+
+        if [ ! -f "$GIT_WHO_AM_I" ]; then
+            su - me -c 'echo "'"$MY_EMAIL"'" > "'"$GIT_WHO_AM_I"'" && echo "'"$MY_NAME"'" >> "'"$GIT_WHO_AM_I"'"'
+        fi
     fi
 
     if [ "$user" = "stream" ]; then
