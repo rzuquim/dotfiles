@@ -19,14 +19,14 @@ if ! command -v paru >/dev/null 2>&1; then
     fi
 
     # NOTE: needed to compile paru
-    pacman --noconfirm --needed rustup
+    pacman -S --noconfirm --needed rustup base-devel
 
     # NOTE: the build must happen on a non root user, but we need to pacman -U using the root
     #       the makepkg will fail since we are not on a interactive session
-    su - me -c \
+    su -s /bin/bash - me -c \
         "rustup default stable && \
-            git clone --depth 1 https://aur.archlinux.org/paru.git /tmp/paru && \
-        cd /tmp/paru && makepkg -si"
+        git clone --depth 1 https://aur.archlinux.org/paru.git /tmp/paru && \
+        cd /tmp/paru && makepkg -s"
 
     paru_pkg=$(ls /tmp/paru/*.zst | grep -v debug)
     if [ -z "$paru_pkg" ]; then

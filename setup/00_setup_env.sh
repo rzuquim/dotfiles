@@ -26,7 +26,7 @@ users=("me")
 if ! id "fun" &>/dev/null; then
     read -p "Will you be gaming on this device? [Y/n] " response
     response=${response:-Y}
-    if [[ ! $response =~ ^[Yy]$ ]]; then
+    if [[ $response =~ ^[Yy]$ ]]; then
         users+=("fun")
     fi
 else
@@ -36,15 +36,18 @@ fi
 if ! id "stream" &>/dev/null; then
     read -p "Will you be streaming on this device? [Y/n] " response
     response=${response:-Y}
-    if [[ ! $response =~ ^[Yy]$ ]]; then
+    if [[ $response =~ ^[Yy]$ ]]; then
         users+=("stream")
     fi
 else
     users+=("stream")
 fi
 
+echo -e "${YELLOW}Users:${NC} ${users[@]}"
+
 if [ ! -d "/home/.shared" ]; then
     echo -e "${CYAN}Configuring .configs:${NC} shared"
+    mkdir /home/.shared
     chown -R root:root /home/.shared
 fi
 
@@ -64,6 +67,7 @@ if [ ! -f "$GIT_WHO_AM_I" ]; then
         read -p "Please enter your first and last names: " MY_NAME
     fi
 
+    mkdir -p /home/me/.config/git
     echo "$MY_EMAIL" > $GIT_WHO_AM_I
     echo "$MY_NAME" >> $GIT_WHO_AM_I
 else

@@ -8,7 +8,6 @@ BASIC_PACKAGES=(
     "unzip"
     "unrar"
     "dos2unix"
-    "base-devel"
     "which"
     "fd"
     "fzf"
