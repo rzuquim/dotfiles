@@ -25,7 +25,5 @@ if [ ! -f "/etc/vconsole.conf" ]; then
 
     echo "KEYMAP=br-abnt2" > /etc/vconsole.conf
     echo "FONT=ter-132n" >> /etc/vconsole.conf
-
-    pacman -S --noconfirm --needed terminus-font
 fi
 
