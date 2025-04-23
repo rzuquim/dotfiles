@@ -1,0 +1,47 @@
+# Basic settings
+Port 22
+AddressFamily any
+ListenAddress 0.0.0.0
+ListenAddress ::
+
+# HostKeys (adjust if needed)
+HostKey /etc/ssh/ssh_host_ed25519_key
+HostKey /etc/ssh/ssh_host_rsa_key
+
+# Stronger crypto preferences
+KexAlgorithms curve25519-sha256@libssh.org
+Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com
+MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com
+
+# Authentication options
+# - Disable password login
+# - Require both key and TOTP
+PermitRootLogin no
+PasswordAuthentication yes
+PubkeyAuthentication yes
+# TODO: sync keys
+# TODO: TOTP
+# AuthenticationMethods publickey,keyboard-interactive
+# AuthenticationMethods password,keyboard-interactive
+AuthenticationMethods password
+
+# TODO: TOTP via PAM
+# ChallengeResponseAuthentication yes
+# UsePAM yes
+
+# Optional: Allow only 'me' user
+AllowUsers me
+
+# Security-related options
+LoginGraceTime 30
+MaxAuthTries 3
+MaxSessions 2
+
+# Disable unused features
+PermitEmptyPasswords no
+X11Forwarding no
+AllowTcpForwarding no
+AllowAgentForwarding no
+PermitTunnel no
+
+LogLevel INFO
