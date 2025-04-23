@@ -23,15 +23,28 @@ fi
 
 users=("me")
 
-read -p "Will you be gaming on this device? [Y/n] " response
-response=${response:-Y}
-if [[ ! $response =~ ^[Yy]$ ]]; then
+if ! id "fun" &>/dev/null; then
+    read -p "Will you be gaming on this device? [Y/n] " response
+    response=${response:-Y}
+    if [[ ! $response =~ ^[Yy]$ ]]; then
+        users+=("fun")
+    fi
+else
     users+=("fun")
 fi
 
-read -p "Will you be streaming on this device? [Y/n] " response
-response=${response:-Y}
-if [[ ! $response =~ ^[Yy]$ ]]; then
+if ! id "stream" &>/dev/null; then
+    read -p "Will you be streaming on this device? [Y/n] " response
+    response=${response:-Y}
+    if [[ ! $response =~ ^[Yy]$ ]]; then
+        users+=("stream")
+    fi
+else
     users+=("stream")
+fi
+
+if [ ! -d "/home/.shared" ]; then
+    echo -e "${CYAN}Configuring .configs:${NC} shared"
+    chown -R root:root /home/.shared
 fi
 
