@@ -48,3 +48,25 @@ if [ ! -d "/home/.shared" ]; then
     chown -R root:root /home/.shared
 fi
 
+GIT_WHO_AM_I="/home/me/.config/git/whoami.toml"
+
+if [ ! -f "$GIT_WHO_AM_I" ]; then
+    MY_EMAIL=rzuquim@gmail.com
+    MY_NAME="Rafael Zuquim"
+
+    read -p "Are you me? [Y/n] " response
+
+    response=${response:-Y}
+    if [[ $response =~ ^[Nn]$ ]]; then
+        echo -e "${CYAN}Setting up main user${NC}"
+
+        read -p "Please enter your email: " MY_EMAIL
+        read -p "Please enter your first and last names: " MY_NAME
+    fi
+
+    echo "$MY_EMAIL" > $GIT_WHO_AM_I
+    echo "$MY_NAME" >> $GIT_WHO_AM_I
+else
+    MY_EMAIL=$(head -n 1 $GIT_WHO_AM_I)
+    MY_NAME=$(tail -n 1 $GIT_WHO_AM_I)
+fi

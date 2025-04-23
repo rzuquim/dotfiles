@@ -19,7 +19,7 @@ if ! command -v paru >/dev/null 2>&1; then
     fi
 
     # NOTE: needed to compile paru
-    pacman --noconfirm --needed -U rustup
+    pacman --noconfirm --needed rustup
 
     # NOTE: the build must happen on a non root user, but we need to pacman -U using the root
     #       the makepkg will fail since we are not on a interactive session

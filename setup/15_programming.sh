@@ -1,3 +1,53 @@
 #!/bin/bash
 
-echo "${BASH_SOURCE[0]}"
+DEV_PACKAGES=(
+    "nvim"
+    "rustup"
+    "nodejs"
+    "npm"
+    "nvm"
+    "gitui"
+    "python"
+    "dotnet-sdk"
+    "lua"
+    "luarocks"
+    "cmake"
+    "go"
+    "jq"
+)
+
+echo -e "${CYAN}Installing dev tools:${NC} ${DEV_PACKAGES[@]}"
+pacman -S --noconfirm --needed ${DEV_PACKAGES[@]}
+
+# NOTE: Check if github.com is already in known_hosts
+if [ ! -d "/home/me/.ssh" ]; then
+    su - me -c "mkdir /home/me/.ssh"
+fi
+
+KNOWN_HOSTS_FILE=/home/me/.ssh/known_hosts
+if [ ! -f "$KNOWN_HOSTS_FILE" ] || ! grep -q "^github.com " "$KNOWN_HOSTS_FILE"; then
+    echo -e "${YELLOW}Adding github.com to known_hosts${NC}"
+    su - me -c "ssh-keyscan github.com >> $KNOWN_HOSTS_FILE"
+fi
+
+if [ ! -d "/home/me/.config/git" ]; then
+    su - me -c "mkdir /home/me/.config/git"
+fi
+
+if [ ! -f $GIT_WHO_AM_I  ]; then
+    echo -e "${CYAN}Setting up git whoami${NC}"
+    su - me -c \
+        "echo '[user]' > $GIT_WHO_AM_I \
+        echo "email = $MY_EMAIL" >> $GIT_WHO_AM_I \
+        echo "name = $MY_NAME" >> $GIT_WHO_AM_I"
+fi
+
+if [ ! -d "/home/me/.config" ]; then
+    su - me -c "mkdir /home/me/.config"
+fi
+
+if [ ! -d /home/me/.config/nvim ]; then
+    echo -e "${YELLOW}Cloning nvim config${NC}"
+    su - me -c \
+        "git clone git@github.com:rzuquim/nvim.git /home/me/.config/nvim"
+fi
