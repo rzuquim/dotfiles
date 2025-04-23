@@ -20,3 +20,18 @@ if [ ! -f "/etc/hostname" ]; then
 else
     hostname=$(cat /etc/hostname)
 fi
+
+users=("me")
+
+read -p "Will you be gaming on this device? [Y/n] " response
+response=${response:-Y}
+if [[ ! $response =~ ^[Yy]$ ]]; then
+    users+=("fun")
+fi
+
+read -p "Will you be streaming on this device? [Y/n] " response
+response=${response:-Y}
+if [[ ! $response =~ ^[Yy]$ ]]; then
+    users+=("stream")
+fi
+
