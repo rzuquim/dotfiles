@@ -6,7 +6,7 @@ FONTS_PACKAGES=(
     "ttf-font-awesome"
     "ttf-cascadia-code-nerd"
     "ttf-fira-code"
-    "ttf-fira-code-nerd"
+    "ttf-firacode-nerd"
     "ttf-hack"
     "ttf-jetbrains-mono"
     "terminus-font"
