@@ -14,3 +14,9 @@ if [ -z ${passphrase+x} ]; then
         exit 1
     fi
 fi
+
+if [ ! -f "/etc/hostname" ]; then
+    read -rp "Enter hostname: " hostname
+else
+    hostname=$(cat /etc/hostname)
+fi
