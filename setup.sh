@@ -13,7 +13,7 @@ fi
 
 pacman-key --init
 pacman -Sy --noconfirm
-pacman -S --noconfirm archlinux-keyring
+pacman -S --noconfirm --needed archlinux-keyring
 
 if [ ! -d "$DOTFILES_LOCATION" ]; then
     echo -e "Installing git and cloning dotfiles"
