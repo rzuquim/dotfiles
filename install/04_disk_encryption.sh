@@ -4,6 +4,7 @@
 echo -e "${CYAN}Encrypting LVM partitions with LUKS"
 
 curr_mapper_name=""
+keyfile="/keyfile.bin"
 
 function do_encrypt() {
     local disk=$1
@@ -27,8 +28,17 @@ function do_encrypt() {
     echo -n "$luks_pass" | cryptsetup luksFormat "$part" --batch-mode --key-file=-
     echo -n "$luks_pass" | cryptsetup open "$part" "$mapper_name" --key-file=-
 
+    if [[ "$i" != "0"  ]]; then
+        cryptsetup luksAddKey "$part" "$keyfile"
+    fi
+
     curr_mapper_name="$mapper_name"
 }
+
+if [ ! -e $keyfile ]; then
+    echo -e "${YELLOW}Generating keyfile...${NC}"
+    dd if=/dev/urandom of="$keyfile" bs=1 count=4096
+fi
 
 crypt_index=0
 
