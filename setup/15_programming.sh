@@ -46,4 +46,3 @@ if [ ! -d "/home/me/.config" ]; then
     su - me -c "mkdir /home/me/.config"
 fi
 
-# TODO: setup private key and clone nvim repo

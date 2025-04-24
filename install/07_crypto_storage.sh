@@ -17,12 +17,12 @@ else
     storage_disks=($(blkid -t TYPE=crypto_LUKS | sort | grep -Ev nvme | cut -d'"' -f2))
 fi
 
-
 if [ ! -f  /mnt/etc/crypttab ]; then
     echo -e "${CYAN}Writing /etc/crypttab${NC}"
     touch /mnt/etc/crypttab
 
-    crypt_index=0
+    # BUG: this assumes there is only one nvme drive and the cryptlvm0 is assigned to it
+    crypt_index=1
     for disk_id in "${storage_disks[@]}"; do
         echo "cryptlvm${crypt_index} UUID=$disk_id /etc/keys/storage.key luks" >> /mnt/etc/crypttab
         crypt_index=$((crypt_index + 1))

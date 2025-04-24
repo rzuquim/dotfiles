@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# TODO: passphrase prefix from install into the chroot
 if [ -z ${passphrase+x} ]; then
     echo -e "${YELLOW}Enter a passphrase prefix:${NC}"
     echo "(It will be used for disk encryption and for the user's passwords)"

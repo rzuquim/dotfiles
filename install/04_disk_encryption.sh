@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# TODO: use yubikey instead of passphrase
 echo -e "${CYAN}Encrypting LVM partitions with LUKS"
 
 curr_mapper_name=""
