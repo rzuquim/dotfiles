@@ -23,7 +23,10 @@ fi
 if [ ! -f "/etc/vconsole.conf" ]; then
     echo -e "${YELLOW}Setting up console settings${NC}"
 
-    echo "KEYMAP=br-abnt2" > /etc/vconsole.conf
+    if ls /sys/class/power_supply/BAT* &>/dev/null; then
+        # NOTE: battery found, this is a notebook
+        echo "KEYMAP=br-abnt2" > /etc/vconsole.conf
+    fi
     echo "FONT=ter-132n" >> /etc/vconsole.conf
 fi
 
