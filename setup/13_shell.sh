@@ -7,7 +7,6 @@ TERMINAL_PACKAGES=(
     "alacritty"
     "starship"
     "tmux"
-    "zsh"
     "zsh-completions"
     "starship"
     "atuin"

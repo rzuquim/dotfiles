@@ -7,6 +7,8 @@ if [ ! -f "/etc/pacman.conf.bkp" ]; then
 
     cp /etc/pacman.conf /etc/pacman.conf.bkp
     cp ./_assets/etc/pacman.conf /etc/pacman.conf
+
+    pacman -Sy --noconfirm
 fi
 
 if ! command -v paru >/dev/null 2>&1; then

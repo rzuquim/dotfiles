@@ -2,16 +2,19 @@
 
 echo -e "${CYAN}Setting up users${NC}"
 
+# ensuring zsh is available
+pacman -S --noconfirm --needed zsh
+
 root_pass_status=$(passwd -S root 2>/dev/null | awk '{print $2}')
-if [[ "$root_pass_status" == "PS" ]]; then
+if [[ "$root_pass_status" != "PS" ]]; then
     user_pass="${passphrase}_ROOT"
-    echo -e "${YELLOW}root password set${NC}"
     echo "root:$user_pass" | chpasswd
+    echo -e "${YELLOW}root password set${NC}"
 fi
 
 for user in "${users[@]}"; do
     if ! id "$user" &>/dev/null; then
-        user_pass="${passphrase}_${user^}"
+        user_pass="${passphrase}_${user^^}"
         useradd -m -G audio,video,storage -s /usr/bin/zsh "$user"
         echo "$user:$user_pass" | chpasswd
         echo -e "${YELLOW}Created user '$user' and set password.${NC}"
