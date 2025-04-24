@@ -9,7 +9,6 @@ FONTS_PACKAGES=(
     "ttf-firacode-nerd"
     "ttf-hack"
     "ttf-jetbrains-mono"
-    "terminus-font"
 )
 
 pacman -S --noconfirm --needed ${FONTS_PACKAGES[@]}

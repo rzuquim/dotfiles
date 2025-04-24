@@ -20,7 +20,10 @@ fi
 
 if [ ! -f "/boot/loader/entries/arch.conf" ]; then
     echo -e "${YELLOW}Setting up boot loader${NC} systemd-boot"
-    pacman -S --noconfirm --needed lvm2
+    pacman -S --noconfirm --needed lvm2 terminus-font
+
+    echo -e "${YELLOW}Making sure lts kernel is installed for fallback${NC}"
+    pacman -S --noconfirm --needed linux-lts linux-lts-headers
 
     if [ ! -f /etc/mkinitcpio.conf.bkp ]; then
         cp /etc/mkinitcpio.conf /etc/mkinitcpio.conf.bkp
