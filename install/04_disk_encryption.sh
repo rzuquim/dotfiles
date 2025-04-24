@@ -29,6 +29,7 @@ function do_encrypt() {
     echo -n "$luks_pass" | cryptsetup open "$part" "$mapper_name" --key-file=-
 
     if [[ "$i" != "0"  ]]; then
+        echo "Adding file key on /storage device (input the LUKS passphrase to make sure you known the convention)"
         cryptsetup luksAddKey "$part" "$keyfile"
     fi
 
