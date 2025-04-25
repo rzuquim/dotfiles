@@ -4,8 +4,8 @@
 
 - [ ] use yubikey instead of passphrase to encrypt / decrypt with LUKS
 - [ ] on `./install/07_crypto_storage.sh` fix the starting index of the cryptlvm device
-- [ ] install browsers (AUR)
-- [ ] install bluetuith (AUR)
+- [x] install browsers (AUR)
+- [x] install bluetuith (AUR)
 - [ ] screen sharing
 - [ ] screen anotations
 - [ ] video conf
@@ -59,6 +59,13 @@
 ## Server
 
 - [ ] local DNS server to resolve computer names
+
+## Bugs
+
+- [ ] waybar closing
+- [ ] hyprland crashing:
+  - [ ] USB dongle (after removing it stopped crashing)?
+  - [ ] errors on: `sudo dmesg -T | /bin/grep -iE 'segfault|error|gpu|oom'`
 
 ## Test
 

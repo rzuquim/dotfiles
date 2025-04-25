@@ -38,14 +38,12 @@ for user in "${users[@]}"; do
         # NOTE: adding leading . (to avoid versioning hidden files in this repo)
         target="$user_home/.$filename"
 
-        [ -L "$target" ] && continue
-
-        if [ ! -e "$user_home" ]; then
-            sudo mkdir -p "$user_home"
+        if sudo test -L "$target"; then
+            continue
         fi
 
-        if [ -e "$target" ]; then
-            sudo mv "$target" "$target.bak"
+        if sudo test ! -e "$user_home"; then
+            sudo mkdir -p "$user_home"
         fi
 
         sudo ln -s "$shared_config" "$target"
@@ -58,14 +56,12 @@ for user in "${users[@]}"; do
         target="$user_home/.config/$rel_path"
         target_dir="$(dirname "$target")"
 
-        [ -L "$target" ] && continue
-
-        if [ ! -e "$target_dir" ]; then
-            sudo mkdir -p "$target_dir"
+        if sudo test -L "$target"; then
+            continue
         fi
 
-        if [ -e "$target" ]; then
-            sudo mv "$target" "$target.bak"
+        if sudo test ! -e "$target_dir"; then
+            sudo mkdir -p "$target_dir"
         fi
 
         sudo ln -s "$shared_config" "$target"
@@ -89,3 +85,18 @@ if [ ! -L ~/.config/nvim ]; then
     echo "Linking ~/.config/nvim"
     ln -s ~/nvim ~/.config/nvim
 fi
+
+echo
+echo "-----------------"
+echo -e "${CYAN}Installing AUR stuff${NC} (cannot install as root on previous scripts)"
+echo "-----------------"
+
+YAY_PACKAGES=(
+    "bluetuith"
+    "librewolf-bin"
+    "brave-bin"
+    "whatsapp-for-linux"
+    "telegram-desktop"
+)
+
+yay -S --needed ${YAY_PACKAGES[@]}
