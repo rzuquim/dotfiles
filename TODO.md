@@ -62,7 +62,7 @@
 
 ## Bugs
 
-- [ ] waybar closing
+- [x] waybar closing
 - [ ] hyprland crashing:
   - [ ] USB dongle (after removing it stopped crashing)?
   - [ ] errors on: `sudo dmesg -T | /bin/grep -iE 'segfault|error|gpu|oom'`
