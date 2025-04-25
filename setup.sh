@@ -18,7 +18,7 @@ pacman -S --noconfirm --needed archlinux-keyring
 if [ ! -d "$DOTFILES_LOCATION" ]; then
     echo -e "Installing git and cloning dotfiles"
     pacman -S --noconfirm --needed git
-    git clone --depth 1 https://github.com/rzuquim/dotfiles.git $DOTFILES_LOCATION
+    git clone --depth 1 $DOTFILES_REPO $DOTFILES_LOCATION
 fi
 
 cd "$DOTFILES_LOCATION"
@@ -41,4 +41,9 @@ for f in ./setup/*.sh; do
     echo -e "${GREEN}DONE${NC}"
     echo
 done
+
+echo -e "${VIOLET}SETUP DONE!${NC}"
+echo "Now reboot the machine, log with the 'me' user, setup your private keys and run:"
+echo "bash <(curl -sL https://boot.rzuquim.com/config.sh)"
+echo
 

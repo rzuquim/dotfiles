@@ -10,6 +10,8 @@
 - [ ] screen anotations
 - [ ] video conf
 - [ ] obs and streaming stuff
+- [ ] docker
+- [ ] chats: telegram, wapp, discord
 
 ## Setup
 
@@ -41,7 +43,7 @@
 - [ ] librewolf config on dotfiles
 - [ ] `hyprland`: status bar
 - [ ] `hyprland`: multi monitor
-- [ ] `hyprland`: wallpaper
+- [ ] `hyprland`: wallpaper (bg-random.sh)
 - [ ] `hyprland`: notificatioon
 - [ ] `hyprland`: lock screen
 - [ ] `hyprland`: clipboard manager
@@ -68,3 +70,4 @@
 - [ ] working triple A game (GoW)
 - [ ] tmux
 - [ ] bluetooth
+- [ ] input management (keyboard layout)

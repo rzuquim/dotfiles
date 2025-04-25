@@ -1,0 +1,76 @@
+#!/bin/bash
+
+set -euo pipefail
+
+DOTFILES_REPO=git@github.com:rzuquim/dotfiles.git
+DOTFILES_LOCATION="/home/me/dotfiles"
+
+if [ ! -d "$DOTFILES_LOCATION" ]; then
+    echo -e "Cloning dotfiles (using SSH)"
+    git clone $DOTFILES_REPO $DOTFILES_LOCATION
+fi
+
+cd "$DOTFILES_LOCATION"
+
+for f in ./_utils/*.sh; do
+    source "$f";
+done
+
+rz_banner
+
+echo
+echo "-----------------"
+echo -e "${CYAN}Syncing configs${NC}"
+echo "-----------------"
+
+rsync -avh --no-perms ./config/shared/ /home/.shared
+
+users=(me stream fun)
+
+for user in "${users[@]}"; do
+    if ! id $user; then
+        continue
+    fi
+
+    user_home="/home/$user"
+    find /home/.shared -maxdepth 1 -type f | while read -r shared_config; do
+        filename="$(basename "$shared_config")"
+        # NOTE: adding leading . (to avoid versioning hidden files in this repo)
+        target="$user_home/.$filename"
+
+        [ -L "$target" ] && continue
+
+        if [ ! -e "$user_home" ]; then
+            sudo mkdir -p "$user_home"
+        fi
+
+        if [ -e "$target" ]; then
+            sudo mv "$target" "$target.bak"
+        fi
+
+        sudo ln -s "$shared_config" "$target"
+        sudo chown -h "$user:$user" "$target"
+        echo -e "${VIOLET}linking config file${NC} $shared_config ${VIOLET}into${NC} $target"
+    done
+
+    find /home/.shared/config -type f | while read -r shared_config; do
+        rel_path="${shared_config#/home/.shared/config/}"
+        target="$user_home/.config/$rel_path"
+        target_dir="$(dirname "$target")"
+
+        [ -L "$target" ] && continue
+
+        if [ ! -e "$target_dir" ]; then
+            sudo mkdir -p "$target_dir"
+        fi
+
+        if [ -e "$target" ]; then
+            sudo mv "$target" "$target.bak"
+        fi
+
+        sudo ln -s "$shared_config" "$target"
+        sudo chown -h "$user:$user" "$target"
+        echo -e "${VIOLET}linking config file${NC} $shared_config ${VIOLET}into${NC} $target"
+    done
+done
+

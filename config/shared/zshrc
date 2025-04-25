@@ -1,0 +1,56 @@
+
+local zsh_profile_loaded_today=0
+PROFILE_MARKER="/tmp/.zsh_profile_loaded_today"
+
+if [[ ! -f "$PROFILE_MARKER" ]]; then
+    touch "$PROFILE_MARKER"
+    zmodload zsh/zprof
+    zsh_profile_loaded_today=1
+fi
+
+if [[ -f "$HOME/.config/shell/custom.sh" ]]; then
+    source "$HOME/.config/shell/custom.sh"
+fi
+
+# ignoring keybinded commands on history
+setopt histignorespace
+
+# zsh autocomplete
+autoload -Uz compinit
+compinit -C  # enables caching of completions
+fpath=(~/.zsh/plugins/zsh-completions/src $fpath)
+
+# loading plugins
+source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# loading prompt
+eval "$(starship init zsh)"
+eval "$(atuin init zsh)"
+
+source ~/.config/shell/aliases.sh
+
+# using fd as default fzf finder (following links, including hidden files and excluding useless directories)
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow \
+  --exclude node_modules --exclude .git --exclude .cache --exclude .asdf --exclude .local --exclude .cargo \
+  --exclude .config --exclude bin --exclude obj --exclude.zsh --exclude.nvm --exclude.vscode --exclude target \
+  --exclude .github' 
+
+# search the contents of every file
+function search {
+   rg -p "$@" -A 3 -B 3 --color=always | less -RMFXK
+}
+
+for file in ~/.config/shell/*.sh; do
+    . "$file"
+done
+
+bindkey -v               # vim mode on zsh
+bindkey -s '^a' ' fg^M'  # running fg
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+if [[ $zsh_profile_loaded_today -eq 1 ]]; then
+    zprof
+fi

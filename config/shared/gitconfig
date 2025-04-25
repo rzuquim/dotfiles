@@ -1,0 +1,101 @@
+[include]
+    path = ~/.config/git/whoami.toml
+
+[blame]
+    coloring = highlightRecent
+    showEmail = true
+    showName = false
+    date = relative
+
+[color "blame"]
+    highlightRecent = green,12 month ago,white,1 month ago,black red
+
+[submodule]
+    recurse = true 
+
+[push]
+    default = current
+
+[core]
+    editor = nvim -u ~/.config/nvim/init_simple.lua
+    pager = delta
+    autocrlf = input
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true # use n and N to move between diff sections
+
+[merge]
+    tool = nvimdiff
+    conflictstyle = diff3
+
+[mergetool "nvimdiff"]
+    prompt = false
+    keepBackup = false
+    cmd = nvim -u ~/.config/nvim/init_simple.lua -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+    # cmd = nvim -u ~/.config/nvim/init_simple.lua -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+
+[diff]
+    tool = nvimdiff
+    colorMoved = default
+
+[difftool "nvimdiff"]
+    cmd = "nvim -u ~/.config/nvim/init_simple.lua -d \"$LOCAL\" \"$REMOTE\""
+
+[alias]
+    # commit
+    aa = !git add -A
+    ci = !git add -A && git commit -m
+    c = commit -m
+    amend = commit -a --amend
+    m = merge --ff-only
+
+    # status
+    s = status -sb
+
+    # branch
+    b = "!git for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))' refs/heads/* refs/remotes/*/*"
+
+    move-branch = branch -f
+    squash = rebase -i HEAD~5
+
+    # log
+    ls = log --graph --pretty=format:"%C(yellow)%h%Creset\\ -%Cred%d\\ %C(magenta)[%cn]\\ %Creset%s\\ %Cgreen(%ad)" --decorate --date=relative --max-count=30
+    missing = log --pretty=format:"%C(yellow)%h%Creset\\ %s" HEAD..origin/latest
+    short-hash = "!git rev-parse --short HEAD | clip"
+
+    # check-out
+    co = checkout
+    new = "!f() { git checkout -b $1 && git push origin && git branch --set-upstream-to=origin/$1; }; f"
+
+    # delete
+    del-branch = branch -D
+    purge = !git branch -D $1 && git push origin --delete $1
+
+    # diff
+    dt = difftool --no-prompt
+    mt = mergetool
+    changes = difftool --no-prompt HEAD^ HEAD
+    changes-staging = diff --cached
+
+    # revert
+    undo = checkout --
+    wipe = !git add -A && git commit -qm 'chore: wipe backup' && git reset HEAD~1 --hard && git clean -fd
+    soft-unstage = !git reset --soft HEAD^ && git reset
+    fuck-local = !git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)
+    cc = clean -fXd
+
+    # origin
+    f = fetch origin --prune
+
+    # utils
+    aliases = "!git config -l | grep alias | cut -c 7-"
+
+# NOTE: work identity config
+# [includeIf "gitdir:~/company/"]
+#    path = ~/.config/git/company.toml
+
+[init]
+    defaultBranch = main

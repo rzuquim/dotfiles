@@ -36,10 +36,11 @@ fi
 
 if [ ! -f $GIT_WHO_AM_I  ]; then
     echo -e "${CYAN}Setting up git whoami${NC}"
-    su - me -c \
-        "echo '[user]' > $GIT_WHO_AM_I \
-        echo "email = $MY_EMAIL" >> $GIT_WHO_AM_I \
-        echo "name = $MY_NAME" >> $GIT_WHO_AM_I"
+
+    # NOTE: in next step we will ensure file ownership
+    echo '[user]' > $GIT_WHO_AM_I
+    echo "email = $COMPANY_EMAIL" >> $GIT_WHO_AM_I
+    echo "name = $MY_NAME" >> $GIT_WHO_AM_I
 fi
 
 if [ ! -d "/home/me/.config" ]; then

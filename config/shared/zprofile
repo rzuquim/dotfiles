@@ -1,0 +1,19 @@
+
+source ~/.config/shell/env.sh
+
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+    is_ssh=1
+fi
+
+# NOTE: Using bash_profile only to launch session (the daily drive will be zsh)
+if [ -n $is_ssh ] && [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ] && uwsm check may-start; then
+    exec uwsm start hyprland.desktop
+fi
+
+export PATH=$HOME/.local/bin:$HOME/bin:/usr/local/bin:$HOME/.cargo/bin:$HOME/.dotnet/bin:$PATH
+
+# NOTE: reseting .context on every boot
+if [[ -f "$HOME/.context" ]]; then
+    rm ~/.context
+fi
+
