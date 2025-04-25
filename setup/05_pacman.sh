@@ -11,27 +11,27 @@ if [ ! -f "/etc/pacman.conf.bkp" ]; then
     pacman -Sy --noconfirm
 fi
 
-if ! command -v paru >/dev/null 2>&1; then
-    echo -e "${YELLOW}Installing AUR helper:${NC} paru"
-    if [ -d /tmp/paru ]; then
-        rm -rf /tmp/paru
+if ! command -v yay >/dev/null 2>&1; then
+    echo -e "${YELLOW}Installing AUR helper:${NC} yay"
+    if [ -d /tmp/yay ]; then
+        rm -rf /tmp/yay
     fi
 
-    # NOTE: needed to compile paru
-    pacman -S --noconfirm --needed rustup base-devel
+    # NOTE: needed to compile yay
+    pacman -S --needed git base-devel go
 
     # NOTE: the build must happen on a non root user, but we need to pacman -U using the root
     #       the makepkg will fail since we are not on a interactive session
     su -s /bin/bash - me -c \
-        "rustup default stable && \
-        git clone --depth 1 https://aur.archlinux.org/paru.git /tmp/paru && \
-        cd /tmp/paru && makepkg -s"
+        "git clone https://aur.archlinux.org/yay.git /tmp/yay && \
+        cd /tmp/yay && \
+        makepkg -s"
 
-    paru_pkg=$(ls /tmp/paru/*.zst | grep -v debug)
-    if [ -z "$paru_pkg" ]; then
-        echo -e "${RED}Could not find paru package build.${NC}"
+    yay_pkg=$(ls /tmp/yay/*.zst | grep -v debug)
+    if [ -z "$yay_pkg" ]; then
+        echo -e "${RED}Could not find yay package build.${NC}"
         exit 1
     fi
 
-    pacman --noconfirm --needed -U "$paru_pkg"
+    pacman --noconfirm --needed -U "$yay_pkg"
 fi

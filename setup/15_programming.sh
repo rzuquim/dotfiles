@@ -35,7 +35,7 @@ if [ ! -d "/home/me/.config/git" ]; then
 fi
 
 if [ ! -f $GIT_WHO_AM_I  ]; then
-    echo -e "${CYAN}Setting up git whoami${NC}"
+    echo -e "${YELLOW}Setting up git whoami${NC}"
 
     # NOTE: in next step we will ensure file ownership
     echo '[user]' > $GIT_WHO_AM_I
@@ -45,5 +45,9 @@ fi
 
 if [ ! -d "/home/me/.config" ]; then
     su - me -c "mkdir /home/me/.config"
+fi
+
+if ! rustup show active-toolchain; then
+    echo -e "${YELLOW}Setting up default rust tollchain as${NC} stable"
 fi
 
