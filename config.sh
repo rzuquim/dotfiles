@@ -74,3 +74,18 @@ for user in "${users[@]}"; do
     done
 done
 
+echo
+echo "-----------------"
+echo -e "${CYAN}Syncing nvim config${NC}"
+echo "-----------------"
+
+
+if [ ! -L ~/.config/nvim ]; then
+    if [ ! -d ~/nvim ]; then
+        echo -e "${CYAN}Cloning nvim config...${NC}"
+        git clone git@github.com:rzuquim/nvim.git ~/nvim
+    fi
+
+    echo "Linking ~/.config/nvim"
+    ln -s ~/nvim ~/.config/nvim
+fi
