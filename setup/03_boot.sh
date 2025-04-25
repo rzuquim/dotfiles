@@ -44,7 +44,7 @@ if [ ! -f "/boot/loader/entries/arch.conf" ]; then
     cp ./_assets/boot/loader/loader.conf /boot/loader/loader.conf
 
     # NOTE: we are assuming that the first nvme device will hold the root
-    LUKS_PARTITION_UUID=$(blkid -t TYPE=crypto_LUKS | sort | grep nvme | head -n1 | cut -d'"' -f2)
+    LUKS_PARTITION_UUID=$({ blkid -t TYPE=crypto_LUKS | sort | grep nvme | head -n1 | cut -d'"' -f2; } || true)
 
     if [[ -z "$LUKS_PARTITION_UUID" ]]; then
         echo -e "${YELLOW}No NVMe LUKS device found. Falling back to first available LUKS partition...${NC}"

@@ -1,8 +1,8 @@
 #!/bin/bash
 
 all_disks=($(lsblk -dno NAME,MODEL | grep -Ev 'USB|loop' | awk '{print "/dev/"$1}'))
-ssds=($(lsblk -dno NAME,MODEL | grep -Ev 'USB|loop|nvme' | awk '{print "/dev/"$1}'))
-nvmes=($(lsblk -dno NAME,MODEL | grep 'nvme' | awk '{print "/dev/"$1}'))
+ssds=($( { lsblk -dno NAME,MODEL | grep -Ev 'USB|loop|nvme' | awk '{print "/dev/"$1}'; } || true ))
+nvmes=($( { lsblk -dno NAME,MODEL | grep 'nvme' | awk '{print "/dev/"$1}'; } || true ))
 
 if [[ "${#all_disks[@]}" -eq 0 ]]; then
     echo -e "${RED}No suitable disks found for installation.${NC}"

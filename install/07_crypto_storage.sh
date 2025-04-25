@@ -7,14 +7,14 @@ cp "$keyfile" /mnt/etc/keys/storage.key
 chmod 600 /mnt/etc/keys/storage.key
 
 # NOTE: finding out the /root device (we are assuming that the first nvme device will hold the root)
-nvmes_disks=$(blkid -t TYPE=crypto_LUKS | grep nvme)
+nvmes_disks=$({ blkid -t TYPE=crypto_LUKS | grep nvme; } || true)
 
 if [[ -z "$nvmes_disks" ]]; then
     echo -e "${YELLOW}No NVMe devices found! No /storage partition.${NC}"
     storage_disks=()
     return 0
 else
-    storage_disks=($(blkid -t TYPE=crypto_LUKS | sort | grep -Ev nvme | cut -d'"' -f2))
+    storage_disks=($({ blkid -t TYPE=crypto_LUKS | sort | grep -Ev nvme | cut -d'"' -f2; } || true))
 fi
 
 if [ ! -f  /mnt/etc/crypttab ]; then

@@ -41,6 +41,8 @@ if [ ! -e $keyfile ]; then
 fi
 
 crypt_index=0
+encrypted_disks=()
+encrypted_storages=()
 
 for disk in "${disks[@]}"; do
     do_encrypt "$disk" "$luks_pass" "$crypt_index"
