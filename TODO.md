@@ -62,10 +62,16 @@
 
 ## Bugs
 
-- [x] waybar closing
+- [ ] `waybar` show/hide:
+  - [ ] when closing the last open window ensure waybar is showing
+  - [ ] when going to a workspace show if not full screen / hide if full screen
 - [ ] hyprland crashing:
-  - [ ] USB dongle (after removing it stopped crashing)?
-  - [ ] errors on: `sudo dmesg -T | /bin/grep -iE 'segfault|error|gpu|oom'`
+  - [ ] USB bluetooth dongle (after removing it stopped crashing)
+  - errors on: `sudo dmesg -T | grep --invert-match 'segfault|error|gpu|oom'`
+  - PCIe Bus Error: severity=Correctable, type=Physical Layer (Receiver ID)
+  - device [8086:06b0] error status/mask=00000001/00002000
+- [ ] nftables blocking internal IPv6 DHCP
+  - nftables input drop: IN=eno1 OUT= MACSRC=d8:c6:78:83:ed:80 MACDST=18:c0:4d:f1:76:66 MACPROTO=86dd
 
 ## Test
 
