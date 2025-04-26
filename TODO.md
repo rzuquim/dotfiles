@@ -36,6 +36,8 @@
 - [ ] `monitoring` consolidation and reporting
 - [ ] `monitoring` grafana for details
 - [ ] `monitoring` rate limit
+- [ ] periodically suggest updating packages
+  - [ ] `zsh`: periodically updates plugins
 
 ## Config
 
@@ -50,10 +52,11 @@
 - [ ] `hyprland`: electron support (https://wiki.hyprland.org/Getting-Started/Master-Tutorial/#force-apps-to-use-wayland)
 - [ ] `hyprland`: authentication agent (https://wiki.hyprland.org/Useful-Utilities/Must-have/#authentication-agent)
 - [ ] `hyprland`: color picker
+- [ ] `waybar`: style
 - [ ] steamcmd
 - [ ] customize mangohub shortcuts
 - [ ] `zsh`: keyboard driven URL navigation
-- [ ] `zsh`: periodically updates plugins
+- [ ] `zsh`: navigation with arrows in insert mode
 - [ ] input locale management
 
 ## Server
