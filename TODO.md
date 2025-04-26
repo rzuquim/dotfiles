@@ -29,7 +29,7 @@
 - [ ] automatic default output device (hdmi, headset, etc)
 - [ ] input device (mic, etc)
 - [ ] multiple monitors
-- [ ] steam available only for `fun` user
+- [x] steam available only for `fun` user
 - [ ] periodically run diagnostics and detect WARNS / errors on logs (nvim included)
 - [ ] advanced Locale configuration (aka ç)
 - [ ] `monitoring` eBPF for process logging (bpftrace)
