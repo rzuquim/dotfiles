@@ -40,6 +40,7 @@
 - [ ] `monitoring` rate limit
 - [ ] periodically suggest updating packages
   - [ ] `zsh`: periodically updates plugins
+- [x] printscreen
 
 ## Config
 
@@ -48,14 +49,15 @@
 - [ ] `hyprland`: status bar
 - [ ] `hyprland`: multi monitor
 - [ ] `hyprland`: wallpaper (bg-random.sh)
-- [ ] `hyprland`: notificatioon
+- [ ] `hyprland`: notification
 - [ ] `hyprland`: lock screen
 - [ ] `hyprland`: clipboard manager
+- [ ] `hyprland`: magnifier
+- [ ] `hyprland`: draw on screen
 - [ ] `hyprland`: electron support (https://wiki.hyprland.org/Getting-Started/Master-Tutorial/#force-apps-to-use-wayland)
 - [ ] `hyprland`: authentication agent (https://wiki.hyprland.org/Useful-Utilities/Must-have/#authentication-agent)
 - [ ] `hyprland`: color picker
 - [ ] `waybar`: style
-- [ ] steamcmd
 - [ ] customize mangohub shortcuts
 - [ ] `zsh`: keyboard driven URL navigation
 - [ ] `zsh`: navigation with arrows in insert mode
