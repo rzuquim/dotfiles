@@ -2,6 +2,7 @@
 
 ## Install
 
+- [ ] when executing `.install.sh` on dotfiles repo (already installed) just ensure apps are installed
 - [ ] use yubikey instead of passphrase to encrypt / decrypt with LUKS
 - [ ] on `./install/07_crypto_storage.sh` fix the starting index of the cryptlvm device
 - [x] install browsers (AUR)
@@ -15,7 +16,8 @@
 
 ## Setup
 
-- [ ] only prompt for passphrase if any of the basic lists of users (or root) don't already have a password
+- [x] when executing `.setup.sh` on dotfiles repo already we should not clone into `/tmp/dotfiles/`
+- [x] only prompt for passphrase if any of the basic lists of users (or root) don't already have a password
 - [ ] check if passphrase prefix matches the LUKS one
 - [ ] ssh TOTP
 - [ ] sudo TOTP

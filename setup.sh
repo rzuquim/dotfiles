@@ -2,26 +2,48 @@
 
 set -euo pipefail
 
-DOTFILES_REPO=https://github.com/rzuquim/dotfiles.git
-DOTFILES_LOCATION="/tmp/dotfiles"
+function already_in_dotfiles_repo() {
+    dotfiles_repo_url=$(git remote get-url origin &2> /dev/null)
+    echo $dotfiles_repo_url
+    if [[ $dotfiles_repo_url =~ rzuquim/dotfiles.git$ ]]; then
+        return 0
+    else
+        return 1
+    fi
+}
 
-if [ ! -t 0 ]; then
-    echo "Please run this script interactively."
-    echo "bash <(curl -sL https://boot.rzuquim.com/setup.sh)"
-    exit 1
-fi
+function clone_dot_files() {
+    DOTFILES_REPO="$1"
+    DOTFILES_LOCATION="$2"
 
-pacman-key --init
+    if [ ! -t 0 ]; then
+        echo "Please run this script interactively."
+        echo "bash <(curl -sL https://boot.rzuquim.com/setup.sh)"
+        exit 1
+    fi
+
+    pacman-key --init
+    pacman -S --noconfirm --needed archlinux-keyring
+
+    if [ ! -d "$DOTFILES_LOCATION" ]; then
+        echo -e "Installing git and cloning dotfiles"
+        pacman -S --noconfirm --needed git
+        git clone --depth 1 $DOTFILES_REPO $DOTFILES_LOCATION
+    fi
+}
+
+function ensure_dot_files() {
+    if already_in_dotfiles_repo; then
+        return
+    fi
+
+    clone_dot_files https://github.com/rzuquim/dotfiles.git /tmp/dotfiles
+    cd "$DOTFILES_LOCATION"
+}
+
+ensure_dot_files
+
 pacman -Sy --noconfirm
-pacman -S --noconfirm --needed archlinux-keyring
-
-if [ ! -d "$DOTFILES_LOCATION" ]; then
-    echo -e "Installing git and cloning dotfiles"
-    pacman -S --noconfirm --needed git
-    git clone --depth 1 $DOTFILES_REPO $DOTFILES_LOCATION
-fi
-
-cd "$DOTFILES_LOCATION"
 
 for f in ./_utils/*.sh; do
     source "$f";

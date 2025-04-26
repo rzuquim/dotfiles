@@ -5,8 +5,7 @@ echo -e "${CYAN}Setting up users${NC}"
 # ensuring zsh is available
 pacman -S --noconfirm --needed zsh
 
-root_pass_status=$(passwd -S root 2>/dev/null | awk '{print $2}')
-if [[ "$root_pass_status" != "PS" ]]; then
+if ! all_users_have_passphrase "root"; then
     user_pass="${passphrase}_ROOT"
     echo "root:$user_pass" | chpasswd
     echo -e "${YELLOW}root password set${NC}"
