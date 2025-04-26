@@ -52,7 +52,7 @@
 - [ ] `hyprland`: notification
 - [ ] `hyprland`: lock screen
 - [ ] `hyprland`: clipboard manager
-- [ ] `hyprland`: magnifier
+- [x] `hyprland`: magnifier
 - [ ] `hyprland`: draw on screen
 - [ ] `hyprland`: electron support (https://wiki.hyprland.org/Getting-Started/Master-Tutorial/#force-apps-to-use-wayland)
 - [ ] `hyprland`: authentication agent (https://wiki.hyprland.org/Useful-Utilities/Must-have/#authentication-agent)
