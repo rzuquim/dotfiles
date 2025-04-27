@@ -62,7 +62,7 @@
 - [ ] `waybar`: style
 - [ ] customize mangohub shortcuts
 - [ ] `zsh`: keyboard driven URL navigation
-- [ ] `zsh`: navigation with arrows in insert mode
+- [x] `zsh`: navigation with arrows in insert mode
 - [ ] input locale management
 
 ## Server

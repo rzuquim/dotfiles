@@ -46,10 +46,7 @@ for file in ~/.config/shell/*.sh; do
     . "$file"
 done
 
-bindkey -v               # vim mode on zsh
-bindkey -s '^a' ' fg^M'  # running fg
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+source ~/.config/shell/keybindings.sh
 
 if [[ $zsh_profile_loaded_today -eq 1 ]]; then
     zprof
