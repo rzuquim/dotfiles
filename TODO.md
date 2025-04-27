@@ -50,7 +50,7 @@
 - [ ] librewolf config on dotfiles
 - [ ] `hyprland`: status bar
 - [ ] `hyprland`: multi monitor
-- [ ] `hyprland`: wallpaper (bg-random.sh)
+- [x] `hyprland`: wallpaper (bg-random.sh)
 - [ ] `hyprland`: notification
 - [ ] `hyprland`: lock screen
 - [ ] `hyprland`: clipboard manager
