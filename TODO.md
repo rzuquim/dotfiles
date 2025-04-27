@@ -7,6 +7,8 @@
 - [ ] on `./install/07_crypto_storage.sh` fix the starting index of the cryptlvm device
 - [x] install browsers (AUR)
 - [x] install bluetuith (AUR)
+- [ ] configure browser
+  - [ ] smart script to open browser
 - [ ] screen sharing
 - [ ] screen anotations
 - [ ] video conf

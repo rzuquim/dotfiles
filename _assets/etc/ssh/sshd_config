@@ -44,4 +44,8 @@ AllowTcpForwarding no
 AllowAgentForwarding no
 PermitTunnel no
 
+# Enabling sftp
+Subsystem sftp internal-sftp
+
 LogLevel INFO
+
