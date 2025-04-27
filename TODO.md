@@ -8,7 +8,7 @@
 - [x] install browsers (AUR)
 - [x] install bluetuith (AUR)
 - [ ] configure browser
-  - [ ] smart script to open browser
+  - [x] smart script to open browser
 - [ ] screen sharing
 - [ ] screen anotations
 - [ ] video conf
