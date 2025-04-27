@@ -9,3 +9,5 @@ fi
 if ! pgrep -x librewolf > /dev/null; then
     librewolf -P default
 fi
+
+source "$HOME/.config/hypr/scripts/ensure_waybar.sh"
