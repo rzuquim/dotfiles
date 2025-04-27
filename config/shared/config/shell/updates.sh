@@ -3,13 +3,13 @@
 # NOTE: those functions are using () to create subshells and isolate the sourced contexts
 
 function sync_setup {
-    pushd "$HOME/dotfiles/" &> /dev/null
-    (sudo bash "$HOME/dotfiles/setup.sh")
+    pushd "$HOME/Config/dotfiles/" &> /dev/null
+    (sudo bash "$HOME/Config/dotfiles/setup.sh")
     popd
 }
 
 function sync_config {
-    pushd "$HOME/dotfiles/" &> /dev/null
-    (bash "$HOME/dotfiles/config.sh")
+    pushd "$HOME/Config/dotfiles/" &> /dev/null
+    (bash "$HOME/Config/dotfiles/config.sh")
     popd
 }

@@ -3,7 +3,7 @@
 set -euo pipefail
 
 DOTFILES_REPO=git@github.com:rzuquim/dotfiles.git
-DOTFILES_LOCATION="/home/me/dotfiles"
+DOTFILES_LOCATION="/home/me/Config/dotfiles"
 
 if [ ! -d "$DOTFILES_LOCATION" ]; then
     echo -e "Cloning dotfiles (using SSH)"
@@ -106,15 +106,15 @@ echo -e "${CYAN}Syncing nvim config${NC}"
 echo "-----------------"
 
 if [ ! -L ~/.config/nvim ]; then
-    if [ ! -d ~/nvim ]; then
+    if [ ! -d ~/Config/nvim ]; then
         echo -e "${CYAN}Cloning nvim config...${NC}"
-        git clone git@github.com:rzuquim/nvim.git ~/nvim
+        git clone git@github.com:rzuquim/nvim.git ~/Config/nvim
     fi
 
     echo "Linking ~/.config/nvim"
-    ln -s ~/nvim ~/.config/nvim
+    ln -s ~/Config/nvim ~/.config/nvim
 else
-  pushd ~/nvim/ &> /dev/null
+  pushd ~/Config/nvim/ &> /dev/null
   git pull
   popd &> /dev/null
 fi
