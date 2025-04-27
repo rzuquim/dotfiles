@@ -5,6 +5,7 @@ DEV_PACKAGES=(
     "rustup"
     "nodejs"
     "npm"
+    "typescript-language-server"
     "nvm"
     "gitui"
     "python"

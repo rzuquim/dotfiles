@@ -2,6 +2,7 @@
 
 if ! id "fun" &>/dev/null; then
     echo -e "${YELLOW}Not installing fun stuff.${NC}"
+    return
 fi
 
 echo -e "${CYAN}Setting up gaming${NC}"
