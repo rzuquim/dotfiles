@@ -25,6 +25,7 @@ alias o=xdg-open
 alias ..='cd ..'
 alias ...='cd ..; cd ..'
 alias ....='cd ..; cd ..; cd ..'
+alias cd='pushd $1 &> /dev/null'
 
 # navigation
 alias w=work
