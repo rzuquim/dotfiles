@@ -10,4 +10,4 @@ fi
 
 source "$HOME/.config/hypr/scripts/ensure_waybar.sh"
 
-wofi --show drun
+wofi --show drun --insensitive --matching=fuzzy

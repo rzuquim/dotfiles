@@ -52,7 +52,7 @@ function back_to_folder() {
     local target_index=$(
         dirs -v |
         fzf --ansi --query="$filter" --select-1 |
-        awk '{print $1}'  # Extract the index number
+        awk '{print $1}'
     )
 
     if [[ $? -ne 0 || -z $target_index ]]; then

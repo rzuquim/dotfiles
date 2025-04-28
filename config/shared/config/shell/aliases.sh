@@ -26,6 +26,7 @@ alias ..='cd ..'
 alias ...='cd ..; cd ..'
 alias ....='cd ..; cd ..; cd ..'
 alias cd='pushd $1 &> /dev/null'
+alias waybar='pgrep waybar > /dev/null || waybar'
 
 # navigation
 alias w=work

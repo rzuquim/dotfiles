@@ -6,7 +6,7 @@ if [ "$active_window" == "{}" ]; then
     if ! pgrep -x waybar > /dev/null; then
         waybar &
     fi
-    return
+    exit 0
 fi
 
 is_fullscreen=$(echo "$active_window" | jq '.fullscreen')
