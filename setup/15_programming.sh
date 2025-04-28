@@ -15,6 +15,7 @@ DEV_PACKAGES=(
     "cmake"
     "go"
     "jq"
+    "vulkan-tools"
 )
 
 echo -e "${CYAN}Installing dev tools:${NC} ${DEV_PACKAGES[@]}"

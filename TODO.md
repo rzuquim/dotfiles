@@ -48,6 +48,7 @@
 
 - [ ] use yubikey to store SSH private keys
 - [ ] librewolf config on dotfiles
+- [ ] `hyprland`: runner (replace wofi with something more customizable or )
 - [ ] `hyprland`: status bar
 - [ ] `hyprland`: multi monitor
 - [x] `hyprland`: wallpaper (bg-random.sh)
@@ -60,6 +61,10 @@
 - [ ] `hyprland`: authentication agent (https://wiki.hyprland.org/Useful-Utilities/Must-have/#authentication-agent)
 - [ ] `hyprland`: color picker
 - [ ] `waybar`: style
+- `weather`
+  - [ ] systemd script to periodically write weather in /tmp/
+  - [ ] full weather info (specially rain probability)
+  - [ ] weather info on waybar
 - [ ] customize mangohub shortcuts
 - [ ] `zsh`: keyboard driven URL navigation
 - [x] `zsh`: navigation with arrows in insert mode
@@ -71,9 +76,9 @@
 
 ## Bugs
 
-- [ ] `waybar` show/hide:
-  - [ ] when closing the last open window ensure waybar is showing
-  - [ ] when going to a workspace show if not full screen / hide if full screen
+- [x] `waybar` show/hide:
+  - [x] when closing the last open window ensure waybar is showing
+  - [x] when going to a workspace show if not full screen / hide if full screen
 - [ ] hyprland crashing:
   - [ ] USB bluetooth dongle (after removing it stopped crashing)
   - errors on: `sudo dmesg -T | grep --invert-match 'segfault|error|gpu|oom'`

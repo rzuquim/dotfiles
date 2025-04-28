@@ -7,7 +7,7 @@ fi
 
 echo -e "${CYAN}Setting up gaming${NC}"
 pacman -S --noconfirm --needed \
-    steam ttf-liberation gamemode lib32-gamemode mangohud lib32-mangohud vulkan-tools
+    steam ttf-liberation gamemode lib32-gamemode mangohud lib32-mangohud
 
 echo -e "${YELLOW}Ensuring only the gaming group can run: ${NC} steam"
 chown root:gaming /usr/bin/steam
