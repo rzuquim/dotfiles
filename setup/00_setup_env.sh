@@ -66,6 +66,6 @@ if [ ! -f "$GIT_WHO_AM_I" ]; then
         read -p "Please enter your first and last names: " MY_NAME
     fi
 else
-    MY_EMAIL=$(head -n 1 $GIT_WHO_AM_I)
+    MY_EMAIL=$(sed -n '2p' $GIT_WHO_AM_I)
     MY_NAME=$(tail -n 1 $GIT_WHO_AM_I)
 fi

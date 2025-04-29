@@ -5,11 +5,11 @@
 function sync_setup {
     pushd "$HOME/Config/dotfiles/" &> /dev/null
     (sudo bash "$HOME/Config/dotfiles/setup.sh")
-    popd
+    popd &> /dev/null
 }
 
 function sync_config {
     pushd "$HOME/Config/dotfiles/" &> /dev/null
     (bash "$HOME/Config/dotfiles/config.sh")
-    popd
+    popd &> /dev/null
 }

@@ -5,14 +5,7 @@ echo "-----------------"
 echo -e "${CYAN}Syncing browsers config${NC}"
 echo "-----------------"
 
-if [ ! -d ~/Config/librewolf ]; then
-    echo -e "${CYAN}Cloning librewolf config...${NC}"
-    git clone git@github.com:rzuquim/librewolf.git ~/Config/librewolf
-else
-    pushd ~/Config/librewolf &> /dev/null
-    git pull
-    popd &> /dev/null
-fi
+clone_or_update "$HOME/Config" git@github.com:rzuquim/librewolf.git
 
 mkdir -p ~/.librewolf/default
 

@@ -55,7 +55,6 @@
 
 - [ ] use yubikey to store SSH private keys
 - [ ] librewolf config on dotfiles
-- [ ] `hyprland`: runner (replace wofi with something more customizable or contribute)
 - [ ] `hyprland`: multi monitor
 - [x] `hyprland`: wallpaper (bg-random.sh)
 - [x] `hyprland`: notification
@@ -68,9 +67,7 @@
 - [ ] `hyprland`: color picker
 - [ ] `hyprland`: media buttons
 - [x] `waybar`: style
-  - [ ] no batery on PC
   - [ ] notify battery info on click
-  - [ ] wifi
   - [ ] weather
   - [ ] cpu / mem / disk
 - [ ] `weather`

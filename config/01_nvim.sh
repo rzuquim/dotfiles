@@ -6,15 +6,10 @@ echo -e "${CYAN}Syncing nvim config${NC}"
 echo "-----------------"
 
 if [ ! -L ~/.config/nvim ]; then
-    if [ ! -d ~/Config/nvim ]; then
-        echo -e "${CYAN}Cloning nvim config...${NC}"
-        git clone git@github.com:rzuquim/nvim.git ~/Config/nvim
-    fi
+    clone_or_update "$HOME/Config" git@github.com:rzuquim/nvim.git
 
     echo "Linking ~/.config/nvim"
     ln -s ~/Config/nvim ~/.config/nvim
 else
-  pushd ~/Config/nvim/ &> /dev/null
-  git pull
-  popd &> /dev/null
+    clone_or_update "$HOME/Config" git@github.com:rzuquim/nvim.git
 fi
