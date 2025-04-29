@@ -14,7 +14,10 @@
 - [ ] video conf
 - [ ] obs and streaming stuff
 - [ ] docker
-- [ ] chats: telegram, wapp, discord
+- [ ] chats
+  - [x] telegram
+  - [x] wapp
+  - [ ] discord
 
 ## Setup
 

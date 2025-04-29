@@ -16,11 +16,11 @@ declare -A WEATHER_ICONS=(
     ["rain"]="🌧"
     ["shower"]="🌦"
     ["drizzle"]="🌦"
-    ["thunder"]="⛈️"
-    ["storm"]="⛈️"
+    ["thunder"]=""
+    ["storm"]=""
     ["snow"]="❄️"
-    ["mist"]="🌫️"
-    ["fog"]="🌫️"
+    ["mist"]="󰖑"
+    ["fog"]="󰖑"
 )
 
 # Default icon

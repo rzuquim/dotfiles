@@ -7,6 +7,7 @@ declare -A sites=(
     ["󰇥  DuckDuckGo"]="https://duckduckgo.com/?q=%s"
     ["  Chat GPT"]="https://chatgpt.com"
     ["  Nerd Font Icons"]="https://www.nerdfonts.com/cheat-sheet?q=%s"
+    ["  Logos SVG"]="https://svgl.app/?search=%s"
 )
 
 chosen_site=$(for site in "${!sites[@]}"; do
