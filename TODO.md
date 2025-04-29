@@ -9,6 +9,10 @@
 - [x] install bluetuith (AUR)
 - [x] configure browser
   - [x] smart script to open browser
+- [ ] file explorer
+- [ ] writing
+  - [ ] note taking
+  - [ ] studying
 - [ ] screen sharing
 - [ ] screen anotations
 - [ ] video conf
