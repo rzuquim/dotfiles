@@ -7,7 +7,7 @@
 - [ ] on `./install/07_crypto_storage.sh` fix the starting index of the cryptlvm device
 - [x] install browsers (AUR)
 - [x] install bluetuith (AUR)
-- [ ] configure browser
+- [x] configure browser
   - [x] smart script to open browser
 - [ ] screen sharing
 - [ ] screen anotations
@@ -48,20 +48,25 @@
 
 - [ ] use yubikey to store SSH private keys
 - [ ] librewolf config on dotfiles
-- [ ] `hyprland`: runner (replace wofi with something more customizable or )
-- [ ] `hyprland`: status bar
+- [ ] `hyprland`: runner (replace wofi with something more customizable or contribute)
 - [ ] `hyprland`: multi monitor
 - [x] `hyprland`: wallpaper (bg-random.sh)
 - [ ] `hyprland`: notification
-- [ ] `hyprland`: lock screen
-- [ ] `hyprland`: clipboard manager
+- [x] `hyprland`: lock screen
+- [ ] `hyprland`: clipboard manager (https://www.reddit.com/r/unixporn/comments/1jxg7wx/hyprland_clipse_gui_clipboard_manager/?share_id=nUEHhyBv-7xMwFSwvNkTD&utm_medium=ios_app&utm_name=iossmf&utm_source=share&utm_term=14)
 - [x] `hyprland`: magnifier
 - [ ] `hyprland`: draw on screen
 - [ ] `hyprland`: electron support (https://wiki.hyprland.org/Getting-Started/Master-Tutorial/#force-apps-to-use-wayland)
 - [ ] `hyprland`: authentication agent (https://wiki.hyprland.org/Useful-Utilities/Must-have/#authentication-agent)
 - [ ] `hyprland`: color picker
-- [ ] `waybar`: style
-- `weather`
+- [ ] `hyprland`: media buttons
+- [x] `waybar`: style
+  - [ ] no batery on PC
+  - [ ] notify battery info on click
+  - [ ] wifi
+  - [ ] weather
+  - [ ] cpu / mem / disk
+- [ ] `weather`
   - [ ] systemd script to periodically write weather in /tmp/
   - [ ] full weather info (specially rain probability)
   - [ ] weather info on waybar

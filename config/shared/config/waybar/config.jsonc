@@ -1,20 +1,23 @@
-// volume, battery, network, prc, mem, temp, clock
 [
   {
-    // General bar options:
     "margin": "0 0 0",
     "name": "statusbar",
     "spacing": 0,
 
-    // Module order:
-    "modules-left": ["battery", "network", "pulseaudio", "power-profiles-daemon"],
-    "modules-center": ["hyprland/workspaces", "custom/notifications"],
-    "modules-right": ["hyprland/language", "clock", "clock#date"],
+    "modules-left": [
+      "battery",
+      "network",
+      "pulseaudio",
+      "power-profiles-daemon",
+      "hyprland/workspaces",
+    ],
+    "modules-center": ["clock"],
+    "modules-right": ["tray"],
 
-    // Module configuration:
     "battery": {
-      "format": "{icon}  {capacity}%",
+      "format": "{icon}",
       "format-charging": "  {capacity}%",
+      "tooltip-format": "  {capacity}%",
       "format-icons": ["", "", "", "", ""],
       "interval": 30,
       "states": {
@@ -22,69 +25,81 @@
         "warning": 40,
       },
     },
-    "pulseaudio": {
-      "format": "  {volume}%",
-      "format-muted": " ",
-    },
     "network": {
       "format": "{ifname}",
-      "format-disconnected": "?",
+      "format-disconnected": "󰖪",
       "format-ethernet": " ",
       "format-wifi": " ",
-      "on-click": "hyprctl dispatch exec '[float; size 800 600] kitty nmtui'",
+      "on-click": "hyprctl dispatch exec '[float; size 800 600] alacritty nmtui'",
       "tooltip-format": "{ifname} via {gwaddr}",
       "tooltip-format-disconnected": "Disconnected",
       "tooltip-format-ethernet": "{ifname}",
       "tooltip-format-wifi": "{essid} ({signalStrength}%)",
     },
-    "power-profiles-daemon": {
-      "format": "{icon}  {profile}",
+    "pulseaudio": {
+      "format": "{icon:2}",
+      "format-alt": "{icon:2}",
+      "tooltip-format": "{volume}%",
+      "format-muted": " ",
       "format-icons": {
-        "default": "",
-        "performance": "",
-        "balanced": "󰞍",
-        "power-saver": "",
+        "phone": [" ", " ", " ", " "],
+        "default": ["", "", "", ""],
       },
-      "tooltip": false,
+      "on-click": "hyprctl dispatch exec \"[float; size 800 600] alacritty -e pulsemixer\"",
     },
-    "custom/notifications": {
+    "power-profiles-daemon": {
       "format": "{icon}",
       "format-icons": {
-        "notification": "<sup></sup>",
-        "none": " ",
-        "dnd-notification": "<sup></sup>",
-        "dnd-none": " ",
-        "inhibited-notification": "<sup></sup>",
-        "inhibited-none": " ",
-        "dnd-inhibited-notification": "<sup></sup>",
-        "dnd-inhibited-none": " ",
+        "performance": "",
+        "power-saver": "󱤆",
+        "balanced": "󰗑",
       },
-      "return-type": "json",
-      "exec-if": "which swaync-client",
-      "exec": "swaync-client -swb",
-      "on-click": "swaync-client -t -sw",
-      "escape": true,
+      "tooltip": true,
     },
-    "hyprland/language": {
-      // HACK: Using the workaround from https://github.com/Alexays/Waybar/issues/3676#issuecomment-2497447121.
-      "us": "<span color='#E7A1D7'></span>",
-      "br": "<span color='#E7A1D7'>🇧🇷</span>",
-      "on-click": "hyprctl switchxkblayout current next",
+    "hyprland/workspaces": {
+      "active-only": true,
+      "format": "{icon}  {name}",
+      "format-icons": {
+        "main": "",
+        "aux": "",
+        "web": "",
+        "chat": "",
+        "media": "",
+        "game": "",
+      },
+      // "format": "<sub>{icon}</sub>\n <span font='9' rise='-4444'>{windows}</span>",
+      // "format-window-separator": " | ",
+      // "window-rewrite-default": "{title}",
+      // "window-rewrite": {
+      //   "class<librewolf> title<.*youtube.*>": "  {title}",
+      //   "class<librewolf> title<.*github.*>": "  {title}",
+      // },
     },
     "clock": {
-      "format": "<span color='#E7A1D7'>󰅐</span> {:%I:%M %p}",
+      "format": "{:%Y-%m-%d %H:%M}",
       "tooltip": false,
     },
-    "clock#date": {
-      "calendar": {
-        "format": {
-          "days": "<span line-height='1.3'>{}</span>",
-          "months": "<span color='#D0B5F3'>{}</span>",
-          "today": "<span color='#D0B5F3'>{}</span>",
-        },
-      },
-      "format": "{:%A, %B %d / %Y}",
-      "tooltip-format": "{calendar}",
+    "tray": {
+      "icon-size": 20,
+      "spacing": 8,
     },
+    // "custom/notifications": {
+    //   "format": "{icon}",
+    //   "format-icons": {
+    //     "notification": "<sup></sup>",
+    //     "none": " ",
+    //     "dnd-notification": "<sup></sup>",
+    //     "dnd-none": " ",
+    //     "inhibited-notification": "<sup></sup>",
+    //     "inhibited-none": " ",
+    //     "dnd-inhibited-notification": "<sup></sup>",
+    //     "dnd-inhibited-none": " ",
+    //   },
+    //   "return-type": "json",
+    //   "exec-if": "which swaync-client",
+    //   "exec": "swaync-client -swb",
+    //   "on-click": "swaync-client -t -sw",
+    //   "escape": true,
+    // },
   },
 ]

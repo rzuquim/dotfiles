@@ -1,10 +1,21 @@
+@define-color bg #222436;
+@define-color bg-dark #1e2030;
+@define-color bg-highlight #2f334d;
+@define-color fg #c8d3f5;
+@define-color fg-dark #3b4261;
+@define-color yellow #ffc777;
+@define-color red #ff757f;
+@define-color green #4fd6be;
+@define-color purple #fca7ea;
+@define-color blue #65bcff;
+
 #window {
-  background-color: rgba(45, 48, 59, 0.95);
-  border: 1px solid rgb(124, 131, 137);
+  color: @fg;
+  background-color: @bg;
+  border: 1px solid @fg;
   border-radius: 6px;
   font-size: 16px;
   font-family: "Fira Code Nerd Font";
-  color: rgb(196, 203, 212);
 }
 
 #outer-box {
@@ -15,30 +26,28 @@
   box-shadow: none;
   background: transparent;
   border: none;
-  border-bottom: 2px solid rgb(29, 31, 33);
+  border-bottom: 2px solid @fg;
   border-radius: 0;
   margin-bottom: 1px;
   padding-left: 4px;
-  color: rgb(196, 203, 212);
+  color: @fg-dark;
 }
 
 #input:focus {
   border: none;
-  border-bottom: 2px solid rgb(29, 31, 33);
+  border-bottom: 2px solid @fg;
 }
 
 #entry {
-  background-color: rgba(45, 48, 59, 0.95);
+  background-color: @bg-dark;
   margin: 1px 0;
   border-radius: 0;
 }
 
 #entry:nth-child(2n) {
-  background-color: rgba(64, 69, 82, 0.59);
+  background-color: @bg;
 }
 
 #entry:selected {
-  background-color: rgb(64, 132, 214);
-  color: rgb(249, 249, 249);
+  background-color: @bg-highlight;
 }
-
