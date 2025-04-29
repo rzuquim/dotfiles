@@ -8,12 +8,10 @@ if [[ ! -f "$PROFILE_MARKER" ]]; then
     zsh_profile_loaded_today=1
 fi
 
-if [[ -f "$HOME/.config/shell/custom.sh" ]]; then
-    source "$HOME/.config/shell/custom.sh"
-fi
-
 # ignoring keybinded commands on history
 setopt histignorespace
+# always storing the navigation
+setopt autopushd
 
 # zsh autocomplete
 autoload -Uz compinit
