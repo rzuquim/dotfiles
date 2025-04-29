@@ -5,6 +5,7 @@ pacman -S --noconfirm --needed \
     hyprland xdg-desktop-portal-hyprland uwsm wofi \
     waybar power-profiles-daemon \
     slurp grim \
-    hyprpaper hyprlock swaync
+    hyprpaper hyprlock swaync \
+    copyq
 
 systemctl enable power-profiles-daemon.service

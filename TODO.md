@@ -54,9 +54,9 @@
 - [ ] `hyprland`: runner (replace wofi with something more customizable or contribute)
 - [ ] `hyprland`: multi monitor
 - [x] `hyprland`: wallpaper (bg-random.sh)
-- [ ] `hyprland`: notification
+- [x] `hyprland`: notification
 - [x] `hyprland`: lock screen
-- [ ] `hyprland`: clipboard manager (https://www.reddit.com/r/unixporn/comments/1jxg7wx/hyprland_clipse_gui_clipboard_manager/?share_id=nUEHhyBv-7xMwFSwvNkTD&utm_medium=ios_app&utm_name=iossmf&utm_source=share&utm_term=14)
+- [x] `hyprland`: clipboard manager
 - [x] `hyprland`: magnifier
 - [ ] `hyprland`: draw on screen
 - [ ] `hyprland`: electron support (https://wiki.hyprland.org/Getting-Started/Master-Tutorial/#force-apps-to-use-wayland)
