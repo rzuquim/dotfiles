@@ -24,6 +24,7 @@ BASIC_PACKAGES=(
     "rsync"
     "git-delta"
     "wl-clipboard"
+    "nmap"
 )
 
 echo -e "${CYAN}Installing basic tools:${NC} ${BASIC_PACKAGES[@]}"

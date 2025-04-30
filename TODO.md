@@ -34,6 +34,8 @@
 - [ ] auditd
 - [ ] fail2ban
 - [ ] chkrootkit / rkhunter
+- [ ] Nikto → for deeper web vulnerability scans
+- [ ] Lynis or OpenVAS → full system security audits
 - [ ] lock down cron jobs and atd
 - [ ] automatic default output device (hdmi, headset, etc)
 - [ ] input device (mic, etc)
@@ -45,6 +47,7 @@
 - [ ] `monitoring` eBPF for network usage logging
 - [ ] `monitoring` resources usage
 - [ ] `monitoring` consolidation and reporting
+  - `sudo dmesg -T | grep --invert-match 'segfault|error|gpu|oom'`
 - [ ] `monitoring` grafana for details
 - [ ] `monitoring` rate limit
 - [ ] periodically suggest updating packages
@@ -67,7 +70,6 @@
 - [ ] `hyprland`: color picker
 - [ ] `hyprland`: media buttons
 - [x] `waybar`: style
-  - [ ] notify battery info on click
   - [ ] weather
   - [ ] cpu / mem / disk
 - [ ] `weather`
@@ -93,8 +95,7 @@
   - errors on: `sudo dmesg -T | grep --invert-match 'segfault|error|gpu|oom'`
   - PCIe Bus Error: severity=Correctable, type=Physical Layer (Receiver ID)
   - device [8086:06b0] error status/mask=00000001/00002000
-- [ ] nftables blocking internal IPv6 DHCP
-  - nftables input drop: IN=eno1 OUT= MACSRC=d8:c6:78:83:ed:80 MACDST=18:c0:4d:f1:76:66 MACPROTO=86dd
+- [x] nftables blocking internal IPv6 DHCP
 
 ## Test
 
