@@ -3,8 +3,6 @@
 GIT_WHO_AM_I="/home/me/.config/git/whoami.toml"
 MY_EMAIL=$(sed -n '2p' $GIT_WHO_AM_I)
 
-echo "checking $MY_EMAIL"
-
 if [[ "$MY_EMAIL" != *"rzuquim@gmail.com" ]]; then
     return
 fi
