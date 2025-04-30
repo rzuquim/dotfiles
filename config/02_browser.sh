@@ -13,7 +13,6 @@ mkdir -p ~/.librewolf/default/chrome/
 function ensure_link() {
     local relative_path=$1
     if [ -e "$HOME/.librewolf/$relative_path" ]; then
-        echo "DO!"
         return
     fi
 

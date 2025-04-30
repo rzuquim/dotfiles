@@ -11,9 +11,9 @@ declare -A sites=(
     [" Regex"]="https://regexr.com/"
 )
 
-chosen_site=$(
-    for site in "${!sites[@]}"; do echo "$site" done | \
-    wofi --dmenu --prompt "Bookmarks"  --insensitive --matching=fuzzy)
+chosen_site=$(for site in "${!sites[@]}"; do
+        echo "$site"
+done | wofi --dmenu --prompt "Bookmarks"  --insensitive --matching=fuzzy)
 
 if [ "$chosen_site" == "" ]; then
     exit 1

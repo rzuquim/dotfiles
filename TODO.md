@@ -55,6 +55,7 @@
 - [ ] periodically suggest updating packages
   - [ ] `zsh`: periodically updates plugins
 - [x] printscreen
+- [ ] input management (keyboard layout)
 
 ## Config
 
@@ -68,10 +69,10 @@
 - [x] `hyprland`: wallpaper (bg-random.sh)
 - [x] `hyprland`: notification
 - [x] `hyprland`: lock screen
+- [ ] `hyprland`: idle detection (and lock) - can be disabled like caffeine
 - [x] `hyprland`: clipboard manager
 - [x] `hyprland`: magnifier
 - [ ] `hyprland`: draw on screen
-- [ ] `hyprland`: electron support (https://wiki.hyprland.org/Getting-Started/Master-Tutorial/#force-apps-to-use-wayland)
 - [ ] `hyprland`: authentication agent (https://wiki.hyprland.org/Useful-Utilities/Must-have/#authentication-agent)
 - [ ] `hyprland`: color picker
 - [ ] `hyprland`: media buttons
@@ -110,8 +111,8 @@
 - [ ] test on machine with multiple nvmes drivers
 - [ ] lts boot fallback
 - [ ] nvidia support
-- [ ] amd support
-- [ ] working triple A game (GoW)
+- [x] amd support
+- [x] working triple A game (GoW)
 - [ ] tmux
 - [ ] bluetooth
-- [ ] input management (keyboard layout)
+- [ ] `hyprland`: electron support (https://wiki.hyprland.org/Getting-Started/Master-Tutorial/#force-apps-to-use-wayland)

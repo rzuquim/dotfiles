@@ -53,7 +53,7 @@ declare -A workspaces=(
     ["name:aux"]="1,1,1"
     ["name:media"]="1,2,3"
     ["name:docs"]="1,1,1"
-    ["name:gaming"]="1,1,1"
+    ["name:game"]="1,1,1"
     ["name:stream"]="1,2,3"
 )
 

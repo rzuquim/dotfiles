@@ -61,12 +61,15 @@
       "format": "{icon}  {name}",
       "format-icons": {
         "main": "",
-        "aux": "",
         "web": "",
         "chat": "",
+        "aux": "",
         "media": "",
         "game": "",
+        "stream": "󰵀",
+        "docs": "",
       },
+
       // "format": "<sub>{icon}</sub>\n <span font='9' rise='-4444'>{windows}</span>",
       // "format-window-separator": " | ",
       // "window-rewrite-default": "{title}",
