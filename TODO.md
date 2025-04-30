@@ -39,7 +39,9 @@
 - [ ] lock down cron jobs and atd
 - [ ] automatic default output device (hdmi, headset, etc)
 - [ ] input device (mic, etc)
-- [ ] multiple monitors
+- [x] multiple monitors
+  - [ ] shortcut to execute `monitors_and_workspaces.sh` (maybe with a dmenu with multiple uncommon actions)
+  - [ ] run `monitors_and_workspaces.sh` whenever a monitor is plugged / unplugged
 - [x] steam available only for `fun` user
 - [ ] periodically run diagnostics and detect WARNS / errors on logs (nvim included)
 - [ ] advanced Locale configuration (aka ç)
@@ -57,7 +59,8 @@
 ## Config
 
 - [ ] use yubikey to store SSH private keys
-- [ ] librewolf config on dotfiles
+- [x] librewolf config on dotfiles
+- [ ] xdg-open link should change workspace to web
 - [ ] `hyprland`: multi monitor
   - [x] styling title bar
   - [ ] test if i can actually find out the classes in firefox
@@ -75,6 +78,7 @@
 - [x] `waybar`: style
   - [ ] weather
   - [ ] cpu / mem / disk
+  - [ ] notification
 - [ ] `weather`
   - [ ] systemd script to periodically write weather in /tmp/
   - [ ] full weather info (specially rain probability)

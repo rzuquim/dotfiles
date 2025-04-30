@@ -6,9 +6,10 @@ function clone_or_update() {
     local proj_dir="$base_dir/$proj_name"
 
     if [ ! -d "$proj_dir" ]; then
+        echo
         echo -e "${YELLOW}Cloning${NC} $proj_name ${YELLOW}into${NC} $proj_dir"
-        git clone "$repo" "$proj_dir"
     else
+        git clone "$repo" "$proj_dir"
         # NOTE: speeding up consecutive syncs (making sure updates occur once a day)
         today=$(date +%Y-%m-%d)
         already_ran_today="/tmp/cloned_${proj_name}_${today}"

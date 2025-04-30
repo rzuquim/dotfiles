@@ -5,7 +5,7 @@ pacman -S --noconfirm --needed \
     pipewire wireplumber pipewire-audio pipewire-pulse pipewire-alsa pipewire-jack gst-plugin-pipewire libpulse \
     pulsemixer
 
-# NOTE: enbling services
+# NOTE: enabling services
 for user in "${users[@]}"; do
     user_svcs_folder=/home/$user/.config/systemd/user/default.target.wants
     mkdir -p $user_svcs_folder

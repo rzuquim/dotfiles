@@ -8,11 +8,12 @@ declare -A sites=(
     ["  Chat GPT"]="https://chatgpt.com"
     ["  Nerd Font Icons"]="https://www.nerdfonts.com/cheat-sheet?q=%s"
     ["  Logos SVG"]="https://svgl.app/?search=%s"
+    [" Regex"]="https://regexr.com/"
 )
 
-chosen_site=$(for site in "${!sites[@]}"; do
-    echo "$site"
-done | wofi --dmenu --prompt "Bookmarks"  --insensitive --matching=fuzzy)
+chosen_site=$(
+    for site in "${!sites[@]}"; do echo "$site" done | \
+    wofi --dmenu --prompt "Bookmarks"  --insensitive --matching=fuzzy)
 
 if [ "$chosen_site" == "" ]; then
     exit 1
