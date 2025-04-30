@@ -8,32 +8,40 @@ echo "-----------------"
 clone_or_update "$HOME/Config" git@github.com:rzuquim/librewolf.git
 
 mkdir -p ~/.librewolf/default
+mkdir -p ~/.librewolf/default/chrome/
+
+function ensure_link() {
+    local relative_path=$1
+    if [ -e "$HOME/.librewolf/$relative_path" ]; then
+        echo "DO!"
+        return
+    fi
+
+    echo -e "${VIOLET}Linking${NC} ~/.librewolf/$relative_path$"
+    ln -s "$HOME/Config/librewolf/$relative_path" "$HOME/.librewolf/$relative_path"
+}
 
 if [ ! -L ~/.librewolf/profiles.ini ]; then
     echo -e "${RED}Deleting old ~/.librewolf config.${NC}"
     rm -rf ~/.librewolf/*
 fi
 
-mkdir -p ~/.librewolf/default
-if [ ! -e ~/.librewolf/profiles.ini ]; then
-    echo "Linking ~/.librewolf/profiles.ini"
-    ln -s ~/Config/librewolf/profiles.ini ~/.librewolf/profiles.ini
-fi
 
-if [ ! -L ~/.librewolf/default/user.js ]; then
-    echo "Linking ~/Config/librewolf/default/user.js" 
-    ln -s ~/Config/librewolf/default/user.js ~/.librewolf/default/user.js
-fi
+# NOTE: using fd to ignore hidden files
+fd . "$HOME/Config/librewolf/" --type f | while read -r config; do
+    relative_path="${config#$HOME/Config/librewolf/}"
+    ensure_link $relative_path
+done
 
 # TODO: permissions white list
 # if [ ! -L ~/.librewolf/default/permissions.sqlite ]; then
-#     echo "Linking ~/Config/librewolf/default/permissions.sqlite" 
+#     echo "Linking ~/Config/librewolf/default/permissions.sqlite"
 #     ln -s ~/Config/librewolf/default/permissions.sqlite ~/.librewolf/default/permissions.sqlite
 # fi
 
 # TODO: install extensions
 # if [ ! -L ~/.librewolf/default/addons.json ]; then
-#     echo "Linking ~/Config/librewolf/default/addons.json" 
+#     echo "Linking ~/Config/librewolf/default/addons.json"
 #     ln -s ~/Config/librewolf/default/addons.json ~/.librewolf/default/addons.json
 # fi
 #

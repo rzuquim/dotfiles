@@ -59,6 +59,9 @@
 - [ ] use yubikey to store SSH private keys
 - [ ] librewolf config on dotfiles
 - [ ] `hyprland`: multi monitor
+  - [x] styling title bar
+  - [ ] test if i can actually find out the classes in firefox
+  - [ ] style sidebar
 - [x] `hyprland`: wallpaper (bg-random.sh)
 - [x] `hyprland`: notification
 - [x] `hyprland`: lock screen
