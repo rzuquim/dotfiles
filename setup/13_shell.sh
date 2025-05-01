@@ -5,6 +5,7 @@ echo -e "${CYAN}Configuring shell:${NC} $zsh_path"
 
 TERMINAL_PACKAGES=(
     "alacritty"
+    "kitty"
     "starship"
     "tmux"
     "zsh-completions"
