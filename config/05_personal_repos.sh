@@ -21,6 +21,7 @@ personal_repos=(
     "git@github.com:rzuquim/diario.git"
     "git@github.com:rzuquim/notes.git"
     "git@github.com:rzuquim/blog.git"
+    "git@github.com:rzuquim/cocina.git"
 )
 
 for repo in "${personal_repos[@]}"; do

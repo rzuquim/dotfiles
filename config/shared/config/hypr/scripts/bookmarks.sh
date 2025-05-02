@@ -9,6 +9,12 @@ declare -A sites=(
     ["  Nerd Font Icons"]="https://www.nerdfonts.com/cheat-sheet?q=%s"
     ["  Logos SVG"]="https://svgl.app/?search=%s"
     [" Regex"]="https://regexr.com/"
+    ["😃 Emoji"]="https://emojipedia.org/en/search?q=%s"
+    ["🇺🇸 Thesaurus"]="https://www.thesaurus.com/browse/%s"
+    ["🇧🇷 > 🇪🇸 pt => es"]="https://translate.google.com.br/?sl=pt&tl=es&text=%s"
+    ["🇪🇸 > 🇧🇷 es => pt"]="https://translate.google.com.br/?sl=es&tl=pt&text=%s"
+    ["🇧🇷 > 🇺🇸 pt => en"]="https://translate.google.com.br/?sl=pt&tl=en&text=%s"
+    ["🇺🇸 > 🇧🇷 us => pt"]="https://translate.google.com.br/?sl=en&tl=pt&text=%s"
 )
 
 chosen_site=$(for site in "${!sites[@]}"; do
