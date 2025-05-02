@@ -1,32 +1,42 @@
 #!/usr/bin/env bash
 
-function keyboard-disable() {
-    xinput list | awk -F '\t' '/AT/ {print $2} ' | awk -F '=' '{print $2}' | xargs xinput disable
-    setxkbmap us -variant intl
-}
+function kb-disable() {
+    # TODO: this works on the asus notebook, and might not work on the avell one
+    #       `sudo libinput list-devices` can capture it
+    local DEVICE="/dev/input/event4"
+    local PID_FILE="/tmp/kb_grab.pid"
 
-function keyboard-enable() {
-    xinput list | awk -F '\t' '/AT/ {print $2} ' | awk -F '=' '{print $2}' | xargs xinput enable
-    setxkbmap br -variant abnt2
-}
-
-function keylang-toggle() {
-    case $(setxkbmap -query | grep layout | awk '{ print $2; exit }') in
-        us) setxkbmap br -variant abnt2 ;;
-        br) setxkbmap us -variant intl ;;
-        *) setxkbmap us -variant intl ;;
-    esac
-}
-
-function touchpad-toggle() {
-    local TRACKPAD_ID=$(xinput list | /bin/grep -i 'TouchPad\|TrackPad' | /bin/grep -oP 'id=\K\d+')
-    local ENABLED=$(xinput list-props $TRACKPAD_ID | /bin/grep 'Device Enabled' | awk '{print $4}')
-
-    if [[ "$ENABLED" == "1" ]]; then
-        xinput disable $TRACKPAD_ID
-        echo "Trackpad disabled."
-    else
-        xinput enable $TRACKPAD_ID
-        echo "Trackpad enabled."
+    if [[ -f "$PID_FILE" ]]; then
+        echo "Keyboard already disabled"
+        return 1
     fi
+
+    # NOTE: pre-autenticating in foreground
+    sudo -v || return 1
+    nohup sudo evtest --grab "$DEVICE" > /dev/null 2>&1 &
+    echo $! > "$PID_FILE"
+    echo "Keyboard disabled!"
+}
+
+function kb-enable() {
+    local PID_FILE="/tmp/kb_grab.pid"
+
+    # NOTE: pre-autenticating in foreground
+    sudo -v || return 1
+
+    if [[ -f "$PID_FILE" ]]; then
+        PID=$(cat "$PID_FILE")
+        rm -f "$PID_FILE"
+
+        if ps -p "$PID" > /dev/null; then
+            sudo kill "$PID"
+            echo "Keyboard enabled!"
+        else
+            echo "No running grab process found."
+        fi
+        return 0
+    fi
+
+    echo "Keyboard already enabled"
+    return 1
 }

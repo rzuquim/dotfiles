@@ -55,7 +55,8 @@
 - [ ] periodically suggest updating packages
   - [ ] `zsh`: periodically updates plugins
 - [x] printscreen
-- [ ] input management (keyboard layout)
+- [x] input management (keyboard layout)
+- [x] disable laptop keyboard
 
 ## Config
 

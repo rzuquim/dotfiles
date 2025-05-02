@@ -27,6 +27,7 @@ BASIC_PACKAGES=(
     "nmap"
     "prettier"
     "obsidian"
+    "evtest"
 )
 
 echo -e "${CYAN}Installing basic tools:${NC} ${BASIC_PACKAGES[@]}"
