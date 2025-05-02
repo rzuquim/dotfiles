@@ -14,7 +14,13 @@ for user in "${users[@]}"; do
         continue
     fi
 
+
     user_home="/home/$user"
+    # HACK: wasistlos keeps creating this file ~/.config/wasistlos/settings.conf instead of preserving our link
+    if [ -f "$HOME/.config/wasistlos/settings.conf" ]; then
+        sudo rm "$HOME/.config/wasistlos/settings.conf"
+    fi
+
     find /home/.shared -maxdepth 1 -type f | while read -r shared_config; do
         filename="$(basename "$shared_config")"
         # NOTE: adding leading . (to avoid versioning hidden files in this repo)
