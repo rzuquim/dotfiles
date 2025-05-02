@@ -25,6 +25,8 @@ BASIC_PACKAGES=(
     "git-delta"
     "wl-clipboard"
     "nmap"
+    "prettier"
+    "obsidian"
 )
 
 echo -e "${CYAN}Installing basic tools:${NC} ${BASIC_PACKAGES[@]}"
