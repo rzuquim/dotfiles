@@ -44,7 +44,7 @@
   - [ ] run `monitors_and_workspaces.sh` whenever a monitor is plugged / unplugged
 - [x] steam available only for `fun` user
 - [ ] periodically run diagnostics and detect WARNS / errors on logs (nvim included)
-- [ ] advanced locale configuration (aka ç)
+- [x] advanced locale configuration (aka ç)
 - [ ] `monitoring` eBPF for process logging (bpftrace)
 - [ ] `monitoring` eBPF for network usage logging
 - [ ] `monitoring` resources usage
@@ -88,7 +88,6 @@
 - [ ] customize mangohub shortcuts
 - [ ] `zsh`: keyboard driven URL navigation
 - [x] `zsh`: navigation with arrows in insert mode
-- [ ] show locale on waybar
 - [ ] noto emojis on alacritty
 
 ## Server
