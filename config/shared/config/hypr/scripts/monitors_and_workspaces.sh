@@ -40,11 +40,7 @@ for monitor in ${monitors[@]}
 do
     if [[ "$monitor" == *"eDP"* ]]; then
         unshift_monitor $monitor
-        if [ "$monitor_count" == "1" ]; then
-            echo "monitor=$monitor, preferred, auto, 1" >> $monitor_config
-        else
-            echo "monitor=$monitor, preferred, auto, 1.3" >> $monitor_config
-        fi
+        echo "monitor=$monitor, preferred, auto, 1.333" >> $monitor_config
     else
         push_monitor "$monitor"
         echo "monitor=$monitor, preferred, auto, 1"  >> $monitor_config
