@@ -88,7 +88,6 @@
 - [ ] customize mangohub shortcuts
 - [ ] `zsh`: keyboard driven URL navigation
 - [x] `zsh`: navigation with arrows in insert mode
-- [ ] noto emojis on alacritty
 
 ## Server
 

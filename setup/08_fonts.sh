@@ -9,6 +9,7 @@ FONTS_PACKAGES=(
     "ttf-firacode-nerd"
     "ttf-hack"
     "ttf-jetbrains-mono"
+    "noto-fonts-emoji"
 )
 
 pacman -S --noconfirm --needed ${FONTS_PACKAGES[@]}

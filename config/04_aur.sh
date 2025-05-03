@@ -12,6 +12,7 @@ YAY_PACKAGES=(
     "whatsapp-for-linux"
     "telegram-desktop"
     "numbat-bin"
+    "zsa-keymapp-bin"
 )
 
 yay -S --needed ${YAY_PACKAGES[@]}
