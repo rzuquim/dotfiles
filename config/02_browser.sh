@@ -7,9 +7,6 @@ echo "-----------------"
 
 clone_or_update "$HOME/Config" git@github.com:rzuquim/librewolf.git
 
-mkdir -p ~/.librewolf/default
-mkdir -p ~/.librewolf/default/chrome/
-
 function ensure_link() {
     local relative_path=$1
     if [ -e "$HOME/.librewolf/$relative_path" ]; then
@@ -25,6 +22,8 @@ if [ ! -L ~/.librewolf/profiles.ini ]; then
     rm -rf ~/.librewolf/*
 fi
 
+mkdir -p ~/.librewolf/default
+mkdir -p ~/.librewolf/default/chrome/
 
 # NOTE: using fd to ignore hidden files
 fd . "$HOME/Config/librewolf/" --type f | while read -r config; do
