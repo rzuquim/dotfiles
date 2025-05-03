@@ -28,6 +28,7 @@ BASIC_PACKAGES=(
     "prettier"
     "obsidian"
     "evtest"
+    "nushell"
 )
 
 echo -e "${CYAN}Installing basic tools:${NC} ${BASIC_PACKAGES[@]}"
