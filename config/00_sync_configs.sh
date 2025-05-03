@@ -7,7 +7,7 @@ echo "-----------------"
 
 rsync -avh --no-perms ./config/shared/ /home/.shared
 
-users=(me stream fun)
+users=(me stream fun docs)
 
 for user in "${users[@]}"; do
     if ! id $user &> /dev/null; then

@@ -68,15 +68,8 @@
         "game": "",
         "stream": "󰵀",
         "docs": "",
+        "git": "",
       },
-
-      // "format": "<sub>{icon}</sub>\n <span font='9' rise='-4444'>{windows}</span>",
-      // "format-window-separator": " | ",
-      // "window-rewrite-default": "{title}",
-      // "window-rewrite": {
-      //   "class<librewolf> title<.*youtube.*>": "  {title}",
-      //   "class<librewolf> title<.*github.*>": "  {title}",
-      // },
     },
     "clock": {
       "format": "{:%Y-%m-%d %H:%M}",
