@@ -22,6 +22,7 @@ fpath=(~/.zsh/plugins/zsh-completions/src $fpath)
 source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
 
 # loading prompt
 eval "$(starship init zsh)"

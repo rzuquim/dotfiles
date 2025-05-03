@@ -36,6 +36,10 @@ if [ ! -d /home/.shared/zsh-history-substring-search ]; then
     git clone https://github.com/zsh-users/zsh-history-substring-search /home/.shared/zsh-history-substring-search
 fi
 
+if [ ! -d /home/.shared/fzf-tab ]; then
+    git clone https://github.com/Aloxaf/fzf-tab /home/.shared/fzf-tab
+fi
+
 for user in "${users[@]}"; do
     if [ ! -L "/home/$user/.tmux/plugins/tpm" ]; then
         su - $user -c "mkdir -p ~/.tmux/plugins/"
@@ -60,5 +64,9 @@ for user in "${users[@]}"; do
 
     if [ ! -L "/home/$user/.zsh/plugins/zsh-syntax-highlighting" ]; then
         ln -s /home/.shared/zsh-syntax-highlighting /home/$user/.zsh/plugins/zsh-syntax-highlighting
+    fi
+
+    if [ ! -L "/home/$user/.zsh/plugins/fzf-tab" ]; then
+        ln -s /home/.shared/fzf-tab /home/$user/.zsh/plugins/fzf-tab
     fi
 done
