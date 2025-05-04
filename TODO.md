@@ -10,9 +10,9 @@
 - [x] configure browser
   - [x] smart script to open browser
 - [ ] file explorer
-- [ ] writing
-  - [ ] note taking
-  - [ ] studying
+- [x] writing
+  - [x] note taking
+  - [x] studying
 - [ ] screen sharing
 - [ ] screen anotations
 - [ ] video conf
@@ -65,8 +65,8 @@
 - [ ] xdg-open link should change workspace to web
 - [ ] `hyprland`: multi monitor
   - [x] styling title bar
-  - [ ] test if i can actually find out the classes in firefox
-  - [ ] style sidebar
+  - [x] test if i can actually find out the classes in firefox
+  - [x] style sidebar
 - [x] `hyprland`: wallpaper (bg-random.sh)
 - [x] `hyprland`: notification
 - [x] `hyprland`: lock screen
