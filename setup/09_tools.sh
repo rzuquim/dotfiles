@@ -29,6 +29,7 @@ BASIC_PACKAGES=(
     "obsidian"
     "evtest"
     "nushell"
+    "reflector"
 )
 
 echo -e "${CYAN}Installing basic tools:${NC} ${BASIC_PACKAGES[@]}"

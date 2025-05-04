@@ -51,7 +51,7 @@ if [[ $zsh_profile_loaded_today -eq 1 ]]; then
     zprof > "$PROFILE_MARKER"
 
     nu -c "
-    open /tmp/zprof.out | 
+    open $PROFILE_MARKER | 
     lines | 
     parse --regex '^\\s*\\d+\\)\\s*(?P<calls>\\d+)\\s+[\\d\\.]+\\s*[\\d\\.]+\\s*[\\d\\.%]+\\s*(?P<latency>[\\d\\.]+)\\s*[\\d\\.]+\\s*(?P<percentage>[\\d\\.%]+)\\s*(?P<name>.*)' |
     uniq |
