@@ -19,8 +19,20 @@ fi
 echo -e "${CYAN}Installing graphics drivers for:${NC} $gpu_vendor"
 
 case "$gpu_vendor" in
+        # TODO: make it work automatically
+        #   what i did to make it work properly was to append
+        #   `nvidia-drm.modeset=1` on the `options` of `/boot/loader/entries/arch.conf`
+        #   another promising reference: https://github.com/Obnomus/Hyprland-V2
+        # TODO: check if we also need some variables on hyprland `~/.config/hypr/_environment.conf`
+        # env = WLR_NO_HARDWARE_CURSORS,1
+        # env = LIBVA_DRIVER_NAME,nvidia
+        # env = GBM_BACKEND,nvidia-drm
+        # env = __GLX_VENDOR_LIBRARY_NAME,nvidia
+        # env = WLR_RENDERER_ALLOW_SOFTWARE,1
+        # env = __GL_VRR_ALLOWED,0
+        # TODO: another tutorial says we need to ensure `egl-wayland` is installed
     nvidia)
-        pacman -S --noconfirm --needed nvidia-dkms dkms nvidia-utils libva-nvidia-driver lib32-nvidia-utils
+        pacman -S --noconfirm --needed linux-headers nvidia-dkms dkms nvidia-utils libva-nvidia-driver lib32-nvidia-utils
         ;;
 
     amd)
