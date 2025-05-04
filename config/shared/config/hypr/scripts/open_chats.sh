@@ -42,8 +42,5 @@ if [ ${#addresses[@]} -ge 2 ]; then
         hyprctl dispatch togglegroup
         hyprctl dispatch moveintogroup l
     done
-
-    # go back to main
-    hyprctl dispatch activeworkspace name:main
 fi
 
