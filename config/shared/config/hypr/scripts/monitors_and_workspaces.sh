@@ -56,6 +56,8 @@ declare -A workspaces=(
     ["name:media"]="1,2,3"
     ["name:docs"]="1,1,1"
     ["name:game"]="1,1,1"
+    ["name:steam"]="1,1,1"
+    ["name:ps"]="1,2,2"
     ["name:stream"]="1,2,3"
 )
 

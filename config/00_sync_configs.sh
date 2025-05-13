@@ -14,11 +14,10 @@ for user in "${users[@]}"; do
         continue
     fi
 
-
     user_home="/home/$user"
     # HACK: wasistlos keeps creating this file ~/.config/wasistlos/settings.conf instead of preserving our link
-    if [ -f "$HOME/.config/wasistlos/settings.conf" ]; then
-        sudo rm "$HOME/.config/wasistlos/settings.conf"
+    if [ -f "$user_home/.config/wasistlos/settings.conf" ]; then
+        sudo rm -rf "$user_home/.config/wasistlos"
     fi
 
     find /home/.shared -maxdepth 1 -type f | while read -r shared_config; do
