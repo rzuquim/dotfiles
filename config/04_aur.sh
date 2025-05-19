@@ -8,7 +8,7 @@ echo "-----------------"
 YAY_PACKAGES=(
     "bluetuith"
     "librewolf-bin"
-    "brave-bin"
+    "google-chrome"
     "whatsapp-for-linux"
     "telegram-desktop"
     "numbat-bin"
