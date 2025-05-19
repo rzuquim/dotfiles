@@ -13,6 +13,7 @@ YAY_PACKAGES=(
     "telegram-desktop"
     "numbat-bin"
     "zsa-keymapp-bin"
+    "zoom"
 )
 
 yay -S --needed ${YAY_PACKAGES[@]}

@@ -13,9 +13,9 @@
 - [x] writing
   - [x] note taking
   - [x] studying
-- [ ] screen sharing
-- [ ] screen anotations
-- [ ] video conf
+- [ ] video conf (zoom)
+  - [x] screen sharing
+  - [ ] screen anotations
 - [ ] obs and streaming stuff
 - [ ] docker
 - [ ] chats
@@ -99,10 +99,11 @@
   - [x] when closing the last open window ensure waybar is showing
   - [x] when going to a workspace show if not full screen / hide if full screen
 - [ ] hyprland crashing:
-  - [ ] USB bluetooth dongle (after removing it stopped crashing)
-  - errors on: `sudo dmesg -T | grep --invert-match 'segfault|error|gpu|oom'`
-  - PCIe Bus Error: severity=Correctable, type=Physical Layer (Receiver ID)
-  - device [8086:06b0] error status/mask=00000001/00002000
+  - [x] USB bluetooth dongle (after removing it stopped crashing)
+  - [ ] amd page fault
+    - https://unix.stackexchange.com/questions/756281/kernel-6-5-2-seems-to-have-amdgpu-crash-on-no-retry-page-fault
+    - amdgpu.gttsize=4096
+    - amdgpu.mcbp=0
 - [x] nftables blocking internal IPv6 DHCP
 
 ## Test

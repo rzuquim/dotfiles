@@ -30,6 +30,7 @@ BASIC_PACKAGES=(
     "evtest"
     "nushell"
     "reflector"
+    "fastfetch"
 )
 
 echo -e "${CYAN}Installing basic tools:${NC} ${BASIC_PACKAGES[@]}"
