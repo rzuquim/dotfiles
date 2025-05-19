@@ -1,3 +1,11 @@
 #!/bin/bash
 
-echo "${BASH_SOURCE[0]}"
+VIDEO_PACKAGES=(
+    "qbittorrent"
+    "mpv"
+    "ffmpeg"
+)
+
+echo -e "${CYAN}Installing video tools:${NC} ${VIDEO_PACKAGES[@]}"
+pacman -S --noconfirm --needed ${VIDEO_PACKAGES[@]}
+
