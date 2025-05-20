@@ -6,26 +6,36 @@ else
     hostname=$(cat /etc/hostname)
 fi
 
-users=("me")
+USER_LIST_FILE="/etc/keys/users"
 
-if ! id "fun" &>/dev/null; then
-    read -p "Will you be gaming on this device? [Y/n] " response
-    response=${response:-Y}
-    if [[ $response =~ ^[Yy]$ ]]; then
+if [ ! -f $USER_LIST_FILE ]; then
+    users=("me")
+
+    if ! id "fun" &>/dev/null; then
+        read -p "Will you be gaming on this device? [Y/n] " response
+        response=${response:-Y}
+        if [[ $response =~ ^[Yy]$ ]]; then
+            users+=("fun")
+        fi
+    else
         users+=("fun")
     fi
-else
-    users+=("fun")
-fi
 
-if ! id "stream" &>/dev/null; then
-    read -p "Will you be streaming on this device? [Y/n] " response
-    response=${response:-Y}
-    if [[ $response =~ ^[Yy]$ ]]; then
+    if ! id "stream" &>/dev/null; then
+        read -p "Will you be streaming on this device? [Y/n] " response
+        response=${response:-Y}
+        if [[ $response =~ ^[Yy]$ ]]; then
+            users+=("stream")
+        fi
+    else
         users+=("stream")
     fi
+
+    echo "${users[@]}" > $USER_LIST_FILE
 else
-    users+=("stream")
+    echo -e "${YELLOW}Loading user list from${NC} $USER_LIST_FILE"
+    echo -e "${VIOLET}Delete it if you want to change it.${NC}"
+    users=($(cat $USER_LIST_FILE))
 fi
 
 echo -e "${YELLOW}Users:${NC} ${users[@]}"
