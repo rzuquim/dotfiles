@@ -17,7 +17,7 @@ $hostname\
 
 [hostname]
 ssh_only = true
-style = "fg:#769ff0 bg:#1d2230"
+style = "fg:#fca7ea bg:#1d2230"
 format = '[ @$hostname ]($style)'
 
 [directory]
