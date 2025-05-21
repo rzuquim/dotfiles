@@ -31,6 +31,16 @@ if [ ! -f $USER_LIST_FILE ]; then
         users+=("stream")
     fi
 
+    if ! id "server" &>/dev/null; then
+        read -p "Will you be using this machine as a server? [Y/n] " response
+        response=${response:-Y}
+        if [[ $response =~ ^[Yy]$ ]]; then
+            users+=("server")
+        fi
+    else
+        users+=("server")
+    fi
+
     echo "${users[@]}" > $USER_LIST_FILE
 else
     echo -e "${YELLOW}Loading user list from${NC} $USER_LIST_FILE"
