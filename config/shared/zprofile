@@ -1,3 +1,4 @@
+#!/bin/sh
 
 source ~/.config/shell/env.sh
 
@@ -15,5 +16,26 @@ export PATH=$HOME/.local/bin:$HOME/bin:/usr/local/bin:$HOME/.cargo/bin:$HOME/.do
 # NOTE: reseting .context on every boot
 if [[ -f "$HOME/.context" ]]; then
     rm ~/.context
+fi
+
+# NOTE: gpu specific setup
+gpu_info=$(lspci | /bin/grep -Ei "VGA|3D")
+
+if echo "$gpu_info" | grep -iq "nvidia"; then
+    export GBM_BACKEND=nvidia-drm
+    export WLR_NO_HARDWARE_CURSORS=1
+    export WLR_RENDERER_ALLOW_SOFTWARE=1
+    export LIBVA_DRIVER_NAME=nvidia
+    export VDPAU_DRIVER=nvidia
+    export __GLX_VENDOR_LIBRARY_NAME=nvidia
+    export __GL_VRR_ALLOWED=0
+elif echo "$gpu_info" | grep -iq "amd"; then
+    # NOTE: chat gpt recommended these variables (not using since everything is working)
+    # export LIBVA_DRIVER_NAME=radeonsi
+    # export VDPAU_DRIVER=radeonsi
+elif echo "$gpu_info" | grep -iq "intel"; then
+    # NOTE: chat gpt recommended these variables (not using since everything is working)
+    # export LIBVA_DRIVER_NAME=iHD
+    # export VDPAU_DRIVER=va_gl
 fi
 
