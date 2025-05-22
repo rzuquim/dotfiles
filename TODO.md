@@ -40,7 +40,7 @@
 - [ ] automatic default output device (hdmi, headset, etc)
 - [ ] input device (mic, etc)
 - [x] multiple monitors
-  - [ ] shortcut to execute `monitors_and_workspaces.sh` (maybe with a dmenu with multiple uncommon actions)
+  - [x] shortcut to execute `monitors_and_workspaces.sh` (maybe with a dmenu with multiple uncommon actions)
   - [ ] run `monitors_and_workspaces.sh` whenever a monitor is plugged / unplugged
 - [x] steam available only for `fun` user
 - [ ] periodically run diagnostics and detect WARNS / errors on logs (nvim included)
