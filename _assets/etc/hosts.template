@@ -1,3 +1,13 @@
+# localhost
 127.0.0.1   localhost
 ::1         localhost
 127.0.1.1   $hostname.localdomain $hostname
+
+# home domain (avoiding to setup DNS server)
+192.168.15.144  zpc01.local zpc01
+192.168.15.181  zpc02.local zpc02
+192.168.15.30   zavell.local zavell
+
+# wifi
+192.168.86.250  zasus.wifi
+192.168.86.30   zavell.wifi
