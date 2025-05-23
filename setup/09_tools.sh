@@ -31,6 +31,7 @@ BASIC_PACKAGES=(
     "nushell"
     "reflector"
     "fastfetch"
+    "openbsd-netcat"
 )
 
 echo -e "${CYAN}Installing basic tools:${NC} ${BASIC_PACKAGES[@]}"
