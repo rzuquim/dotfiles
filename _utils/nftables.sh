@@ -24,6 +24,6 @@ function nft_rule_add() {
     { print }
     ' "$input_file" > "$output_file"
 
-    sudo cp /etc/nftables.conf /etc/nftables.conf.bkp
-    # sudo mv /tmp/nftables.conf /etc/nftables.conf
+    cp /etc/nftables.conf /etc/nftables.conf.bkp
+    mv /tmp/nftables.conf /etc/nftables.conf
 }
