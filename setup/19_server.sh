@@ -47,12 +47,11 @@ fi
 if [[ " ${server_capabilities[*]} " =~ " media " ]]; then
     pacman -S --noconfirm --needed qbittorrent-nox
 
+    echo "criando pasta"
     mkdir -p /var/lib/qbittorrent/.config/qBittorrent
     cp ./_assets/server/torrent/qBittorrent.conf /var/lib/qbittorrent/.config/qBittorrent/qBittorrent.conf
 
-    firewall_rules_path=$(realpath "./_assets/server/torrent/firewall_rules.conf")
-    echo "REAL PATH $firewall_rules_path"
-    nft_rule_add "@torrent" $firewall_rules_path
+    nft_rule_add "@torrent" $(realpath "./_assets/server/torrent/firewall_rules.conf")
 
     systemctl enable --now qbittorrent-nox.service
 fi
