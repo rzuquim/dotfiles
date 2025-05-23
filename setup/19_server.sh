@@ -22,6 +22,12 @@ else
         server_capabilities+=("dns")
     fi
 
+    read -p "Setup media server [Y/n] " response
+    response=${response:-Y}
+    if [[ $response =~ ^[Yy]$ ]]; then
+        server_capabilities+=("media")
+    fi
+
     echo "${server_capabilities[@]}" > $SERVER_CAPABILITIES_FILE
 fi
 
@@ -36,4 +42,24 @@ if [[ " ${server_capabilities[*]} " =~ " dns " ]]; then
     # cp ./_assets/etc/dns/nsswitch.conf /etc/nsswitch.conf
     #
     # systemctl enable --now dnsmasq
+fi
+
+if [[ " ${server_capabilities[*]} " =~ " media " ]]; then
+    pacman -S qbittorrent-nox
+
+    mkdir -p /var/lib/qbittorrent/.config/qBittorrent
+    cp ./_assets/server/torrent/qBittorrent.conf /var/lib/qbittorrent/.config/qBittorrent/qBittorrent.conf
+
+    TORRENT_FIREWALL_RULES=$(cat <<EOF
+        # Allow qBittorrent Web UI
+        tcp dport 1337 accept
+
+        # Allow incoming BitTorrent traffic
+        udp dport 8999 accept
+EOF
+    )
+
+    nft_rule_add "# @torrent" $TORRENT_FIREWALL_RULES
+
+    systemctl enable --now qbittorrent-nox.service
 fi
