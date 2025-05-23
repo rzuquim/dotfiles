@@ -45,7 +45,7 @@ if [[ " ${server_capabilities[*]} " =~ " dns " ]]; then
 fi
 
 if [[ " ${server_capabilities[*]} " =~ " media " ]]; then
-    pacman -S qbittorrent-nox
+    pacman -S --noconfirm --needed qbittorrent-nox
 
     mkdir -p /var/lib/qbittorrent/.config/qBittorrent
     cp ./_assets/server/torrent/qBittorrent.conf /var/lib/qbittorrent/.config/qBittorrent/qBittorrent.conf
