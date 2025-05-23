@@ -1,7 +1,9 @@
 
 function nft_rule_add() {
     local placeholder="$1"
-    local nftables_rules="$2"
+    # NOTE: removing the first placeholder argument so we can collect the multiple lines with the rules
+    shift
+    local nftables_rules="$*"
     local input_file="/etc/nftables.conf"
     local output_file="/tmp/nftables.conf"
 
@@ -14,4 +16,7 @@ function nft_rule_add() {
             print $0
         }
     }' "$input_file" > "$output_file"
+
+    sudo cp /etc/nftables.conf /etc/nftables.conf.bkp
+    # sudo mv /tmp/nftables.conf /etc/nftables.conf
 }
