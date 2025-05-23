@@ -59,7 +59,10 @@ if [[ " ${server_capabilities[*]} " =~ " media " ]]; then
 EOF
     )
 
-    nft_rule_add "# @torrent" $TORRENT_FIREWALL_RULES
+    nft_rule_add "@torrent" $TORRENT_FIREWALL_RULES
 
     systemctl enable --now qbittorrent-nox.service
 fi
+
+# NOTE: reloading firewall rules
+nft -f /etc/nftables.conf
