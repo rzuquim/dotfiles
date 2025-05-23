@@ -1,8 +1,6 @@
 
 function nft_rule_add() {
     local placeholder="$1"
-    # NOTE: removing the first placeholder argument so we can collect the multiple lines with the rules
-    shift
     local rules_file="$2"
     local input_file="/etc/nftables.conf"
     local output_file="/tmp/nftables.conf"
