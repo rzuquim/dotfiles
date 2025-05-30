@@ -13,9 +13,9 @@ function md_to_pdf() {
     fi
 
     if [[ "$2" == "accessible" ]]; then
-        css_file="$HOME/.config/shell/sh/assets/md-to-pdf-acessible.css"
+        css_file="$HOME/.config/shell/assets/md-to-pdf-acessible.css"
     else
-        css_file="$HOME/.config/shell/sh/assets/md-to-pdf.css"
+        css_file="$HOME/.config/shell/assets/md-to-pdf.css"
     fi
 
     output_file="${1%.md}.pdf"
@@ -23,6 +23,6 @@ function md_to_pdf() {
     pandoc "$1" -o "$output_file" \
         --css="$css_file" \
         --highlight-style=pygments \
-        --pdf-engine=wkhtmltopdf
+        --pdf-engine=weasyprint
 }
 
