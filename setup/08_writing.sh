@@ -18,6 +18,8 @@ WRITING_TOOLS=(
     "qutebrowser"
     "pandoc"
     "python-weasyprint"
+    "zathura"
+    "zathura-pdf-poppler"
 )
 
 pacman -S --noconfirm --needed ${WRITING_TOOLS[@]}

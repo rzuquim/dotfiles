@@ -10,6 +10,8 @@ x-scheme-handler/ftp=librewolf.desktop
 x-scheme-handler/msteams=teams.desktop
 x-scheme-handler/tg=org.telegram.desktop.desktop
 
+application/pdf=org.pwmt.zathura.desktop
+
 [Added Associations]
 text/html=librewolf.desktop;
 text/xml=librewolf.desktop;
