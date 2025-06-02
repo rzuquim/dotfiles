@@ -18,11 +18,18 @@ function md_to_pdf() {
         css_file="$HOME/.config/shell/assets/md-to-pdf.css"
     fi
 
-    output_file="${1%.md}.pdf"
+    if [[ "$3" == "debug" ]]; then
+        local output_file="${1%.md}.html"
+        pandoc "$1" -o "$output_file" \
+            --css="$css_file" \
+            --highlight-style=pygments
+    else
+        local output_file="${1%.md}.pdf"
+        pandoc "$1" -o "$output_file" \
+            --css="$css_file" \
+            --highlight-style=pygments \
+            --pdf-engine=weasyprint
+    fi
 
-    pandoc "$1" -o "$output_file" \
-        --css="$css_file" \
-        --highlight-style=pygments \
-        --pdf-engine=weasyprint
 }
 
