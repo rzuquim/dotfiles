@@ -31,6 +31,16 @@ if [ ! -f $USER_LIST_FILE ]; then
         users+=("stream")
     fi
 
+    if ! id "write" &>/dev/null; then
+        read -p "Will you be writing on this machine? [Y/n] " response
+        response=${response:-Y}
+        if [[ $response =~ ^[Yy]$ ]]; then
+            users+=("write")
+        fi
+    else
+        users+=("write")
+    fi
+
     if ! id "server" &>/dev/null; then
         read -p "Will you be using this machine as a server? [Y/n] " response
         response=${response:-Y}
@@ -88,4 +98,20 @@ if [ ! -f "$GIT_WHO_AM_I" ]; then
 else
     MY_EMAIL=$(sed -n '2p' $GIT_WHO_AM_I)
     MY_NAME=$(tail -n 1 $GIT_WHO_AM_I)
+fi
+
+if [ ! -d "/home/me/Personal" ]; then
+    mkdir /home/me/Personal
+fi
+
+if id "write" &>/dev/null; then
+    cp -r "$GIT_WHO_AM_I" "/home/write/.config/git/whoami.toml"
+
+    if [ ! -d "/home/write/Personal" ]; then
+        mkdir -p /home/write/Personal
+    fi
+
+    if [ ! -d "/home/write/Education" ]; then
+        mkdir -p /home/write/Education
+    fi
 fi

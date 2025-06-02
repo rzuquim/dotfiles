@@ -24,6 +24,10 @@ for user in "${users[@]}"; do
         su - me -c "mkdir -p /home/me/.config/git"
     fi
 
+    if [ "$user" = "write" ]; then
+        usermod -a -G wheel $user
+    fi
+
     if [ "$user" = "stream" ]; then
         groupadd -f stream
         usermod -a -G stream $user

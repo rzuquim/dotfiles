@@ -7,16 +7,6 @@ echo "-----------------"
 
 rsync -avh --no-perms ./config/shared/ /home/.shared
 
-USER_LIST_FILE="/etc/keys/users"
-
-if [ ! -f $USER_LIST_FILE ]; then
-    echo -e "${RED}Could not find user list file${NC} $USER_LIST_FILE"
-    echo -e "Run setup.sh to write the file."
-    exit 1
-fi
-
-users=($(cat $USER_LIST_FILE))
-
 for user in "${users[@]}"; do
     if ! id $user &> /dev/null; then
         continue
