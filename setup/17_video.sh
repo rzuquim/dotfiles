@@ -1,7 +1,6 @@
 #!/bin/bash
 
 VIDEO_PACKAGES=(
-    "qbittorrent"
     "mpv"
     "ffmpeg"
 )
