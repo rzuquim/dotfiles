@@ -12,6 +12,8 @@ FONTS_PACKAGES=(
     "noto-fonts-emoji"
 )
 
+pacman -S --noconfirm --needed ${FONTS_PACKAGES[@]}
+
 echo -e "${CYAN}Installing writing tools${NC}"
 
 WRITING_TOOLS=(

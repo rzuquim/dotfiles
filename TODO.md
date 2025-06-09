@@ -105,6 +105,8 @@
     - amdgpu.gttsize=4096
     - amdgpu.mcbp=0
 - [x] nftables blocking internal IPv6 DHCP
+- [ ] kb-disable not working on zavell
+- [x] fonts not installing on zavell
 
 ## Test
 
