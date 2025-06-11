@@ -3,7 +3,8 @@
 function kb-disable() {
     # TODO: this works on the asus notebook, and might not work on the avell one
     #       `sudo libinput list-devices` can capture it
-    local DEVICE="/dev/input/event4"
+    # local DEVICE="/dev/input/event4"
+    local DEVICE="/dev/input/event3" # TODO: on avell
     local PID_FILE="/tmp/kb_grab.pid"
 
     if [[ -f "$PID_FILE" ]]; then
