@@ -8,6 +8,7 @@ alias c='clear'
 alias h='history'
 alias mkdir='mkdir -p'
 alias ls='eza -la --group-directories-first --time-style=long-iso --no-user --no-permissions'
+alias lsp='eza -la --group-directories-first --time-style=long-iso'
 alias diff='delta'
 alias vi='nvim'
 alias vim='nvim'
@@ -26,6 +27,7 @@ alias ..='cd ..'
 alias ...='cd ..; cd ..'
 alias ....='cd ..; cd ..; cd ..'
 alias waybar='pgrep waybar > /dev/null || waybar'
+alias dots='cd ~/Config/dotfiles/'
 
 # navigation
 alias w=work
