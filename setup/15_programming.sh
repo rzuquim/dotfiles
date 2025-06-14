@@ -16,6 +16,8 @@ DEV_PACKAGES=(
     "go"
     "jq"
     "vulkan-tools"
+    "docker"
+    "docker-compose"
 )
 
 echo -e "${CYAN}Installing dev tools:${NC} ${DEV_PACKAGES[@]}"
@@ -51,4 +53,6 @@ fi
 if ! rustup show active-toolchain; then
     echo -e "${YELLOW}Setting up default rust tollchain as${NC} stable"
 fi
+
+systemctl enable docker
 
