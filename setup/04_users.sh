@@ -20,7 +20,7 @@ for user in "${users[@]}"; do
     fi
 
     if [ "$user" = "me" ]; then
-        usermod -a -G wheel $user
+        usermod -a -G wheel,docker $user
         su - me -c "mkdir -p /home/me/.config/git"
     fi
 
