@@ -25,7 +25,9 @@ case "$gpu_vendor" in
         #   another promising reference: https://github.com/Obnomus/Hyprland-V2
         # TODO: another tutorial says we need to ensure `egl-wayland` is installed
     nvidia)
-        pacman -S --noconfirm --needed linux-headers nvidia-dkms dkms nvidia-utils libva-nvidia-driver lib32-nvidia-utils
+        pacman -S --noconfirm --needed linux-headers nvidia-dkms dkms libva-nvidia-driver \
+            nvidia-utils lib32-nvidia-utils \
+            nvidia-container-toolkit
         ;;
 
     amd)

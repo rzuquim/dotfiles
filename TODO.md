@@ -17,7 +17,7 @@
   - [x] screen sharing
   - [ ] screen anotations
 - [ ] obs and streaming stuff
-- [ ] docker
+- [x] docker
 - [ ] chats
   - [x] telegram
   - [x] wapp
