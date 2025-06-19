@@ -36,3 +36,7 @@ BASIC_PACKAGES=(
 
 echo -e "${CYAN}Installing basic tools:${NC} ${BASIC_PACKAGES[@]}"
 pacman -S --noconfirm --needed ${BASIC_PACKAGES[@]}
+
+echo -e "${CYAN}Installing file managament tools :${NC} ${BASIC_PACKAGES[@]}"
+# NOTE: yazi requires a lot of dependencies
+pacman -S --noconfirm --needed yazi ffmpeg 7zip jq poppler fd ripgrep fzf zoxide imagemagick

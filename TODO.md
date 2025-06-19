@@ -9,7 +9,11 @@
 - [x] install bluetuith (AUR)
 - [x] configure browser
   - [x] smart script to open browser
-- [ ] file explorer
+- [x] file explorer
+  - [ ] start on work context
+  - [ ] n - for fzf navigation (like in terminal)
+  - [ ] w - for workspace navigation (like in terminal)
+  - [ ] file picker integration (eg: use in browser)?
 - [x] writing
   - [x] note taking
   - [x] studying
