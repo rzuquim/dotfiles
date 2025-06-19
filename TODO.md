@@ -117,7 +117,7 @@
 - [ ] test on machine without /storage
 - [ ] test on machine with multiple nvmes drivers
 - [ ] lts boot fallback
-- [ ] nvidia support
+- [x] nvidia support
 - [x] amd support
 - [x] working triple A game (GoW)
 - [ ] tmux

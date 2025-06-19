@@ -22,6 +22,18 @@ else
         server_capabilities+=("dns")
     fi
 
+    read -p "Setup media server [Y/n] " response
+    response=${response:-Y}
+    if [[ $response =~ ^[Yy]$ ]]; then
+        server_capabilities+=("media")
+    fi
+
+    read -p "AI server [Y/n] " response
+    response=${response:-Y}
+    if [[ $response =~ ^[Yy]$ ]]; then
+        server_capabilities+=("ai")
+    fi
+
     echo "${server_capabilities[@]}" > $SERVER_CAPABILITIES_FILE
 fi
 
@@ -37,3 +49,29 @@ if [[ " ${server_capabilities[*]} " =~ " dns " ]]; then
     #
     # systemctl enable --now dnsmasq
 fi
+
+if [[ " ${server_capabilities[*]} " =~ " media " ]]; then
+    pacman -S --noconfirm --needed qbittorrent-nox
+
+    echo "criando pasta"
+    mkdir -p /var/lib/qbittorrent/.config/qBittorrent
+    cp ./_assets/server/torrent/qBittorrent.conf /var/lib/qbittorrent/.config/qBittorrent/qBittorrent.conf
+
+    nft_rule_add "@torrent" $(realpath "./_assets/server/torrent/firewall_rules.conf")
+
+    systemctl enable --now qbittorrent-nox.service
+fi
+
+if [[ " ${server_capabilities[*]} " =~ " ai " ]]; then
+    gpu_info=$(lspci | /bin/grep -Ei "VGA|3D")
+
+    if echo "$gpu_info" | grep -iq "nvidia"; then
+        pacman -S --noconfirm --needed ollama-cuda
+    else
+        echo -e "${RED}For now, this script only supports nvidia for AI.${NC}"
+        exit 1
+    fi
+fi
+
+# NOTE: reloading firewall rules
+nft -f /etc/nftables.conf
