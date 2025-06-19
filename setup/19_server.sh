@@ -22,6 +22,12 @@ else
         server_capabilities+=("dns")
     fi
 
+    read -p "Setup media server [Y/n] " response
+    response=${response:-Y}
+    if [[ $response =~ ^[Yy]$ ]]; then
+        server_capabilities+=("media")
+    fi
+
     echo "${server_capabilities[@]}" > $SERVER_CAPABILITIES_FILE
 fi
 
@@ -37,3 +43,18 @@ if [[ " ${server_capabilities[*]} " =~ " dns " ]]; then
     #
     # systemctl enable --now dnsmasq
 fi
+
+if [[ " ${server_capabilities[*]} " =~ " media " ]]; then
+    pacman -S --noconfirm --needed qbittorrent-nox
+
+    echo "criando pasta"
+    mkdir -p /var/lib/qbittorrent/.config/qBittorrent
+    cp ./_assets/server/torrent/qBittorrent.conf /var/lib/qbittorrent/.config/qBittorrent/qBittorrent.conf
+
+    nft_rule_add "@torrent" $(realpath "./_assets/server/torrent/firewall_rules.conf")
+
+    systemctl enable --now qbittorrent-nox.service
+fi
+
+# NOTE: reloading firewall rules
+nft -f /etc/nftables.conf
