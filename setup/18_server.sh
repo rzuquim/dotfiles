@@ -66,5 +66,8 @@ if [[ " ${server_capabilities[*]} " =~ " media " ]]; then
     export media_server_gid="$media_server_gid"
     export storage="$storage"
     envsubst < ./_assets/server/media-server.yml > /home/server/media_server.yml
+
+    # NOTE: to install the jellyfin client on the samsung TV we used:
+    # - https://github.com/Georift/install-jellyfin-tizen
 fi
 
