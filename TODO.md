@@ -97,8 +97,17 @@
 
 - [ ] media-server
   - [x] remove `qbittorrent` installed locally
+  - [x] `jellyfin` server
+  - [ ] `jellyfin` client on tv
+  - [ ] `jellyfin` config
+  - [ ] `qbittorrent` password on config
   - [ ] move previously downloaded files from `/me/Downloads/torrent` into `storage` partition
-  - [ ] `jellyfin`
+  - [ ] `radarr`
+  - [ ] `sonarr`
+  - [ ] `lidarr`
+  - [ ] `bazarr`
+  - [ ] `prowlarr`
+  - [ ] use vpn
 
 ## Bugs
 
