@@ -35,6 +35,10 @@ for user in "${users[@]}"; do
         groupadd -f gaming
         usermod -a -G gaming $user
     fi
+
+    if [ "$user" = "server" ]; then
+        usermod -a -G docker $user
+    fi
 done
 
 if [ ! -f /etc/sudoers.bkp ]; then

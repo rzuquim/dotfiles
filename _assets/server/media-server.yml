@@ -1,0 +1,39 @@
+services:
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent
+    container_name: qbittorrent
+    environment:
+      - PUID=$server_uid
+      - PGID=$media_server_gid
+      - TZ=America/Sao_Paulo
+      - WEBUI_PORT=8080
+      - TORRENTING_PORT=6881
+
+    ports:
+      - 1337:8080
+    volumes:
+      - /home/server/.config/qbittorrent:/config
+      - $storage/qbittorrent/downloads:/downloads
+    restart: unless-stopped
+
+  ############################
+  # JELLYFIN
+  ############################
+
+  # jellyfin:
+  #   image: linuxserver/jellyfin
+  #   container_name: jellyfin
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #     - TZ=Etc/UTC
+  #   volumes:
+  #     - /media/arr/jellyfin/config:/config
+  #     - /media/arr/sonarr/tvseries:/data/tvshows
+  #     - /media/arr/radarr/movies:/data/movies
+  #   ports:
+  #     - 8096:8096
+  #     - 8920:8920 #optional
+  #     - 7359:7359/udp #optional
+  #     - 1900:1900/udp #optional
+  #   restart: unless-stopped

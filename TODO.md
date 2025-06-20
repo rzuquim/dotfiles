@@ -95,7 +95,10 @@
 
 ## Server
 
-- [ ] local DNS server to resolve computer names
+- [ ] media-server
+  - [x] remove `qbittorrent` installed locally
+  - [ ] move previously downloaded files from `/me/Downloads/torrent` into `storage` partition
+  - [ ] `jellyfin`
 
 ## Bugs
 

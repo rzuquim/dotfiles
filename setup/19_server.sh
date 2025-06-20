@@ -22,8 +22,17 @@ else
         server_capabilities+=("dns")
     fi
 
+    read -p "Setup media server [Y/n] " response
+    response=${response:-Y}
+    if [[ $response =~ ^[Yy]$ ]]; then
+        server_capabilities+=("media")
+    fi
+
     echo "${server_capabilities[@]}" > $SERVER_CAPABILITIES_FILE
 fi
+
+server_uid=$(id -u server)
+server_gid=$(id -g server)
 
 if [[ " ${server_capabilities[*]} " =~ " dns " ]]; then
     echo -e "${RED}DNS Server is too much work to setup and maintain, using hosts file directly.${NC}"
@@ -37,3 +46,25 @@ if [[ " ${server_capabilities[*]} " =~ " dns " ]]; then
     #
     # systemctl enable --now dnsmasq
 fi
+
+
+if [[ " ${server_capabilities[*]} " =~ " media " ]]; then
+    media_server_group=media_server
+    groupadd -f $media_server_group
+
+    media_server_gid=$(getent group "$media_server_group" | cut -d: -f3)
+    usermod -a -G $media_server_group me
+    usermod -a -G $media_server_group server
+
+    storage="/storage/media_server"
+    mkdir -p "$storage"
+
+    chown -R server:media_server $storage
+    chmod -R 770 $storage
+
+    export server_uid="$server_uid"
+    export media_server_gid="$media_server_gid"
+    export storage="$storage"
+    envsubst < ./_assets/server/media-server.yml > /home/server/media_server.yml
+fi
+
