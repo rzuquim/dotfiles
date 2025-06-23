@@ -28,6 +28,12 @@ else
         server_capabilities+=("media")
     fi
 
+    read -p "Setup LLM server [Y/n] " response
+    response=${response:-Y}
+    if [[ $response =~ ^[Yy]$ ]]; then
+        server_capabilities+=("llm")
+    fi
+
     echo "${server_capabilities[@]}" > $SERVER_CAPABILITIES_FILE
 fi
 
@@ -69,5 +75,32 @@ if [[ " ${server_capabilities[*]} " =~ " media " ]]; then
 
     # NOTE: to install the jellyfin client on the samsung TV we used:
     # - https://github.com/Georift/install-jellyfin-tizen
+fi
+
+if [[ " ${server_capabilities[*]} " =~ " llm " ]]; then
+    gpu_info=$(lspci | /bin/grep -Ei "VGA|3D")
+
+    if echo "$gpu_info" | grep -iq "nvidia"; then
+        llm_server_group=llm_server
+        groupadd -f $llm_server_group
+
+        llm_server_gid=$(getent group "$llm_server_group" | cut -d: -f3)
+        usermod -a -G $llm_server_group me
+        usermod -a -G $llm_server_group server
+
+        storage="/storage/llm_server/"
+        mkdir -p "$storage"
+
+        chown -R server:llm_server $storage
+        chmod -R 770 $storage
+
+        export server_uid="$server_uid"
+        export llm_server_gid="$llm_server_gid"
+        export storage="$storage"
+        envsubst < ./_assets/server/llm-server.yml > /home/server/llm_server.yml
+    else
+        echo -e "${RED}For now, this script only supports nvidia for LLM.${NC}"
+        exit 1
+    fi
 fi
 

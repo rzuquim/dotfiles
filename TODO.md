@@ -61,6 +61,7 @@
 - [x] printscreen
 - [x] input management (keyboard layout)
 - [x] disable laptop keyboard
+- [ ] nft log limits to avoid DOS flooding log files
 
 ## Config
 
@@ -141,9 +142,9 @@
 - [ ] test on machine without /storage
 - [ ] test on machine with multiple nvmes drivers
 - [ ] lts boot fallback
-- [ ] nvidia support
+- [x] nvidia support
 - [x] amd support
 - [x] working triple A game (GoW)
 - [ ] tmux
-- [ ] bluetooth
+- [x] bluetooth
 - [ ] `hyprland`: electron support (https://wiki.hyprland.org/Getting-Started/Master-Tutorial/#force-apps-to-use-wayland)
