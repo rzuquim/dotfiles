@@ -115,11 +115,23 @@
   - [x] when closing the last open window ensure waybar is showing
   - [x] when going to a workspace show if not full screen / hide if full screen
 - [ ] hyprland crashing:
+
   - [x] USB bluetooth dongle (after removing it stopped crashing)
   - [ ] amd page fault
-    - https://unix.stackexchange.com/questions/756281/kernel-6-5-2-seems-to-have-amdgpu-crash-on-no-retry-page-fault
+
     - amdgpu.gttsize=4096
     - amdgpu.mcbp=0
+    - current unstable boot config: `options cryptdevice=UUID=329dfb36-eac5-4d67-8edb-3ce1c35f4001:cryptlvm0 root=/dev/mapper/vg0-root quiet rw pcie_aspm=off amdgpu.gttsize=4096 amdgpu.mcbp=0`
+    - https://unix.stackexchange.com/questions/756281/kernel-6-5-2-seems-to-have-amdgpu-crash-on-no-retry-page-fault
+
+  - [ ] pin the card in its high‑perf power state
+
+  ```
+    Clock/voltage hopping can also provoke the fault. After boot (or in a udev rule) force the DPM level to high:
+    echo high | sudo tee /sys/class/drm/card0/device/power_dpm_force_performance_level
+    (Substitute card1 if your dGPU is card1.) Some users stay crash‑free once the clocks no longer change
+  ```
+
 - [x] nftables blocking internal IPv6 DHCP
 - [x] kb-disable not working on zavell
 - [x] fonts not installing on zavell
