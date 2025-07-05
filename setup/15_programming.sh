@@ -23,6 +23,22 @@ DEV_PACKAGES=(
 echo -e "${CYAN}Installing dev tools:${NC} ${DEV_PACKAGES[@]}"
 pacman -S --noconfirm --needed ${DEV_PACKAGES[@]}
 
+TAURI_DEPS=(
+    "webkit2gtk-4.1"
+    "base-devel"
+    "curl"
+    "wget"
+    "file"
+    "openssl"
+    "appmenu-gtk-module"
+    "libappindicator-gtk3"
+    "librsvg"
+    "xdotool"
+)
+
+echo -e "${CYAN}Installing tauri dependencies:${NC} ${TAURI_DEPS[@]}"
+pacman -S --noconfirm --needed ${TAURI_DEPS[@]}
+
 # NOTE: Check if github.com is already in known_hosts
 if [ ! -d "/home/me/.ssh" ]; then
     su - me -c "mkdir /home/me/.ssh"
