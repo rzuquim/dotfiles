@@ -14,8 +14,8 @@ function node_setup_if_pertinent() {
         "(package|tsconfig)\.json$" .)
 
     if [[ -n $found_files ]]; then
-        export NVM_DIR=/usr/share/nvm/
-        source "$NVM_DIR/nvm.sh"
+        export NVM_DIR=/usr/share/nvm
+        source "$NVM_DIR/init-nvm.sh"
     fi
 }
 
