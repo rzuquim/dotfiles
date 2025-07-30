@@ -1,7 +1,7 @@
 #!/bin/bash
 
 wasistlos &
-telegram-desktop &
+Telegram &
 
 chats=("wasistlos" "org.telegram.desktop")
 
@@ -19,7 +19,7 @@ wait_for_windows() {
         sleep 0.5
         i=$((i + 1))
         if [ i -gt 10 ]; then
-            echo "Timeout waiting for chats to appear"
+            echo "Timeout waiting for chats to appear" >> /tmp/startup_error.log
             exit -1
         fi
     done
