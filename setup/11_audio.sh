@@ -3,7 +3,7 @@
 echo -e "${CYAN}Setting up audio${NC}"
 pacman -S --noconfirm --needed \
     pipewire wireplumber pipewire-audio pipewire-pulse pipewire-alsa pipewire-jack gst-plugin-pipewire libpulse \
-    pulsemixer
+    pulsemixer audacity
 
 # NOTE: enabling services
 for user in "${users[@]}"; do

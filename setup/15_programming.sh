@@ -18,6 +18,8 @@ DEV_PACKAGES=(
     "vulkan-tools"
     "docker"
     "docker-compose"
+    "clang"
+    "llvm"
 )
 
 echo -e "${CYAN}Installing dev tools:${NC} ${DEV_PACKAGES[@]}"
