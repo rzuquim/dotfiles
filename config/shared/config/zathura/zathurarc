@@ -1,0 +1,38 @@
+set selection-clipboard clipboard
+set recolor true
+
+# NOTE: it seems we loose the default keymaps if we set any `map`
+# map <A-Left>  navigate previous
+# map <A-Right> navigate next
+
+# Tokyonight color theme for Zathura
+# https://github.com/folke/tokyonight.nvim/blob/main/extras/zathura/tokyonight_moon.zathurarc
+
+set notification-error-bg "#ff757f"
+set notification-error-fg "#c8d3f5"
+set notification-warning-bg "#ffc777"
+set notification-warning-fg "#444a73"
+set notification-bg "#222436"
+set notification-fg "#c8d3f5"
+set completion-bg "#222436"
+set completion-fg "#828bb8"
+set completion-group-bg "#222436"
+set completion-group-fg "#828bb8"
+set index-bg "#222436"
+set index-fg "#c8d3f5"
+set index-active-bg "#444a73"
+set index-active-fg "#c8d3f5"
+set inputbar-bg "#222436"
+set inputbar-fg "#c8d3f5"
+set statusbar-bg "#222436"
+set statusbar-fg "#c8d3f5"
+set default-bg "#222436"
+set default-fg "#c8d3f5"
+set render-loading true
+set render-loading-fg "#222436"
+set render-loading-bg "#c8d3f5"
+
+# Recolor mode settings
+# <C-r> to switch modes
+set recolor-lightcolor "#222436"
+set recolor-darkcolor "#c8d3f5"

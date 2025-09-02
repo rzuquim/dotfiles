@@ -27,10 +27,14 @@ truncation_length = 3
 truncation_symbol = "…/"
 
 [directory.substitutions]
-"Documents" = "󰈙 "
-"Downloads" = " "
-"Music" = " "
-"Pictures" = " "
+"~/Dev" = ""
+"~/Documents" = "󰈙 "
+"~/Downloads" = " "
+"~/Education" = " "
+"~/Labs" = "󰙨"
+"~/Music" = " "
+"~/Pictures" = " "
+"~/Personal" = " "
 "~" = "󰋜 "
 
 [git_branch]
@@ -63,4 +67,3 @@ symbol = ""
 style = "bg:#212736"
 format = '[[ $symbol ($tfm) ](fg:#769ff0 bg:#212736)]($style)'
 detect_extensions = ['csproj', 'fsproj', 'xproj', 'sln']
-
