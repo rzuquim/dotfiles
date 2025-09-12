@@ -328,6 +328,19 @@ pre > code {
   background-color: transparent;
 }
 
+.footnotes {
+  font-size: 12px;
+  color: var(--color-prettylights-syntax-comment);
+}
+
+.footnotes hr {
+  background-color: var(--border-color-default);
+  height: 1px;
+  padding: 0;
+  margin: var(--margin-big) 1em var(--margin-small) 1em;
+  border: 0;
+}
+
 /***
 * syntax highlight 
 **/
