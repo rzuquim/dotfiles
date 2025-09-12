@@ -35,6 +35,7 @@ truncation_symbol = "…/"
 "~/Music" = " "
 "~/Pictures" = " "
 "~/Personal" = " "
+"~/Art" = " "
 "~" = "󰋜 "
 
 [git_branch]
