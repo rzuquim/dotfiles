@@ -13,6 +13,7 @@
   --font-semibold: 600;
   --font-size-regular: 12pt;
   --margin-big: 2.5rem;
+  --margin-medium: 2rem;
   --margin-small: 1rem;
   --underline-color: #3d444db3;
 
@@ -225,13 +226,20 @@ img[align="left"] {
 }
 
 h1,
-h2,
+h2 {
+  margin-top: var(--margin-small);
+  margin-bottom: var(--margin-big);
+  font-weight: var(--font-semibold);
+  line-height: 1.25;
+  padding-bottom: 0.3em;
+}
+
 h3,
 h4,
 h5,
 h6 {
-  margin-top: var(--margin-small);
-  margin-bottom: var(--margin-big);
+  margin-top: var(--margin-medium);
+  margin-bottom: var(--margin-small);
   font-weight: var(--font-semibold);
   line-height: 1.25;
   padding-bottom: 0.3em;
@@ -289,6 +297,14 @@ ol ul ol,
 ul ol ol,
 ul ul ol {
   list-style-type: lower-alpha;
+}
+
+ul.task-list li::marker {
+  content: "";
+}
+
+ul.task-list li input[type="checkbox"] {
+  margin-right: 1em;
 }
 
 code,
