@@ -32,6 +32,8 @@ BASIC_PACKAGES=(
     "reflector"
     "fastfetch"
     "openbsd-netcat"
+    "presenterm"
+    "mermaid-cli"
 )
 
 echo -e "${CYAN}Installing basic tools:${NC} ${BASIC_PACKAGES[@]}"

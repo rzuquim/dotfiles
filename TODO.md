@@ -26,8 +26,8 @@
   - [ ] excalidraw
 - [x] docker
 - [ ] git-crypt
-- [ ] presenterm
-- [ ] mermaid-cli
+- [x] presenterm
+- [x] mermaid-cli
 - [ ] art
   - [ ] libresprite
   - [ ] gimp
@@ -64,7 +64,7 @@
 - [ ] `monitoring` eBPF for network usage logging
 - [ ] `monitoring` resources usage
 - [ ] `monitoring` consolidation and reporting
-  - `sudo dmesg -T | grep --invert-match 'segfault|error|gpu|oom'`
+  - [ ] `sudo dmesg -T | grep --invert-match 'segfault|error|gpu|oom'`
 - [ ] `monitoring` grafana for details
 - [ ] `monitoring` rate limit
 - [ ] periodically suggest updating packages
