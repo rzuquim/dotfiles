@@ -28,10 +28,10 @@
 - [ ] git-crypt
 - [x] presenterm
 - [x] mermaid-cli
-- [ ] art
-  - [ ] libresprite
-  - [ ] gimp
-  - [ ] krita
+- [x] art
+  - [x] install libresprite
+  - [x] install gimp
+  - [x] install krita
 - [ ] chats
   - [x] telegram
   - [x] wapp

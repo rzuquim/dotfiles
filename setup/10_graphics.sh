@@ -45,3 +45,14 @@ case "$gpu_vendor" in
             mesa lib32-mesa libva-intel-driver intel-media-driver vulkan-intel lib32-vulkan-intel
         ;;
 esac
+
+
+ART_PACKAGES=(
+    "libresprite"
+    "gimp"
+    "krita"
+)
+
+echo -e "${CYAN}Installing art tools:${NC} ${ART_PACKAGES[@]}"
+pacman -S --noconfirm --needed ${ART_PACKAGES[@]}
+
