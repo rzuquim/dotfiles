@@ -17,11 +17,21 @@
 - [x] writing
   - [x] note taking
   - [x] studying
+- [ ] sudo pacman -S archlinux-keyring
 - [ ] video conf (zoom)
   - [x] screen sharing
   - [ ] screen anotations
-- [ ] obs and streaming stuff
+- [ ] streaming
+  - [ ] obs
+  - [ ] excalidraw
 - [x] docker
+- [ ] git-crypt
+- [ ] presenterm
+- [ ] mermaid-cli
+- [ ] art
+  - [ ] libresprite
+  - [ ] gimp
+  - [ ] krita
 - [ ] chats
   - [x] telegram
   - [x] wapp
@@ -43,6 +53,7 @@
 - [ ] lock down cron jobs and atd
 - [ ] automatic default output device (hdmi, headset, etc)
 - [ ] input device (mic, etc)
+- [ ] gpg-keys (reference: finance repo)
 - [x] multiple monitors
   - [x] shortcut to execute `monitors_and_workspaces.sh` (maybe with a dmenu with multiple uncommon actions)
   - [ ] run `monitors_and_workspaces.sh` whenever a monitor is plugged / unplugged
@@ -62,6 +73,11 @@
 - [x] input management (keyboard layout)
 - [x] disable laptop keyboard
 - [ ] nft log limits to avoid DOS flooding log files
+- [ ] sudo pacman-key --init
+- [ ] sudo pacman-key --populate archlinux
+- [ ] streaming
+  - [ ] obs
+  - [ ] excalidraw
 
 ## Config
 
