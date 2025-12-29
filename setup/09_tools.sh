@@ -23,6 +23,7 @@ BASIC_PACKAGES=(
     "less"
     "rsync"
     "git-delta"
+    "git-crypt"
     "wl-clipboard"
     "nmap"
     "prettier"

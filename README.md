@@ -22,13 +22,18 @@ bash <(curl -sL https://boot.rzuquim.com/install.sh)
 > [GitHub](https://raw.githubusercontent.com/rzuquim/dotfiles/master/install.sh) repository.
 
 > [!WARNING]
-> These scripts aim to be [idempotent](https://en.wikipedia.org/wiki/Idempotence) so if any network error occur, try
-> to run it again. It should continue where it started.
+> These scripts aim to be [idempotent](https://en.wikipedia.org/wiki/Idempotence) so if any network error occur, try to
+> run it again. It should continue where it started.
+
+## FAQ
+
+- When running `sync_setup` on a installed environment, `pacman` might find a conflict and exit the script with an error
+  since we are always installing stuff with `--no-confirm` and the default option would be not to remove the old
+  version. Just temporarily remove the flag `--no-confirm` and rollback the change after you are done.
 
 ## Thanks to…
 
-- [dt](https://www.youtube.com/channel/UCVls1GmFKf6WlTraIb_IaJg) and his
-  [dotfiles](https://gitlab.com/dwt1/dotfiles)
+- [dt](https://www.youtube.com/channel/UCVls1GmFKf6WlTraIb_IaJg) and his [dotfiles](https://gitlab.com/dwt1/dotfiles)
 - [Bread on Penguins](https://www.youtube.com/watch?v=5DHz23VQJxk&list=PL97nvoRkKCvkoyZUCeB59AMgqhkuEvXU3)
 - [mischa](https://www.youtube.com/watch?v=qboMuv9vSpQ&list=PL_JVnPgp2IRcFnHqZdmQwWdv8n49vGHqp)
 - [typecraft](https://www.youtube.com/@typecraft_dev) and his [dotfiles](https://github.com/typecraft-dev/dotfiles)
