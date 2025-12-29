@@ -22,8 +22,9 @@ function clone_dot_files() {
         exit 1
     fi
 
-    pacman-key --init
     pacman -S --noconfirm --needed archlinux-keyring
+    pacman-key --init
+    pacman-key --populate archlinux
 
     if [ ! -d "$DOTFILES_LOCATION" ]; then
         echo -e "Installing git and cloning dotfiles"

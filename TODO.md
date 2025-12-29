@@ -17,7 +17,7 @@
 - [x] writing
   - [x] note taking
   - [x] studying
-- [ ] sudo pacman -S archlinux-keyring
+- [x] sudo pacman -S archlinux-keyring
 - [ ] video conf (zoom)
   - [x] screen sharing
   - [ ] screen anotations
@@ -73,8 +73,8 @@
 - [x] input management (keyboard layout)
 - [x] disable laptop keyboard
 - [ ] nft log limits to avoid DOS flooding log files
-- [ ] sudo pacman-key --init
-- [ ] sudo pacman-key --populate archlinux
+- [x] sudo pacman-key --init
+- [x] sudo pacman-key --populate archlinux
 - [ ] streaming
   - [ ] obs
   - [ ] excalidraw
