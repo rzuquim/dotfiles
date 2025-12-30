@@ -150,7 +150,8 @@
   ```
 
 - [x] nftables blocking internal IPv6 DHCP
-- [x] kb-disable not working on zavell
+- [ ] better kb-disable (not working on zavell)
+      toggle the notebook keyboard using hyprland cmds to set device:active = Off / On
 - [x] fonts not installing on zavell
 
 ## Test
