@@ -111,6 +111,7 @@
 - [ ] customize mangohub shortcuts
 - [ ] `zsh`: keyboard driven URL navigation
 - [x] `zsh`: navigation with arrows in insert mode
+- [ ] auto-commit / push notes repository on startup (daily)
 
 ## Server
 
@@ -153,6 +154,7 @@
 - [ ] better kb-disable (not working on zavell)
       toggle the notebook keyboard using hyprland cmds to set device:active = Off / On
 - [x] fonts not installing on zavell
+- [ ] WIN-O - for notes, is not opening on the context of the repository (in vim `git changed files` cmd is not working)
 
 ## Test
 
