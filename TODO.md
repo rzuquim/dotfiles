@@ -3,7 +3,6 @@
 ## Install
 
 - [ ] when executing `.install.sh` on dotfiles repo (already installed) just ensure apps are installed
-- [ ] use yubikey instead of passphrase to encrypt / decrypt with LUKS
 - [ ] on `./install/07_crypto_storage.sh` fix the starting index of the cryptlvm device
 - [x] install browsers (AUR)
 - [x] install bluetuith (AUR)
@@ -78,6 +77,12 @@
 - [ ] streaming
   - [ ] obs
   - [ ] excalidraw
+- [ ] yubikey (both keys)
+  - [x] google
+  - [x] amazon
+  - [ ] LUKS
+  - [ ] GPG @ pvt repos
+  - [ ] GPG @ git signature
 
 ## Config
 
@@ -155,6 +160,13 @@
       toggle the notebook keyboard using hyprland cmds to set device:active = Off / On
 - [x] fonts not installing on zavell
 - [ ] WIN-O - for notes, is not opening on the context of the repository (in vim `git changed files` cmd is not working)
+- [ ] disable ipv6 for docker `/etc/docker/daemon.json`
+
+```json
+{
+  "ipv6": false
+}
+```
 
 ## Test
 
