@@ -14,6 +14,7 @@ YAY_PACKAGES=(
     "numbat-bin"
     "zsa-keymapp-bin"
     "zoom"
+    "ldtk"
 )
 
 yay -S --needed ${YAY_PACKAGES[@]}

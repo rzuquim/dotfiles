@@ -1,10 +1,5 @@
 #!/bin/sh
 
-if [[ -f "$HOME/.context" ]]; then
-    currentWorkspace=`cat ~/.context | awk '{ print $2}'`
-    cd $currentWorkspace
-fi
-
 if [[ -f "$HOME/.ctx" ]]; then
     local current_workspace=`cat ~/.ctx | awk '{ print $2 }'`
     cd $current_workspace

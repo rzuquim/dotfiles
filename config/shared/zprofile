@@ -13,9 +13,9 @@ fi
 
 export PATH=$HOME/.local/bin:$HOME/bin:/usr/local/bin:$HOME/.cargo/bin:$HOME/.dotnet/bin:$PATH
 
-# NOTE: reseting .context on every boot
-if [[ -f "$HOME/.context" ]]; then
-    rm ~/.context
+# NOTE: reseting .ctx on every boot
+if [[ -f "$HOME/.ctx" ]]; then
+    rm ~/.ctx
 fi
 
 # NOTE: gpu specific setup
