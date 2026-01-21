@@ -18,6 +18,7 @@ DEV_PACKAGES=(
     "vulkan-tools"
     "docker"
     "docker-compose"
+    "docker-buildx"
     "clang"
     "llvm"
 )
