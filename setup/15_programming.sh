@@ -21,6 +21,7 @@ DEV_PACKAGES=(
     "docker-buildx"
     "clang"
     "llvm"
+    "virtualbox"
 )
 
 echo -e "${CYAN}Installing dev tools:${NC} ${DEV_PACKAGES[@]}"

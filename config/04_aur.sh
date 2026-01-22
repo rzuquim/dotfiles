@@ -15,6 +15,7 @@ YAY_PACKAGES=(
     "zsa-keymapp-bin"
     "zoom"
     "ldtk"
+    "vagrant"
 )
 
 yay -S --needed ${YAY_PACKAGES[@]}
