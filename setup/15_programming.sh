@@ -2,26 +2,36 @@
 
 DEV_PACKAGES=(
     "nvim"
+    "gitui"
+    "jq"
+
     "rustup"
+    "vulkan-tools"
+
+    "clang"
+    "cmake"
+    "llvm"
+
     "nodejs"
     "npm"
     "typescript-language-server"
     "nvm"
-    "gitui"
+
     "python"
+
     "dotnet-sdk"
+
     "lua"
     "luarocks"
-    "cmake"
+
     "go"
-    "jq"
-    "vulkan-tools"
+
     "docker"
     "docker-compose"
     "docker-buildx"
-    "clang"
-    "llvm"
+
     "virtualbox"
+    "ansible"
 )
 
 echo -e "${CYAN}Installing dev tools:${NC} ${DEV_PACKAGES[@]}"
