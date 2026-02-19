@@ -105,6 +105,7 @@
 - [ ] `hyprland`: media buttons
 - [x] `hyprland`: do not swallow npm / cargo / etc. (toggle command was the best option)
 - [x] `waybar`: style
+
   - [ ] weather
   - [ ] cpu / mem / disk
   - [ ] notification
@@ -140,8 +141,10 @@
   - [x] when closing the last open window ensure waybar is showing
   - [x] when going to a workspace show if not full screen / hide if full screen
 - [ ] hyprland crashing:
+
   - [x] USB bluetooth dongle (after removing it stopped crashing)
   - [ ] amd page fault
+
     - amdgpu.gttsize=4096
     - amdgpu.mcbp=0
     - current unstable boot config: `options cryptdevice=UUID=329dfb36-eac5-4d67-8edb-3ce1c35f4001:cryptlvm0 root=/dev/mapper/vg0-root quiet rw pcie_aspm=off amdgpu.gttsize=4096 amdgpu.mcbp=0`
@@ -179,3 +182,9 @@
 - [ ] tmux
 - [x] bluetooth
 - [ ] `hyprland`: electron support (https://wiki.hyprland.org/Getting-Started/Master-Tutorial/#force-apps-to-use-wayland)
+
+## Remove
+
+- [ ] review installed packages to remove unused
+  - [ ] dotnet sdk
+  - [ ] obsidian
