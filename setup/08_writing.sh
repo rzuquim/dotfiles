@@ -21,7 +21,12 @@ WRITING_TOOLS=(
     "pandoc"
     "python-weasyprint"
     "zathura"
-    "zathura-pdf-poppler"
+    "zathura-pdf-mupdf"
+    "okular"
+    "texlive-basic" 
+    "texlive-latex" 
+    "texlive-latexrecommended"
+    "texlive-binextra"
 )
 
 pacman -S --noconfirm --needed ${WRITING_TOOLS[@]}
