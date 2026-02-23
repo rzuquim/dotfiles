@@ -27,6 +27,9 @@ WRITING_TOOLS=(
     "texlive-latex" 
     "texlive-latexrecommended"
     "texlive-binextra"
+    "tesseract"
+    "tesseract-data-eng"
+    "tesseract-data-por"
 )
 
 pacman -S --noconfirm --needed ${WRITING_TOOLS[@]}

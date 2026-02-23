@@ -16,6 +16,7 @@ YAY_PACKAGES=(
     "zoom"
     "ldtk"
     "vagrant"
+    "ocrmypdf"
 )
 
 yay -S --needed ${YAY_PACKAGES[@]}
