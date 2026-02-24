@@ -31,10 +31,10 @@
   - [x] install libresprite
   - [x] install gimp
   - [x] install krita
-- [ ] chats
+- [x] chats
   - [x] telegram
   - [x] wapp
-  - [ ] discord
+  - [x] discord
 
 ## Setup
 

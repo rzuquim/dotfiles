@@ -9,6 +9,7 @@ FONTS_PACKAGES=(
     "ttf-firacode-nerd"
     "ttf-hack"
     "ttf-jetbrains-mono"
+    "noto-fonts-cjk"
     "noto-fonts-emoji"
 )
 

@@ -35,6 +35,7 @@ BASIC_PACKAGES=(
     "openbsd-netcat"
     "presenterm"
     "mermaid-cli"
+    "discord"
 )
 
 echo -e "${CYAN}Installing basic tools:${NC} ${BASIC_PACKAGES[@]}"

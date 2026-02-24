@@ -2,8 +2,9 @@
 
 wasistlos &
 Telegram &
+discord &
 
-chats=("wasistlos" "org.telegram.desktop")
+chats=("wasistlos" "org.telegram.desktop" "discord")
 
 wait_for_windows() {
     local i=0
