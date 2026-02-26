@@ -31,6 +31,7 @@ WRITING_TOOLS=(
     "tesseract"
     "tesseract-data-eng"
     "tesseract-data-por"
+    "unpaper"
 )
 
 pacman -S --noconfirm --needed ${WRITING_TOOLS[@]}
