@@ -17,6 +17,11 @@ YAY_PACKAGES=(
     "ldtk"
     "vagrant"
     "ocrmypdf"
+
+    "ttf-symbola"
+    "ttf-unifont"
+    "ttf-dejavu"
+    "noto-fonts-extra"
 )
 
 yay -S --needed ${YAY_PACKAGES[@]}
