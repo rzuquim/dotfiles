@@ -31,3 +31,17 @@ systemctl enable sshd
 #     su - me -c "google-authenticator -C -t -D -u --qr-mode=UTF8 --label=$totp_issuer --issuer=ssh"
 #     read -p "Press enter after you register the QR code... "
 # fi
+
+
+# --------------------------
+# Youbikey
+# --------------------------
+#
+BASIC_PACKAGES=(
+    # "gnupg"
+    "yubikey-manager"
+    "yubikey-personalization"
+)
+
+echo -e "${CYAN}Installing basic tools:${NC} ${BASIC_PACKAGES[@]}"
+pacman -S --noconfirm --needed ${BASIC_PACKAGES[@]}
