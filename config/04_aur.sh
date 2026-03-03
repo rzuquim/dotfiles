@@ -22,6 +22,8 @@ YAY_PACKAGES=(
     "ttf-unifont"
     "ttf-dejavu"
     "noto-fonts-extra"
+
+    "unityhub"
 )
 
 yay -S --needed ${YAY_PACKAGES[@]}

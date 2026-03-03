@@ -82,6 +82,25 @@ for user in "${users[@]}"; do
         sudo chown -h "$user:$user" "$target"
         echo -e "${VIOLET}linking bin file${NC} $shared_bin ${VIOLET}into${NC} $target"
     done
+
+    find /home/.shared/desktop -maxdepth 2 -type f | while read -r shared_desktop; do
+        rel_path="${shared_desktop#/home/.shared/desktop/}"
+        target="$user_home/.local/share/applications/$rel_path"
+        # NOTE: adding leading . (to avoid versioning hidden files in this repo)
+        target_dir="$(dirname "$target")"
+
+        if sudo test -L "$target"; then
+            continue
+        fi
+
+        if sudo test ! -e "$target_dir"; then
+            sudo mkdir -p "$target_dir"
+        fi
+
+        sudo ln -s "$shared_desktop" "$target"
+        sudo chown -h "$user:$user" "$target"
+        echo -e "${VIOLET}linking application file${NC} $shared_desktop ${VIOLET}into${NC} $target"
+    done
 done
 
 for user in "${users[@]}"; do

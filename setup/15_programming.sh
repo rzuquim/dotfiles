@@ -19,7 +19,8 @@ DEV_PACKAGES=(
 
     "python"
 
-    "dotnet-sdk"
+    "dotnet-sdk-10.0"
+    "aspnet-runtime-10.0"
 
     "lua"
     "luarocks"

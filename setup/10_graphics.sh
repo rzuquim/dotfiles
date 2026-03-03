@@ -51,6 +51,7 @@ ART_PACKAGES=(
     "libresprite"
     "gimp"
     "krita"
+    "blender"
 )
 
 echo -e "${CYAN}Installing art tools:${NC} ${ART_PACKAGES[@]}"

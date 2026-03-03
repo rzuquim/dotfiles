@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+file="$1"
+line="$2"
+
+if [ -n "$line" ]; then
+    exec nvim +"$line" "$file"
+else
+    exec nvim "$file"
+fi

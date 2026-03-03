@@ -1,0 +1,4 @@
+#!/bin/sh
+
+export XDG_CURRENT_DESKTOP=GNOME 
+exec /usr/bin/xdg-mime "$@"
