@@ -33,6 +33,9 @@ DEV_PACKAGES=(
 
     "virtualbox"
     "ansible"
+
+    # NOTE: necessary for unity to show the csproj reload options
+    "code"
 )
 
 echo -e "${CYAN}Installing dev tools:${NC} ${DEV_PACKAGES[@]}"

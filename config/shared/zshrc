@@ -47,18 +47,19 @@ done
 
 source ~/.config/shell/keybindings.sh
 
-if [[ $zsh_profile_loaded_today -eq 1 ]]; then
-    zprof > "$PROFILE_MARKER"
-
-    nu -c "
-    open $PROFILE_MARKER | 
-    lines | 
-    parse --regex '^\\s*\\d+\\)\\s*(?P<calls>\\d+)\\s+[\\d\\.]+\\s*[\\d\\.]+\\s*[\\d\\.%]+\\s*(?P<latency>[\\d\\.]+)\\s*[\\d\\.]+\\s*(?P<percentage>[\\d\\.%]+)\\s*(?P<name>.*)' |
-    uniq |
-    update calls {|x| \$x.calls | into int } |
-    update latency {|x| \$x.latency | into float } |
-    update percentage {|x| \$x.percentage | str replace '%' '' | into float } |
-    where latency > 3 |
-    select name calls latency percentage
-    "
-fi
+# NOTE: depends on nushell (i removed the dependecy since this profiler is not necessary)
+# if [[ $zsh_profile_loaded_today -eq 1 ]]; then
+#     zprof > "$PROFILE_MARKER"
+#
+#     nu -c "
+#     open $PROFILE_MARKER | 
+#     lines | 
+#     parse --regex '^\\s*\\d+\\)\\s*(?P<calls>\\d+)\\s+[\\d\\.]+\\s*[\\d\\.]+\\s*[\\d\\.%]+\\s*(?P<latency>[\\d\\.]+)\\s*[\\d\\.]+\\s*(?P<percentage>[\\d\\.%]+)\\s*(?P<name>.*)' |
+#     uniq |
+#     update calls {|x| \$x.calls | into int } |
+#     update latency {|x| \$x.latency | into float } |
+#     update percentage {|x| \$x.percentage | str replace '%' '' | into float } |
+#     where latency > 3 |
+#     select name calls latency percentage
+#     "
+# fi
