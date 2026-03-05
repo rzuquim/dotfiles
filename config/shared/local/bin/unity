@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
+PROJECT_PATH="$(pwd)"
+PROJECT_VERSION_FILE="$PROJECT_PATH/ProjectSettings/ProjectVersion.txt"
+
+if [[ ! -f $PROJECT_VERSION_FILE ]]; then
+    echo -e "${RED}Not a Unity project (ProjectSettings/ProjectVersion.txt not found).${NC}"
+    exit 1
+fi
+
+UNITY_BASE="/home/me/Unity/Hub/Editor"
+UNITY_VERSION="$(grep 'm_EditorVersion:' $PROJECT_VERSION_FILE | awk '{print $2}')"
+UNITY_EDITOR="${UNITY_BASE}/${UNITY_VERSION}/Editor/Unity"
+
+alacritty --class=unity-nvim -e unity-nvim serve &
+
+echo "Launching Unity for project: $PROJECT_PATH"
+exec "$UNITY_EDITOR" -projectPath "$PROJECT_PATH"

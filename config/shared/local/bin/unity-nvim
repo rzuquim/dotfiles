@@ -1,10 +1,47 @@
 #!/usr/bin/env bash
 
-file="$1"
-line="$2"
+set -euo pipefail
 
-if [ -n "$line" ]; then
-    exec nvim +"$line" "$file"
-else
-    exec nvim "$file"
-fi
+verb="${1:-}"
+file="${2:-}"
+
+PROJECT_PATH="$(pwd)"
+HASH="$(printf "%s" "$PROJECT_PATH" | sha1sum | awk '{print $1}')"
+NVIM_SOCKET="/tmp/nvim-unity-${HASH}.sock"
+
+start_server() {
+    if [[ ! -S "$NVIM_SOCKET" ]]; then
+        echo "Starting Neovim server at $NVIM_SOCKET"
+        nvim --listen "$NVIM_SOCKET" &
+        return 0
+    else
+        echo "Neovim server already running at $NVIM_SOCKET"
+        return 1
+    fi
+}
+
+case "$verb" in
+    serve)
+        if ! start_server; then
+            exit 0
+        fi
+        wait
+        ;;
+
+    open)
+        if [[ -z "$file" ]]; then
+            echo "open requires a file argument"
+            exit 1
+        fi
+
+        echo "Opening $file in Neovim server $NVIM_SOCKET"
+        nvim --server "$NVIM_SOCKET" --remote "$file"
+        ;;
+
+    *)
+        echo "Usage:"
+        echo "  $0 serve"
+        echo "  $0 open <file>"
+        exit 1
+        ;;
+esac
