@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
 function kb-disable() {
-    # TODO: this works on the asus notebook, and might not work on the avell one
-    #       `sudo libinput list-devices` can capture it
     local PID_FILE="/tmp/kb_grab.pid"
     local DEVICE=$(__find_internal_kb) || {
         echo "No internal keyboard found" >&2
