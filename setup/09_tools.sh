@@ -36,6 +36,7 @@ BASIC_PACKAGES=(
     "presenterm"
     "mermaid-cli"
     "discord"
+    "libreoffice-still" 
 )
 
 echo -e "${CYAN}Installing basic tools:${NC} ${BASIC_PACKAGES[@]}"
