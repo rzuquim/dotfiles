@@ -16,6 +16,8 @@ YAY_PACKAGES=(
     "zoom"
     "ldtk"
     "vagrant"
+
+    "screenplain"
     "ocrmypdf"
 
     "ttf-symbola"

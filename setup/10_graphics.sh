@@ -49,9 +49,14 @@ esac
 
 ART_PACKAGES=(
     "libresprite"
-    "gimp"
+
     "krita"
+
     "blender"
+
+    "gimp"
+    "gjs"
+    "cfitsio"
 )
 
 echo -e "${CYAN}Installing art tools:${NC} ${ART_PACKAGES[@]}"
