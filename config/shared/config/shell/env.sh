@@ -18,6 +18,9 @@ export HISTSIZE=100
 export SAVEHIST=1000
 export HISTCONTROL=ignoreboth # ignoring history duplicate
 
+#game dev (unity)
+export PATH=$PATH:$HOME/.dotnet/tools
+
 # mobile dev
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator

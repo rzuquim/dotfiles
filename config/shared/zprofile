@@ -11,7 +11,7 @@ if [ -n $is_ssh ] && [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ] && uwsm che
     exec uwsm start start-hyprland
 fi
 
-export PATH=$HOME/.local/bin:$HOME/bin:/usr/local/bin:$HOME/.cargo/bin:$HOME/.dotnet/bin:$PATH
+export PATH=$HOME/.local/bin:$HOME/bin:/usr/local/bin:$HOME/.cargo/bin:$HOME/.dotnet/bin:$HOME/.dotnet/tools:$PATH
 
 # NOTE: reseting .ctx on every boot
 if [[ -f "$HOME/.ctx" ]]; then
