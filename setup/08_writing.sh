@@ -21,13 +21,23 @@ WRITING_TOOLS=(
     "qutebrowser"
     "pandoc"
     "python-weasyprint"
+
     "zathura"
     "zathura-pdf-mupdf"
     "okular"
+
     "texlive-basic" 
     "texlive-latex" 
     "texlive-latexrecommended"
     "texlive-binextra"
+    "texlive-latexextra"
+    "texlive-publishers"
+    "texlive-fontsrecommended"
+    "texlive-fontsextra"
+    "texlive-langportuguese"
+    "texlive-langenglish"
+    "texlive-langspanish"
+
     "tesseract"
     "tesseract-data-eng"
     "tesseract-data-por"

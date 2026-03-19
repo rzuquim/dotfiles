@@ -26,6 +26,8 @@ YAY_PACKAGES=(
     "noto-fonts-extra"
 
     "unityhub"
+
+    "pureref"
 )
 
 yay -S --needed ${YAY_PACKAGES[@]}

@@ -161,6 +161,7 @@
 - [x] fonts not installing on zavell
 - [ ] WIN-O - for notes, is not opening on the context of the repository (in vim `git changed files` cmd is not working)
 - [ ] disable ipv6 for docker `/etc/docker/daemon.json`
+- [ ] cedilha no Chrome
 
 ```json
 {

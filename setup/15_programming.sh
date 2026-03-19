@@ -4,6 +4,7 @@ DEV_PACKAGES=(
     "nvim"
     "gitui"
     "jq"
+    "tree-sitter"
 
     "rustup"
     "vulkan-tools"

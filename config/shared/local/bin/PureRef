@@ -1,0 +1,5 @@
+#!/bin/sh
+
+QT_QPA_PLATFORM=xcb /usr/bin/PureRef
+
+exec /usr/bin/PureRef
