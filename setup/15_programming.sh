@@ -5,6 +5,7 @@ DEV_PACKAGES=(
     "gitui"
     "jq"
     "tree-sitter"
+    "tree-sitter-cli"
 
     "rustup"
     "vulkan-tools"
