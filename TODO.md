@@ -17,7 +17,7 @@
   - [x] note taking
   - [x] studying
 - [x] sudo pacman -S archlinux-keyring
-- [ ] video conf (zoom)
+- [x] video conf (zoom)
   - [x] screen sharing
   - [ ] screen anotations
 - [ ] streaming
