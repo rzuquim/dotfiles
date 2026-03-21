@@ -23,7 +23,10 @@ YAY_PACKAGES=(
     "ttf-symbola"
     "ttf-unifont"
     "ttf-dejavu"
-    "noto-fonts-extra"
+    "ttf-google-fonts-git"
+    "adobe-source-sans-fonts"
+    "adobe-source-serif-fonts"
+    "adobe-source-code-pro-fonts"
 
     "unityhub"
 

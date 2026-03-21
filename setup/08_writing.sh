@@ -9,8 +9,10 @@ FONTS_PACKAGES=(
     "ttf-firacode-nerd"
     "ttf-hack"
     "ttf-jetbrains-mono"
+    "noto-fonts"
     "noto-fonts-cjk"
     "noto-fonts-emoji"
+    "noto-fonts-extra"
 )
 
 pacman -S --noconfirm --needed ${FONTS_PACKAGES[@]}
@@ -26,8 +28,8 @@ WRITING_TOOLS=(
     "zathura-pdf-mupdf"
     "okular"
 
-    "texlive-basic" 
-    "texlive-latex" 
+    "texlive-basic"
+    "texlive-latex"
     "texlive-latexrecommended"
     "texlive-binextra"
     "texlive-latexextra"
