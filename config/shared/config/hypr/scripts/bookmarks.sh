@@ -15,6 +15,8 @@ declare -A sites=(
     ["🇪🇸 > 🇧🇷 es => pt"]="https://translate.google.com.br/?sl=es&tl=pt&text=%s"
     ["🇧🇷 > 🇺🇸 pt => en"]="https://translate.google.com.br/?sl=pt&tl=en&text=%s"
     ["🇺🇸 > 🇧🇷 us => pt"]="https://translate.google.com.br/?sl=en&tl=pt&text=%s"
+
+    ["🪒 dotnet"]="https://sharplab.io/"
 )
 
 chosen_site=$(for site in "${!sites[@]}"; do
