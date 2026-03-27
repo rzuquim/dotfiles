@@ -4,7 +4,6 @@ function md_to_pdf() {
     if [ -z "$1" ]; then
         echo "Error: provide a md file"
         return 1
-
     fi
 
     if [[ "$1" != *.md ]]; then
@@ -33,3 +32,30 @@ function md_to_pdf() {
 
 }
 
+resize_w() {
+    local input="$1"
+    local width="$2"
+
+    if [ -z "$input" ] || [ -z "$width" ]; then
+        echo "ERROR! Usage: resize_w <input> <width>"
+        return 1
+    fi
+
+    local output="${input%.*}-w${width}.png"
+
+    ffmpeg -i "$input" -vf "scale=${width}:-1" "$output"
+}
+
+resize_h() {
+    local input="$1"
+    local height="$2"
+
+    if [ -z "$input" ] || [ -z "$height" ]; then
+        echo "ERROR! Usage: resize_h <input> <height>"
+        return 1
+    fi
+
+    local output="${input%.*}-h${height}.png"
+
+    ffmpeg -i "$input" -vf "scale=-1:${height}" "$output"
+}
