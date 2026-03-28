@@ -1,0 +1,4 @@
+#!/bin/sh
+
+export FONTCONFIG_FILE=~/.config/gimp/fonts.conf
+exec /usr/bin/gimp-3.2 "$@"
