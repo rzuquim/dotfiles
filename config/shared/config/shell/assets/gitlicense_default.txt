@@ -1,0 +1,6 @@
+Copyright (c) 2026 Contributors
+
+All rights reserved.
+
+You may view this repository for reference purposes only.
+No use, modification, or distribution is allowed without explicit permission from all contributors.
