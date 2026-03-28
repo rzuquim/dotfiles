@@ -24,6 +24,7 @@ BASIC_PACKAGES=(
     "rsync"
     "git-delta"
     "git-crypt"
+    "git-lfs"
     "wl-clipboard"
     "nmap"
     "prettier"
@@ -36,7 +37,7 @@ BASIC_PACKAGES=(
     "presenterm"
     "mermaid-cli"
     "discord"
-    "libreoffice-still" 
+    "libreoffice-still"
 )
 
 echo -e "${CYAN}Installing basic tools:${NC} ${BASIC_PACKAGES[@]}"
