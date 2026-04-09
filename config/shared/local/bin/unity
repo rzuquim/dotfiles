@@ -5,19 +5,45 @@ set -euo pipefail
 RED='\033[0;31m'
 NC='\033[0m' # No Color
 
-PROJECT_PATH="$(pwd)"
-PROJECT_VERSION_FILE="$PROJECT_PATH/ProjectSettings/ProjectVersion.txt"
+is_unity_project() {
+    [[ -f "$1/ProjectSettings/ProjectVersion.txt" ]]
+}
 
-if [[ ! -f $PROJECT_VERSION_FILE ]]; then
-    echo -e "${RED}Not a Unity project (ProjectSettings/ProjectVersion.txt not found).${NC}"
-    exit 1
+PROJECT_PATH="$(pwd)"
+
+if ! is_unity_project "$PROJECT_PATH"; then
+    echo "Not a Unity project. Searching for Unity projects..."
+
+    # Find first Unity project using fd
+    PROJECT_PATH="$(
+        fd ProjectVersion.txt . \
+        --full-path \
+        --type f \
+        --hidden \
+        --exclude .git \
+        --exclude prototype \
+        | grep 'ProjectSettings/ProjectVersion.txt' \
+        | head -n 1 \
+        | sed 's|/ProjectSettings/ProjectVersion.txt||'
+    )"
+
+    if [[ -z "${PROJECT_PATH:-}" ]]; then
+        echo -e "${RED}No Unity project found.${NC}"
+        exit 1
+    fi
 fi
+
+PROJECT_VERSION_FILE="$PROJECT_PATH/ProjectSettings/ProjectVersion.txt"
 
 UNITY_BASE="/home/me/Unity/Hub/Editor"
 UNITY_VERSION="$(grep 'm_EditorVersion:' $PROJECT_VERSION_FILE | awk '{print $2}')"
 UNITY_EDITOR="${UNITY_BASE}/${UNITY_VERSION}/Editor/Unity"
 
-alacritty --class=unity-nvim -e unity-nvim serve &
+if [[ ! -x "$UNITY_EDITOR" ]]; then
+    echo -e "${RED}Unity editor not found for version $UNITY_VERSION.${NC}"
+    exit 1
+fi
 
-echo "Launching Unity for project: $PROJECT_PATH"
-exec "$UNITY_EDITOR" -projectPath "$PROJECT_PATH"
+hyprctl dispatch movetoworkspace "name:aux"
+exec env -u WAYLAND_DISPLAY -u GDK_SCALE -u GDK_DPI_SCALE \
+    "$UNITY_EDITOR" -projectPath "$PROJECT_PATH" &
