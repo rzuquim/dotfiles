@@ -1,0 +1,147 @@
+" use track action id to find the correct action id
+" https://gist.github.com/zchee/9c78f91cc5ad771c1f5d
+
+" ==================================
+" VIM BASIC
+" ==================================
+
+" Movimentation
+:set number relativenumber
+
+" Search
+set hlsearch                      " highlight search occurrences
+set ignorecase                    " ignore case in search patterns
+set smartcase                     " no ignore case when pattern is uppercase
+set incsearch                     " show search results while typing
+set wrapscan                      " searches wrap around the end of the file
+nnoremap <silent> <Esc> :noh<CR>
+
+" Plugins
+filetype plugin indent on
+
+" Identation
+set tabstop     =4                " insert 2 spaces for a tab
+set softtabstop =4                " insert 2 spaces for a tab
+set shiftwidth  =4                " the number of spaces inserted for each indentation
+set expandtab                     " convert tabs to spaces
+set highlightedyank 
+set scrolloff=8
+set sidescrolloff=8
+set splitbelow
+set splitright
+set cursorline
+set numberwidth=3
+set signcolumn=yes
+set nowrap
+set timeoutlen=700
+
+" set <leader> to <space>
+let mapleader = " "
+let maplocalleader = " "
+
+" optimizing movements
+nnoremap <silent> X 0d$jw
+nnoremap <silent> <C-/> :vsplit<CR>:bnext<CR>
+
+set noerrorbells
+set vb t_vb=
+
+" don't lose selection when indenting
+vnoremap < <gv
+vnoremap > >gv
+vnoremap = =gv
+
+" make Y behave like D and C, yanking till end of line
+map Y y$
+
+" closing quick fix window after selection
+:autocmd FileType qf nnoremap <buffer> <CR> <CR>:cclose<CR>
+
+" closing all buffer and reopening the last one
+nnoremap <leader>we :%bd\|e#<CR>
+
+" clipboard
+set clipboard+=unnamedplus
+
+" ==================================
+" IDEAVIM
+" ==================================
+
+" optimizing movements
+nnoremap <silent> j :action MethodDown<CR>zz
+nnoremap <silent> k :action MethodUp<CR>zz
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+
+" navigation
+nnoremap <S-h> :action PreviousTab<CR>
+nnoremap <S-l> :action NextTab<CR>
+
+nnoremap <A-n> :action NextOccurence<CR>
+nnoremap <A-p> :action PreviousOccurence<CR>
+
+nnoremap <leader>f :action com.intellij.csharpier.ReformatWithCSharpierAction<CR>
+
+
+nnoremap <C-Left> :action PrevSplitter<CR>
+nnoremap <C-Right> :action NextSplitter<CR>
+
+nnoremap <C-p> :action GotoFile<CR>
+nnoremap <leader>// :action FindInPath<CR>
+nnoremap <leader><leader> :action Switcher<CR>
+
+nnoremap <C-n> :action SelectNextOccurrence<CR>
+vnoremap <C-n> :action SelectNextOccurrence<CR>
+
+nnoremap <Tab> :action RecentFiles<CR>
+
+" lsp
+nnoremap <F12> :action GotoDeclaration<CR>
+nnoremap <S-F12> :action FindUsages<CR>
+nnoremap <F2> :action RenameElement<CR>
+nnoremap ? :action QuickJavaDoc<CR>
+nnoremap t :action ShowIntentionActions<CR>
+
+" comments
+nnoremap <leader>cc :action CommentByLineComment<CR>
+nnoremap <leader>cb :action CommentByBlockComment<CR>
+vnoremap <leader>cc :action CommentByLineComment<CR>
+vnoremap <leader>cb :action CommentByBlockComment<CR>
+
+" window management
+nnoremap <leader>e :action HideAllWindows<CR>
+nnoremap <leader>we :action CloseAllEditorsButActive<CR>
+nnoremap _ :action ActivateProjectToolWindow<CR>
+
+" ide bypass
+sethandler <C-S-6> a:vim
+sethandler <C-A> a:ide
+sethandler <C-B> a:vim
+sethandler <C-C> a:ide
+sethandler <C-D> a:vim
+sethandler <C-E> a:vim
+sethandler <C-F> a:ide
+sethandler <C-G> a:vim
+sethandler <C-H> a:ide
+sethandler <C-I> a:vim
+sethandler <C-J> a:vim
+sethandler <C-K> a:vim
+sethandler <C-L> a:vim
+sethandler <C-M> a:vim
+sethandler <C-N> a:vim
+sethandler <C-O> a:vim
+sethandler <C-P> a:ide
+sethandler <C-R> a:vim
+sethandler <C-S> a:ide
+sethandler <C-T> a:vim
+sethandler <C-U> a:vim
+sethandler <C-V> a:ide
+sethandler <C-W> a:ide
+sethandler <C-X> a:vim
+sethandler <C-Y> a:vim
+sethandler <C-[> a:vim
+sethandler <C-\> a:ide
+sethandler <C-]> a:ide
+
+sethandler <C-Left> a:vim
+sethandler <C-Right> a:vim
