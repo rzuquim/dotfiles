@@ -100,6 +100,7 @@ nnoremap <F12> :action GotoDeclaration<CR>
 nnoremap <S-F12> :action FindUsages<CR>
 nnoremap <F2> :action RenameElement<CR>
 nnoremap ? :action QuickJavaDoc<CR>
+nnoremap e :action GotoNextError<CR>
 nnoremap t :action ShowIntentionActions<CR>
 
 " comments
