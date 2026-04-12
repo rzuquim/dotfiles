@@ -1,6 +1,6 @@
 #!/bin/bash
 
-killall wofi
+killall rofi
 
 active_window=$(hyprctl activewindow -j)
 
@@ -13,4 +13,4 @@ if [ "$active_window" != "{}" ]; then
     source "$HOME/.config/hypr/scripts/ensure_waybar.sh"
 fi
 
-wofi --show drun --insensitive --matching=fuzzy
+rofi -i -matching=fuzzy -show drun -theme ~/.config/rofi/config.rasi

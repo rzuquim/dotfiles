@@ -11,8 +11,8 @@ fi
 WORKSPACE_LIST=$(hyprctl workspaces -j | jq -r '.[] | "\(.name)"')
 
 CHOICE=$(\
-    echo "$WORKSPACE_LIST" | \
-    wofi --dmenu --prompt "Move window to workspace")
+        echo "$WORKSPACE_LIST" | \
+    rofi -i -theme ~/.config/rofi/config.rasi -matching=fuzzy -dmenu -mesg "Move window to workspace")
 
 if [[ -z "$CHOICE" ]]; then
     exit 0

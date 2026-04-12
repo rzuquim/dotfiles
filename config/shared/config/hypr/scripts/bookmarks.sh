@@ -21,7 +21,7 @@ declare -A sites=(
 
 chosen_site=$(for site in "${!sites[@]}"; do
         echo "$site"
-done | wofi --dmenu --prompt "Bookmarks"  --insensitive --matching=fuzzy)
+done | rofi -i -theme ~/.config/rofi/config.rasi -matching=fuzzy -dmenu -mesg "Bookmarks")
 
 if [ "$chosen_site" == "" ]; then
     exit 1
@@ -35,7 +35,7 @@ for site_id in "${!sites[@]}"; do
 done
 
 if [[ "$url" == *"%s"* ]]; then
-    query=$(wofi --dmenu --prompt "Enter search query")
+    query=$(rofi -i -theme ~/.config/rofi/config.rasi -matching=fuzzy -dmenu -mesg "Enter search query")
     query=$(jq -rn --arg v "$query" '$v|@uri')
 
     if [[ -n "$query" ]]; then

@@ -1,0 +1,81 @@
+/* Translation of your Wofi CSS to Rofi RASI */
+
+* {
+    /* Colors from your @define-color list */
+    bg:           #222436;
+    bg-dark:      #1e2030;
+    bg-highlight: #2f334d;
+    fg:           #c8d3f5;
+    fg-dark:      #3b4261;
+    yellow:       #ffc777;
+    red:          #ff757f;
+    green:        #4fd6be;
+    purple:       #fca7ea;
+    blue:         #65bcff;
+
+    background-color: transparent;
+    text-color:       @fg;
+    font:            "Fira Code Nerd Font 12"; /* Adjusted size for Rofi scaling */
+}
+
+window {
+    background-color: @bg;
+    border:           1px;
+    border-color:     @fg;
+    border-radius:    6px;
+    width:            600px;
+}
+
+mainbox {
+    padding: 5px; /* Matches your #outer-box padding */
+}
+
+inputbar {
+    children: [entry];
+    padding:  4px;
+}
+
+entry {
+    placeholder:       "Search...";
+    placeholder-color: @fg-dark;
+    text-color:        @fg;
+    /* Simulated border-bottom from your #input style */
+    border:            0px 0px 2px 0px; 
+    border-color:      @fg;
+    padding:           4px;
+    margin:            0px 0px 1px 0px;
+}
+
+listview {
+    fixed-height: 0;
+    border:       0px;
+    spacing:      0px;
+    scrollbar:    false;
+    margin:       5px 0px 0px 0px;
+}
+
+element {
+    padding: 4px;
+    cursor:  pointer;
+}
+
+/* Handling your #entry and #entry:nth-child(2n) logic */
+element normal.normal {
+    background-color: @bg-dark;
+}
+
+element alternate.normal {
+    background-color: @bg;
+}
+
+/* Handling #entry:selected */
+element selected.normal {
+    background-color: @bg-highlight;
+    text-color:       @fg;
+}
+
+element-text {
+    background-color: transparent;
+    text-color:       inherit;
+    cursor:           inherit;
+}
