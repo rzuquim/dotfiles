@@ -36,7 +36,7 @@ BASIC_PACKAGES=(
     "openbsd-netcat"
     "presenterm"
     "mermaid-cli"
-    "discord"
+    # "discord"
     "libreoffice-still"
 )
 

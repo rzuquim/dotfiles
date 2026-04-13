@@ -34,7 +34,7 @@
 - [x] chats
   - [x] telegram
   - [x] wapp
-  - [x] discord
+  - [x] discord (removed since i don't use it)
 
 ## Setup
 
