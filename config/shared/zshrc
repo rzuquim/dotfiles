@@ -41,11 +41,18 @@ function search {
    rg -p "$@" -A 3 -B 3 --color=always | less -RMFXK
 }
 
+source ~/.config/shell/keybindings.sh
+
 for file in ~/.config/shell/*.sh; do
     . "$file"
 done
 
-source ~/.config/shell/keybindings.sh
+export LLM_HELPERS=$LLM_HOME/sh/
+if [ -d "$LLM_HELPERS" ]; then
+    export PATH=$PATH:$LLM_HELPERS
+else
+    echo "No LLM helpers set!"
+fi
 
 # NOTE: depends on nushell (i removed the dependecy since this profiler is not necessary)
 # if [[ $zsh_profile_loaded_today -eq 1 ]]; then
