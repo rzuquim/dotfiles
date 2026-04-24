@@ -101,7 +101,7 @@
 - [x] `hyprland`: magnifier
 - [ ] `hyprland`: draw on screen
 - [ ] `hyprland`: authentication agent (https://wiki.hyprland.org/Useful-Utilities/Must-have/#authentication-agent)
-- [ ] `hyprland`: color picker
+- [x] `hyprland`: color picker
 - [ ] `hyprland`: media buttons
 - [x] `hyprland`: do not swallow npm / cargo / etc. (toggle command was the best option)
 - [x] `waybar`: style
