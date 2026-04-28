@@ -68,8 +68,8 @@ set clipboard+=unnamedplus
 " ==================================
 
 " optimizing movements
-nnoremap <silent> j :action MethodDown<CR>zz
-nnoremap <silent> k :action MethodUp<CR>zz
+nnoremap <silent> ]] :action MethodDown<CR>zz
+nnoremap <silent> [[ :action MethodUp<CR>zz
 nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
 
