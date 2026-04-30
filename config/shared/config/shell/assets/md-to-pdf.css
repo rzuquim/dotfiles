@@ -6,6 +6,7 @@
   --border-color-default: #3d444d;
   --border-color-muted: #3d444db3;
   --color-anchor: #0550ae;
+  --color-success: #116329;
   --color: #0d1117;
   --font-bold: 900;
   --font-family-monospaced: "Fira Code", Menlo, Consolas, monospace;
@@ -299,13 +300,62 @@ ul ul ol {
   list-style-type: lower-alpha;
 }
 
-ul.task-list li::marker {
-  content: "";
+/* CHECKBOX */
+label {
+  display: inline-block;
+  page-break-inside: avoid;
+  break-inside: avoid;
+
+  position: relative;
+  padding-left: 2em; /* Pushes the text to the right so it doesn't overlap the box */
 }
 
-ul.task-list li input[type="checkbox"] {
-  margin-right: 1em;
+label:has(input[type="checkbox"]:checked) {
+  text-decoration: line-through;
+  color: var(--color-prettylights-syntax-comment);
 }
+
+/* NOTE: COMPLETELY HIDE the original native checkbox. */
+label input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  cursor: pointer;
+}
+
+/* Creates a custom empty box (the square) using '::before' of the label. */
+label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.1em; /* Adjust to align with the text line height */
+  width: 1.2em;
+  height: 1.2em;
+  border: 2px solid var(--border-color-muted); /* Use your existing variable */
+  border-radius: 4px;
+  background-color: var(--bg-color);
+}
+
+label:has(input[type="checkbox"]:checked)::before {
+  border-color: var(--color-anchor);
+}
+
+label:has(input[type="checkbox"]:checked)::after {
+  content: "🗸";
+  position: absolute;
+  top: -0.75em;
+  left: 0.05em;
+  font-size: 3em;
+  color: var(--color-success);
+  text-decoration-color: #00000000;
+}
+
+li:has(input[type="checkbox"]) {
+  list-style-type: none;
+}
+
+/* CODE */
 
 code,
 samp,
@@ -321,7 +371,6 @@ tt {
   white-space: break-spaces;
   background-color: var(--bg-neutral);
   border-radius: 6px;
-  width: 100%;
   box-sizing: border-box;
 }
 code br,
@@ -334,7 +383,6 @@ pre {
   font-size: 0.875em;
   word-wrap: normal;
   background-color: var(--bg-neutral);
-  width: 100%;
   padding: var(--margin-small);
 }
 
