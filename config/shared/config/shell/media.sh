@@ -32,6 +32,38 @@ function md_to_pdf() {
 
 }
 
+
+function md_to_pdf_custom() {
+    if [ -z "$1" ]; then
+        echo "Error: provide a md file"
+        return 1
+    fi
+
+    if [ -z "$2" ]; then
+        echo "Error: provide a css file"
+        return 1
+    fi
+
+    if [[ "$1" != *.md ]]; then
+        echo "Error: the file must have a .md extension."
+        return 1
+    fi
+
+    if [[ "$2" != *.css ]]; then
+        echo "Error: the style file must have a .css extension."
+        return 1
+    fi
+
+
+    local css_file=$2
+    local output_file="${1%.md}.pdf"
+    pandoc "$1" -o "$output_file" \
+        --css="$css_file" \
+        --highlight-style=pygments \
+        --pdf-engine=weasyprint
+
+}
+
 resize_w() {
     local input="$1"
     local width="$2"
