@@ -17,6 +17,8 @@ YAY_PACKAGES=(
     "ldtk"
     "vagrant"
 
+    "rider"
+
     "screenplain"
     "ocrmypdf"
 
