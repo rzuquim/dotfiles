@@ -30,6 +30,8 @@ YAY_PACKAGES=(
     "unityhub"
 
     "pureref"
+    "csharpier"
+    "commitizen-go"
 )
 
 yay -S --needed ${YAY_PACKAGES[@]}
