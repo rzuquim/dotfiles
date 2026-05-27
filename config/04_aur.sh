@@ -30,8 +30,26 @@ YAY_PACKAGES=(
     "unityhub"
 
     "pureref"
-    "csharpier"
     "commitizen-go"
 )
 
 yay -S --needed ${YAY_PACKAGES[@]}
+
+echo
+echo "-----------------"
+echo -e "${CYAN}Installing other tools${NC} (some shit is easier when installed using native methods)"
+echo "-----------------"
+
+DOTNET_TOOLS=(
+    "csharpier"
+    # "dotnet-counters"
+)
+
+for TOOL in "${DOTNET_TOOLS[@]}"; do
+    if dotnet tool list -g | /bin/grep -qi "$TOOL"; then
+        dotnet tool update -g "$TOOL"
+    else
+        dotnet tool install -g "$TOOL"
+    fi
+done
+
