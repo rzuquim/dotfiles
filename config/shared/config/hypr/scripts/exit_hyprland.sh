@@ -3,12 +3,11 @@
 EXIT_LOCK="/tmp/exit.lock"
 
 if [ -f "$EXIT_LOCK" ]; then
-    rm $EXIT_LOCK
-    hyprctl dispatch exit
+    rm -f "$EXIT_LOCK"
+    uwsm stop
 else
-    touch $EXIT_LOCK
+    touch "$EXIT_LOCK"
     hyprctl notify -0 5000 "rgb(ff1ea3)" "Press again to exit"
     sleep 5
-    rm $EXIT_LOCK
+    rm -f "$EXIT_LOCK"
 fi
-
