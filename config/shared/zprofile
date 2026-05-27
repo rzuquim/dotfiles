@@ -6,11 +6,6 @@ if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
     is_ssh=1
 fi
 
-# NOTE: Using bash_profile only to launch session (the daily drive will be zsh)
-if [ -n $is_ssh ] && [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ] && uwsm check may-start; then
-    exec uwsm start start-hyprland
-fi
-
 export PATH=$HOME/.local/bin:$HOME/bin:/usr/local/bin:$HOME/.cargo/bin:$HOME/.dotnet/bin:$HOME/.dotnet/tools:$PATH
 
 # NOTE: reseting .ctx on every boot
@@ -39,3 +34,7 @@ elif echo "$gpu_info" | grep -iq "intel"; then
     # export VDPAU_DRIVER=va_gl
 fi
 
+# NOTE: Using bash_profile only to launch session (the daily drive will be zsh)
+if [ -z "$is_ssh" ] && [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ] && uwsm check may-start; then
+    exec uwsm start start-hyprland
+fi
