@@ -173,3 +173,126 @@ png_to_web() {
     echo " - $avif_output"
     echo " - $jpeg_output"
 }
+
+mp4_convert() {
+    local input_file="$1"
+
+    # 1. Verify input and file existence
+    if [[ -z "$input_file" ]]; then
+        echo "Error: Please provide a video file."
+        echo "Usage: mp4_convert <filename.ext>"
+        return 1
+    fi
+
+    if [[ ! -f "$input_file" ]]; then
+        echo "Error: File '$input_file' not found."
+        return 1
+    fi
+
+    # 2. Extract filename and extension
+    local filename="${input_file%.*}"
+    local extension="${input_file##*.}"
+
+    # Convert extension to lowercase for reliable matching across OSes
+    extension=$(echo "$extension" | tr '[:upper:]' '[:lower:]')
+    local output_file="${filename}.mp4"
+
+    # 3. Handle the extension
+    case "$extension" in
+        mp4)
+            echo "Notice: '$input_file' is already an MP4. Skipping conversion."
+            return 0
+            ;;
+        webm|mkv|avi|mov|flv|wmv|m4v)
+            echo "Recognized format '$extension'. Converting to MP4..."
+            ;;
+        *)
+            echo "Warning: Unrecognized extension '$extension'. Attempting conversion anyway..."
+            ;;
+    esac
+
+    # Prevent overwriting if something goes wrong with the naming logic
+    if [[ "$input_file" == "$output_file" ]]; then
+        output_file="${filename}_converted.mp4"
+    fi
+
+    # 4. Execute FFmpeg with maximum compatibility parameters
+    ffmpeg -i "$input_file" \
+        -c:v libx264 \
+        -preset fast \
+        -crf 23 \
+        -pix_fmt yuv420p \
+        -c:a aac \
+        -b:a 192k \
+        -movflags +faststart \
+        "$output_file"
+
+    # 5. Check if the conversion was successful
+    if [[ $? -eq 0 ]]; then
+        echo "✅ Success: Saved as '$output_file'"
+    else
+        echo "❌ Error: FFmpeg encountered an issue during conversion."
+        return 1
+    fi
+}
+
+ogg_convert() {
+    local input_file="$1"
+
+    # 1. Verify input and file existence
+    if [[ -z "$input_file" ]]; then
+        echo "Error: Please provide a media file."
+        echo "Usage: ogg_convert <filename.ext>"
+        return 1
+    fi
+
+    if [[ ! -f "$input_file" ]]; then
+        echo "Error: File '$input_file' not found."
+        return 1
+    fi
+
+    # 2. Extract filename and extension
+    local filename="${input_file%.*}"
+    local extension="${input_file##*.}"
+
+    # Convert extension to lowercase for reliable matching across OSes
+    extension=$(echo "$extension" | tr '[:upper:]' '[:lower:]')
+    local output_file="${filename}.ogg"
+
+    # 3. Handle the extension
+    case "$extension" in
+        ogg)
+            echo "Notice: '$input_file' is already an OGG file. Skipping conversion."
+            return 0
+            ;;
+        mp3|wav|flac|m4a|aac|wma)
+            echo "Recognized audio format '$extension'. Converting to OGG Vorbis..."
+            ;;
+        mp4|mkv|avi|mov|webm|flv)
+            echo "Notice: Recognized video format '$extension'. Extracting and converting audio to OGG..."
+            ;;
+        *)
+            echo "Warning: Unrecognized extension '$extension'. Attempting conversion anyway..."
+            ;;
+    esac
+
+    # Prevent overwriting if something goes wrong with the naming logic
+    if [[ "$input_file" == "$output_file" ]]; then
+        output_file="${filename}_converted.ogg"
+    fi
+
+    # 4. Execute FFmpeg with optimal OGG Vorbis parameters
+    ffmpeg -i "$input_file" \
+        -c:a libvorbis \
+        -q:a 5 \
+        -vn \
+        "$output_file"
+
+    # 5. Check if the conversion was successful
+    if [[ $? -eq 0 ]]; then
+        echo "✅ Success: Saved as '$output_file'"
+    else
+        echo "❌ Error: FFmpeg encountered an issue during conversion."
+        return 1
+    fi
+}
