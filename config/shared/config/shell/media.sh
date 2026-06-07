@@ -296,3 +296,58 @@ ogg_convert() {
         return 1
     fi
 }
+
+ytdl() {
+    local id="$1"
+    local mode="${2:-VIDEO}"
+    local range="$3"
+    local url="https://www.youtube.com/watch?v=${id}"
+
+    if [[ -z "$id" ]]; then
+        echo "Usage: ytdl VIDEO_ID [VIDEO|AUDIO] [*START-END]" >&2
+        echo "Example: ytdl ZnmnpWKoUS0 VIDEO '*02:00-02:10'" >&2
+        return 1
+    fi
+
+    case "${mode^^}" in
+        VIDEO)
+            if [[ -n "$range" ]]; then
+                yt-dlp \
+                    -f "bv*+ba/b" \
+                    --download-sections "$range" \
+                    --force-keyframes-at-cuts \
+                    --merge-output-format mp4 \
+                    "$url"
+            else
+                yt-dlp \
+                    -f "bv*+ba/b" \
+                    --merge-output-format mp4 \
+                    "$url"
+            fi
+            ;;
+
+        AUDIO)
+            if [[ -n "$range" ]]; then
+                yt-dlp \
+                    -f "ba/b" \
+                    -x \
+                    --audio-format mp3 \
+                    --download-sections "$range" \
+                    --force-keyframes-at-cuts \
+                    "$url"
+            else
+                yt-dlp \
+                    -f "ba/b" \
+                    -x \
+                    --audio-format mp3 \
+                    "$url"
+            fi
+            ;;
+
+        *)
+            echo "Invalid mode: $mode" >&2
+            echo "Use VIDEO or AUDIO" >&2
+            return 1
+            ;;
+    esac
+}
