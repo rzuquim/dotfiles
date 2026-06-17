@@ -1,0 +1,76 @@
+
+set $mod Mod4
+
+include ~/.config/i3/_workspaces.conf
+# include ~/.config/i3/_monitors.conf
+
+include ~/.config/i3/_autostart.conf
+# include ~/.config/i3/_autostart.custom.conf
+
+include ~/.config/i3/_cursor.conf
+include ~/.config/i3/_looks.conf
+include ~/.config/i3/_behavior.conf
+
+# include ~/.config/i3/_input.conf
+include ~/.config/i3/_keybindings.conf
+# include ~/.config/i3/_keybindings.custom.conf
+# include ~/.config/i3/_window_rules.conf
+
+
+# TODO: lock
+# # The combination of xss-lock, nm-applet and pactl is a popular choice, so
+# # they are included here as an example. Modify as you see fit.
+#
+# # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
+# # screen before suspend. Use loginctl lock-session to lock your screen.
+# exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+#
+# TODO: bar
+# # NetworkManager is the most popular way to manage wireless networks on Linux,
+# # and nm-applet is a desktop environment-independent system tray GUI for it.
+# exec --no-startup-id nm-applet
+
+# TODO:
+# # change container layout (stacked, tabbed, toggle split)
+# bindsym $mod+s layout stacking
+# bindsym $mod+w layout tabbed
+# bindsym $mod+e layout toggle split
+#
+# # toggle tiling / floating
+# bindsym $mod+Shift+space floating toggle
+#
+# # change focus between tiling / floating windows
+# bindsym $mod+space focus mode_toggle
+#
+# focus the parent container
+# bindsym $mod+a focus parent
+#
+# # focus the child container
+# # bindsym $mod+d focus child
+# # resize window (you can also use the mouse for that)
+# mode "resize" {
+#         # These bindings trigger as soon as you enter the resize mode
+#
+#         # Pressing left will shrink the window’s width.
+#         # Pressing right will grow the window’s width.
+#         # Pressing up will shrink the window’s height.
+#         # Pressing down will grow the window’s height.
+#         bindsym j resize shrink width 10 px or 10 ppt
+#         bindsym k resize grow height 10 px or 10 ppt
+#         bindsym l resize shrink height 10 px or 10 ppt
+#         bindsym semicolon resize grow width 10 px or 10 ppt
+#
+#         # same bindings, but for the arrow keys
+#         bindsym Left resize shrink width 10 px or 10 ppt
+#         bindsym Down resize grow height 10 px or 10 ppt
+#         bindsym Up resize shrink height 10 px or 10 ppt
+#         bindsym Right resize grow width 10 px or 10 ppt
+#
+#         # back to normal: Enter or Escape or $mod+r
+#         bindsym Return mode "default"
+#         bindsym Escape mode "default"
+#         bindsym $mod+r mode "default"
+# }
+#
+# bindsym $mod+r mode "resize"
+#

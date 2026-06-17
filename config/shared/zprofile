@@ -1,40 +1,58 @@
-#!/bin/sh
+#!/bin/zsh
 
-source ~/.config/shell/env.sh
+[ -r "$HOME/.config/shell/env.sh" ] && . "$HOME/.config/shell/env.sh"
 
+# NOTE: do not autostart GUI sessions over SSH
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-    is_ssh=1
+    return 0 2>/dev/null || exit 0
 fi
 
-export PATH=$HOME/.local/bin:$HOME/bin:/usr/local/bin:$HOME/.cargo/bin:$HOME/.dotnet/bin:$HOME/.dotnet/tools:$PATH
+export PATH="$HOME/.local/bin:$HOME/bin:/usr/local/bin:$HOME/.cargo/bin:$HOME/.dotnet/bin:$HOME/.dotnet/tools:$PATH"
 
-# NOTE: reseting .ctx on every boot
-if [[ -f "$HOME/.ctx" ]]; then
-    rm ~/.ctx
+# NOTE: Reset .ctx on every login
+rm -f "$HOME/.ctx"
+
+# NOTE: Normal/default behavior: only autostart from tty1.
+is_autostart_tty=false
+[ "$(tty)" = "/dev/tty1" ] && is_autostart_tty=true
+
+# NOTE: For temporary testing on any TTY, uncomment this:
+# is_autostart_tty=true
+
+if [ -n "$DISPLAY" ] || [ -n "$WAYLAND_DISPLAY" ]; then
+    return 0 2>/dev/null || exit 0
 fi
 
-# NOTE: gpu specific setup
-gpu_info=$(lspci | /bin/grep -Ei "VGA|3D")
-
-if echo "$gpu_info" | grep -iq "nvidia"; then
-    export GBM_BACKEND=nvidia-drm
-    export WLR_NO_HARDWARE_CURSORS=1
-    export WLR_RENDERER_ALLOW_SOFTWARE=1
-    export LIBVA_DRIVER_NAME=nvidia
-    export VDPAU_DRIVER=nvidia
-    export __GLX_VENDOR_LIBRARY_NAME=nvidia
-    export __GL_VRR_ALLOWED=0
-elif echo "$gpu_info" | grep -iq "amd"; then
-    # NOTE: chat gpt recommended these variables (not using since everything is working)
-    # export LIBVA_DRIVER_NAME=radeonsi
-    # export VDPAU_DRIVER=radeonsi
-elif echo "$gpu_info" | grep -iq "intel"; then
-    # NOTE: chat gpt recommended these variables (not using since everything is working)
-    # export LIBVA_DRIVER_NAME=iHD
-    # export VDPAU_DRIVER=va_gl
+if [ "$is_autostart_tty" != true ]; then
+    return 0 2>/dev/null || exit 0
 fi
 
-# NOTE: Using bash_profile only to launch session (the daily drive will be zsh)
-if [ -z "$is_ssh" ] && [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ] && uwsm check may-start; then
-    exec uwsm start start-hyprland
-fi
+gui="$(
+    awk '
+        {
+            sub(/[[:space:]]*#.*/, "")
+            gsub(/^[[:space:]]+|[[:space:]]+$/, "")
+        }
+        NF {
+            print
+            exit
+        }
+    ' "$HOME/.config/ui" 2>/dev/null
+)"
+: "${gui:=hypr}"
+
+case "$gui" in
+    xorg|i3)
+        xorg_envs
+        exec startx "$HOME/.xinitrc-i3"
+        ;;
+
+    wayland|hyprland|hypr)
+        wayland_envs
+        exec uwsm start start-hyprland
+        ;;
+
+    *)
+        printf 'Invalid ~/.config/ui value: %s\nExpected: xorg or wayland\n' "$gui" >&2
+        ;;
+esac

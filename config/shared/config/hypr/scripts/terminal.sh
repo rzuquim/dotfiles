@@ -1,15 +1,15 @@
 #!/bin/bash
 
-TERM=alacritty
+TERMINAL=alacritty
 active_window=$(hyprctl activewindow -j)
 workspace=$(hyprctl activeworkspace -j | jq -r '.name')
 
 if [[ "$workspace" == "docs" ]]; then
-    TERM=kitty
+    TERMINAL=kitty
 fi
 
 if [ "$active_window" == "{}" ]; then
-    $TERM &
+    $TERMINAL &
     exit 0
 fi
 
@@ -20,5 +20,5 @@ fi
 
 source "$HOME/.config/hypr/scripts/ensure_waybar.sh"
 
-$TERM &
+$TERMINAL &
 
