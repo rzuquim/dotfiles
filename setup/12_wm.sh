@@ -10,8 +10,8 @@ pacman -S --noconfirm --needed \
     copyq
 
 pacman -S --noconfirm --needed \
-    xorg-server xorg-xinit i3-wm i3status \
-    picom xclip polybar \
+    xorg-server xorg-xinit xdg-desktop-portal i3-wm i3status \
+    picom xclip polybar flameshot \
     dunst feh
 
 # maim/slop/xclip vs fireshot
