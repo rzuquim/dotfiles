@@ -11,7 +11,7 @@ pacman -S --noconfirm --needed \
 
 pacman -S --noconfirm --needed \
     xorg-server xorg-xinit i3-wm i3status \
-    picom xclip \
+    picom xclip polibar \
     dunst feh
 
 # maim/slop/xclip vs fireshot

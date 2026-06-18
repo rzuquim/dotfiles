@@ -32,11 +32,7 @@ setxkbmap us -variant intl -option caps:escape
 # fi
 
 
-command -v picom >/dev/null 2>&1 && picom &
-
-# TODO: Clipboard daemon.
-# command -v clipmenud >/dev/null 2>&1 && clipmenud &
-# command -v copyq >/dev/null 2>&1 && copyq &
+picom &
 
 # TODO: Xorg notification daemon replacement for swaync.
 # command -v dunst >/dev/null 2>&1 && dunst &

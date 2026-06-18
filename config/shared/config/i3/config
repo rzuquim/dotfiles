@@ -14,7 +14,7 @@ include ~/.config/i3/_behavior.conf
 # include ~/.config/i3/_input.conf
 include ~/.config/i3/_keybindings.conf
 # include ~/.config/i3/_keybindings.custom.conf
-# include ~/.config/i3/_window_rules.conf
+include ~/.config/i3/_window_rules.conf
 
 
 # TODO: lock
