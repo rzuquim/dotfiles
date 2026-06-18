@@ -4,9 +4,6 @@ set $mod Mod4
 include ~/.config/i3/_workspaces.conf
 include ~/.config/i3/_monitors.conf
 
-include ~/.config/i3/_autostart.conf
-include ~/.config/i3/_autostart.custom.conf
-
 include ~/.config/i3/_cursor.conf
 include ~/.config/i3/_looks.conf
 include ~/.config/i3/_behavior.conf
@@ -15,6 +12,9 @@ include ~/.config/i3/_behavior.conf
 include ~/.config/i3/_keybindings.conf
 # include ~/.config/i3/_keybindings.custom.conf
 include ~/.config/i3/_window_rules.conf
+
+include ~/.config/i3/_autostart.conf
+include ~/.config/i3/_autostart.custom.conf
 
 
 # TODO: lock
