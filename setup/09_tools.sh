@@ -38,6 +38,7 @@ BASIC_PACKAGES=(
     "mermaid-cli"
     # "discord"
     "libreoffice-still"
+    "xf86-input-wacom"
 )
 
 echo -e "${CYAN}Installing basic tools:${NC} ${BASIC_PACKAGES[@]}"

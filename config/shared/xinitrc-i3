@@ -31,8 +31,8 @@ setxkbmap us -variant intl -option caps:escape
 #     "$HOME/.config/i3/scripts/wallpaper.sh" &
 # fi
 
-
-picom &
+# NOTE: commenting picom due to amd crashes
+# picom &
 
 # TODO: Xorg notification daemon replacement for swaync.
 # command -v dunst >/dev/null 2>&1 && dunst &
