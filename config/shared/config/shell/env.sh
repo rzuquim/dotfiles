@@ -1,5 +1,6 @@
 #!/bin/bash
 
+export VISUAL=nvim
 export EDITOR="$VISUAL"
 export PATH=$HOME/.local/bin:$HOME/bin:/usr/local/bin:$HOME/.cargo/bin:$HOME/.dotnet/bin:$PATH
 export BROWSER="librewolf"
