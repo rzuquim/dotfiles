@@ -98,4 +98,4 @@ systemctl enable docker
 
 # KVM support for android emulation GPU
 systemctl enable libvirtd
-sudo usermod -aG kvm,libvirt me
+usermod -aG kvm,libvirt me
