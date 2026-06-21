@@ -31,6 +31,8 @@ YAY_PACKAGES=(
 
     "pureref"
     "commitizen-go"
+
+    "android-studio"
 )
 
 yay -S --needed ${YAY_PACKAGES[@]}

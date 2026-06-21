@@ -2,8 +2,10 @@
 
 function kb-disable() {
     local PID_FILE="/tmp/kb_grab.pid"
-    local DEVICE=$(__find_internal_kb) || {
-        echo "No internal keyboard found" >&2
+    local DEVICE
+
+    DEVICE=$(__select_keyboard) || {
+        echo "No keyboard selected" >&2
         return 1
     }
 
@@ -12,17 +14,20 @@ function kb-disable() {
         return 1
     fi
 
-    # NOTE: pre-autenticating in foreground
+    # NOTE: pre-authenticating in foreground
     sudo -v || return 1
+
     nohup sudo evtest --grab "$DEVICE" > /dev/null 2>&1 &
     echo $! > "$PID_FILE"
-    echo "Keyboard disabled!"
+
+    echo "Keyboard disabled: $DEVICE"
 }
 
 function kb-enable() {
     local PID_FILE="/tmp/kb_grab.pid"
+    local PID
 
-    # NOTE: pre-autenticating in foreground
+    # NOTE: pre-authenticating in foreground
     sudo -v || return 1
 
     if [[ -f "$PID_FILE" ]]; then
@@ -35,6 +40,7 @@ function kb-enable() {
         else
             echo "No running grab process found."
         fi
+
         return 0
     fi
 
@@ -42,14 +48,28 @@ function kb-enable() {
     return 1
 }
 
-__find_internal_kb() {
-    for dev in /dev/input/event*; do
-        local props=$(udevadm info --query=property --name="$dev") || continue
-        # NOTE: is keyboard and not usb
-        if  grep -q '^ID_INPUT_KEYBOARD=1$' <<<"$props" && ! grep -q '^ID_BUS=usb$' <<<"$props"; then
-            echo "$dev"
-            return 0
-        fi
-    done
-    return 1
+__select_keyboard() {
+    command -v fzf >/dev/null || {
+        echo "fzf is required" >&2
+        return 1
+    }
+
+    local selection
+
+    selection=$(
+        for dev in /dev/input/event*; do
+            udevadm info --query=property --name="$dev" 2>/dev/null |
+            grep -q '^ID_INPUT_KEYBOARD=1$' || continue
+
+            printf '%s\n' "$dev"
+        done |
+        fzf \
+            --prompt="Select keyboard: " \
+            --preview='udevadm info --query=property --name={} 2>/dev/null' \
+            --preview-window=right:70%:wrap
+    ) || return 1
+
+    [[ -n "$selection" ]] || return 1
+
+    printf '%s\n' "$selection"
 }

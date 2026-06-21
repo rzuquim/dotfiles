@@ -54,6 +54,10 @@ TAURI_DEPS=(
     "libappindicator-gtk3"
     "librsvg"
     "xdotool"
+
+    # KVM support for android emulation GPU
+    "qemu-full"
+    "libvirt"
 )
 
 echo -e "${CYAN}Installing tauri dependencies:${NC} ${TAURI_DEPS[@]}"
@@ -92,3 +96,6 @@ fi
 
 systemctl enable docker
 
+# KVM support for android emulation GPU
+systemctl enable libvirtd
+sudo usermod -aG kvm,libvirt me
