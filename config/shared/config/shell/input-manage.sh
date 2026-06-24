@@ -1,6 +1,55 @@
 #!/usr/bin/env bash
 
+function kb-enable() {
+    case "$XDG_SESSION_TYPE" in
+        x11)
+            __x11_kb-enable
+            echo "Keyboard enabled on X11"
+            ;;
+
+        wayland)
+            __wayland_kb-enable
+            echo "Keyboard enabled on Wayland"
+            ;;
+
+        *)
+            echo "Unsupported or unknown session type: $XDG_SESSION_TYPE" >&2
+            return 1
+            ;;
+    esac
+}
+
 function kb-disable() {
+    case "$XDG_SESSION_TYPE" in
+        x11)
+            __x11_kb-disable
+            echo "Keyboard enabled on X11"
+            ;;
+
+        wayland)
+            __wayland_kb-disable
+            echo "Keyboard enabled on Wayland"
+            ;;
+
+        *)
+            echo "Unsupported or unknown session type: $XDG_SESSION_TYPE" >&2
+            return 1
+            ;;
+    esac
+}
+
+__x11_kb-enable() {
+    xinput list | awk -F '\t' '/AT/ {print $2} ' | awk -F '=' '{print $2}' | xargs xinput enable
+    setxkbmap br -variant abnt2
+}
+
+
+__x11_kb-disable() {
+    xinput list | awk -F '\t' '/AT/ {print $2} ' | awk -F '=' '{print $2}' | xargs xinput disable
+    setxkbmap us -variant intl
+}
+
+__wayland_kb-disable() {
     local PID_FILE="/tmp/kb_grab.pid"
     local DEVICE
 
@@ -23,7 +72,7 @@ function kb-disable() {
     echo "Keyboard disabled: $DEVICE"
 }
 
-function kb-enable() {
+__wayland_kb-enable() {
     local PID_FILE="/tmp/kb_grab.pid"
     local PID
 

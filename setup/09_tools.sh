@@ -38,6 +38,7 @@ BASIC_PACKAGES=(
     "mermaid-cli"
     # "discord"
     "libreoffice-still"
+    "xorg-xinput"
     "xf86-input-wacom"
 )
 
