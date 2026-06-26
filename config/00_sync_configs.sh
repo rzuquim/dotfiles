@@ -134,5 +134,8 @@ for user in "${users[@]}"; do
 done
 
 # NOTE: ensuring correct monitors configuration after syncing configs
-bash ~/.config/hypr/scripts/monitors_and_workspaces.sh
+
+if [[ "$XDG_SESSION_TYPE" == "wayland" ]]; then
+    bash ~/.config/hypr/scripts/monitors_and_workspaces.sh
+fi
 

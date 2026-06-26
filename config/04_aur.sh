@@ -30,7 +30,6 @@ YAY_PACKAGES=(
     "unityhub"
 
     "pureref"
-    "commitizen-go"
 
     "android-studio"
 )
@@ -52,6 +51,18 @@ for TOOL in "${DOTNET_TOOLS[@]}"; do
         dotnet tool update -g "$TOOL"
     else
         dotnet tool install -g "$TOOL"
+    fi
+done
+
+NPM_TOOLS=(
+    "commitizen@4.2.2"
+)
+
+for TOOL in "${NPM_TOOLS[@]}"; do
+    if npm list -g --depth=0 "$TOOL" >/dev/null 2>&1; then
+        npm update -g "$TOOL"
+    else
+        npm install -g "$TOOL"
     fi
 done
 
