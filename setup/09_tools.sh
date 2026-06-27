@@ -5,6 +5,7 @@ BASIC_PACKAGES=(
     "curl"
     "7zip"
     "zip"
+    "chromium"
     "unzip"
     "unrar"
     "dos2unix"

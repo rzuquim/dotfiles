@@ -16,6 +16,10 @@ export HISTCONTROL=ignoreboth # ignoring history duplicate
 export PATH=$PATH:$HOME/.dotnet/tools
 
 # mobile dev
+# export JAVA_HOME=/usr/lib/jvm/default
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
+export PATH="$JAVA_HOME/bin:$PATH"
+
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools

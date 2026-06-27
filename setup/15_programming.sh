@@ -38,6 +38,11 @@ DEV_PACKAGES=(
 
     # NOTE: necessary for unity to show the csproj reload options
     "code"
+
+    # java and KVM support for android emulation GPU
+    "jdk17-openjdk"
+    "qemu-full"
+    "libvirt"
 )
 
 echo -e "${CYAN}Installing dev tools:${NC} ${DEV_PACKAGES[@]}"
@@ -54,10 +59,6 @@ TAURI_DEPS=(
     "libappindicator-gtk3"
     "librsvg"
     "xdotool"
-
-    # KVM support for android emulation GPU
-    "qemu-full"
-    "libvirt"
 )
 
 echo -e "${CYAN}Installing tauri dependencies:${NC} ${TAURI_DEPS[@]}"
