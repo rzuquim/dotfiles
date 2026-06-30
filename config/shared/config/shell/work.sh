@@ -1,11 +1,11 @@
 #!/bin/sh
 
-if [[ -f "$HOME/.ctx" ]]; then
-    local current_workspace=`cat ~/.ctx | awk '{ print $2 }'`
-    cd $current_workspace
-fi
-
 exclude_args_work=()
+
+__workspace_setup_if_pertinent() {
+    node_setup_if_pertinent
+    dotnet_setup_if_pertinent
+}
 
 function setup_work() {
     local exclude_folders=(
@@ -42,8 +42,7 @@ function work() {
 
     cd $selected
 
-    node_setup_if_pertinent
-    dotnet_setup_if_pertinent
+    __workspace_setup_if_pertinent
 
     # adding work folder on context
     pwd | xargs echo -n >> ~/.ctx
@@ -141,3 +140,10 @@ function config {
 }
 
 setup_work
+
+if [[ -f "$HOME/.ctx" ]]; then
+    local current_workspace=`cat ~/.ctx | awk '{ print $2 }'`
+    cd $current_workspace
+    __workspace_setup_if_pertinent
+fi
+
