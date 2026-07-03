@@ -27,6 +27,7 @@ alias ...='cd ..; cd ..'
 alias ....='cd ..; cd ..; cd ..'
 alias waybar='pgrep waybar > /dev/null || waybar'
 alias dots='cd ~/Config/dotfiles/'
+alias js='npm run'
 
 # navigation
 alias w=work
