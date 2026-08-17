@@ -23,20 +23,36 @@ function crash_gpu_collector() {
         echo '```' >> "$OUT_FILE"
     }
 
+
+    strip_out_comments() {
+        local file="$1"
+        # Strip comments (allowing leading spaces) and empty lines to reduce log bloat
+        /bin/grep -vE '^[[:space:]]*#|^[[:space:]]*$' "$file" 2>/dev/null
+    }
+
     # --- System & Kernel ---
     add_section "System Information" "uname -a && echo '---' && cat /etc/os-release"
     add_section "Current Kernel Parameters" "cat /proc/cmdline"
     add_section "Bootloader Configs (systemd-boot)" "cat /boot/loader/loader.conf && echo '---' && cat /boot/loader/entries/*.conf"
 
     # --- Hardware & GPU State ---
-    add_section "GPU Identification" "lspci -nn | /bin/grep -i vga"
+    add_section "GPU Identification" "lspci -nn | /bin/grep -iE 'vga|3d'"
     add_section "PCIe Link & Resizable BAR Status" "sudo dmesg | /bin/grep -iE 'pcie.*link|bar|aspm'"
     add_section "AMDGPU Module Parameters" "for f in /sys/module/amdgpu/parameters/*; do echo \"\$(basename \$f): \$(cat \$f 2>/dev/null)\"; done"
 
-    # --- Hyprland ---
-    # TODO: improve
-    add_section "Pertinent Hyprland Configs" "cat ~/.config/hypr/_looks.conf ~/.config/hypr/_monitors.conf ~/.config/hypr/_xwayland_prefs.conf ~/.config/hypr/_input.conf"
-    add_section "Latest Hyprland Crash Report" "/bin/ls -t ~/.cache/hyprland/hyprlandCrashReport*.txt 2>/dev/null | head -n 1 | xargs cat"
+
+    if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+        # --- Hyprland ---
+        add_section "Pertinent Hyprland Configs" "cat $HOME/.config/hypr/_looks.conf $HOME/.config/hypr/_monitors.conf $HOME/.config/hypr/_xwayland_prefs.conf $HOME/.config/hypr/_input.conf"
+        add_section "Latest Hyprland Crash Report" "f=\$(/bin/ls -t $HOME/.cache/hyprland/hyprlandCrashReport*.txt 2>/dev/null | head -n 1); [ -n \"\$f\" ] && cat \"\$f\" || echo 'No reports found.'"
+    else
+        # --- X11 / i3 ---
+        add_section "Pertinent i3 Configs" "for f in $HOME/.config/i3/*; do [ -f $f ] && { echo -e \"\n--- \$f ---\"; __strip_out_comments $f; }; done"
+
+        add_section "Pertinent Compositor Configs (Picom/Compton)" "for f in $HOME/.config/picom/picom.conf $HOME/.config/picom.conf /etc/xdg/picom.conf; do [ -f $f ] && { echo -e \"\n--- $f ---\"; __strip_out_comments $f; }; done"
+
+        add_section "Current Xorg Log" "f=\$(/bin/ls -t $HOME/.local/share/xorg/Xorg.*.log 2>/dev/null | head -n 1); [ -n \"\$f\" ] && cat \"\$f\" || echo 'No current Xorg logs found.'"
+    fi
 
     # --- Persistent Logs (The Golden Clues) ---
     add_section "Previous Boot: Last 100 Kernel Messages (The Freeze)" "sudo journalctl -k -b -1 | tail -n 100"

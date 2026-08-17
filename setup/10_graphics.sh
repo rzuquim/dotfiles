@@ -36,7 +36,7 @@ case "$gpu_vendor" in
         #   amdvlk (or lib32-amdvlk) - AMDVLK Open (maintained by AMD)
         #   vulkan-amdgpu-proAUR (or lib32-vulkan-amdgpu-proAUR) - AMDVLK Closed (maintained by AMD)
         pacman -S --noconfirm --needed \
-            mesa lib32-mesa libva-mesa-driver xf86-video-amdgpu xf86-video-ati vulkan-radeon lib32-vulkan-radeon \
+            mesa lib32-mesa libva-mesa-driver vulkan-radeon lib32-vulkan-radeon \
             radeontop
         ;;
 
