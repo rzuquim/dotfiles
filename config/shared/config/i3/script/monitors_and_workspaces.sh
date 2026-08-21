@@ -10,10 +10,11 @@ third_monitor=""
 function push_monitor() {
     local curr_monitor=$1
 
-    if [ ! -z "$primary_monitor" ]; then
-        if [ -z "$second_monitor" ]; then
+    if [ -n "$primary_monitor" ]; then
+        if [ -n "$second_monitor" ]; then
             third_monitor=$second_monitor
         fi
+
         second_monitor=$primary_monitor
     fi
 
@@ -81,5 +82,13 @@ for ws in "${!workspaces[@]}"; do
     echo "workspace \"$ws\" output $preferred_monitor" >> "$workspaces_config"
     i3-msg "[workspace=\"$ws\"] move workspace to output $preferred_monitor" > /dev/null 2>&1 || true
 done
+
+case "${hostname}" in
+    zavell)
+        xrandr --output HDMI-1-0 --auto --right-of eDP-1
+        ;;
+    *)
+        ;;
+esac
 
 i3-msg "reload" > /dev/null 2>&1 || true

@@ -74,8 +74,8 @@
 - [ ] nft log limits to avoid DOS flooding log files
 - [x] sudo pacman-key --init
 - [x] sudo pacman-key --populate archlinux
-- [ ] streaming
-  - [ ] obs
+- [x] streaming
+  - [x] obs
   - [ ] excalidraw
 - [ ] yubikey (both keys)
   - [x] google

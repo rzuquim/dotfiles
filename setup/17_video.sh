@@ -3,6 +3,7 @@
 VIDEO_PACKAGES=(
     "mpv"
     "ffmpeg"
+    "obs-studio"
 )
 
 echo -e "${CYAN}Installing video tools:${NC} ${VIDEO_PACKAGES[@]}"
