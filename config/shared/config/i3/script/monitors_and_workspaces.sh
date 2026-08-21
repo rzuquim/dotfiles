@@ -83,8 +83,9 @@ for ws in "${!workspaces[@]}"; do
     i3-msg "[workspace=\"$ws\"] move workspace to output $preferred_monitor" > /dev/null 2>&1 || true
 done
 
-case "${hostname}" in
+case "$(hostname)" in
     zavell)
+        echo "zavell"
         xrandr --output HDMI-1-0 --auto --right-of eDP-1
         ;;
     *)
