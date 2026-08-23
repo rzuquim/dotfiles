@@ -60,7 +60,9 @@ NPM_TOOLS=(
 
 for TOOL in "${NPM_TOOLS[@]}"; do
     if npm list -g --depth=0 "$TOOL" >/dev/null 2>&1; then
-        npm update -g "$TOOL"
+        if [[ "$TOOL" != *@* ]]; then
+            npm update -g "$TOOL"
+        fi
     else
         npm install -g "$TOOL"
     fi
