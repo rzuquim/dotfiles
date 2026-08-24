@@ -93,3 +93,5 @@ case "$(hostname)" in
 esac
 
 i3-msg "reload" > /dev/null 2>&1 || true
+
+bg_random

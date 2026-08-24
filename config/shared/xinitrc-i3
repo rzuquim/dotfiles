@@ -22,24 +22,9 @@ fi
 # TODO: Multiple keyboards on notebook
 setxkbmap us -variant intl -option caps:escape
 
-# TODO: wallpaper
-# if [ -x "$HOME/.config/nitrogen/bg-random.sh" ]; then
-#     "$HOME/.config/nitrogen/bg-random.sh" &
-# fi
-# Wallpaper
-# if [ -x "$HOME/.config/i3/scripts/wallpaper.sh" ]; then
-#     "$HOME/.config/i3/scripts/wallpaper.sh" &
-# fi
+. $HOME/.config/shell/bg-random.sh & bg_random
 
-# NOTE: trying to reduce crashes on ati graphics card
-case "$(hostname)" in
-    zavell)
-        picom &
-        ;;
-    *)
-        ;;
-esac
-
+picom &
 
 # TODO: Xorg notification daemon replacement for swaync.
 # command -v dunst >/dev/null 2>&1 && dunst &
