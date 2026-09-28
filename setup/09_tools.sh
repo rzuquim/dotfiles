@@ -37,10 +37,11 @@ BASIC_PACKAGES=(
     "openbsd-netcat"
     "presenterm"
     "mermaid-cli"
-    # "discord"
+    "discord"
     "libreoffice-still"
     "xorg-xinput"
     "xf86-input-wacom"
+    "just"
 )
 
 echo -e "${CYAN}Installing basic tools:${NC} ${BASIC_PACKAGES[@]}"
