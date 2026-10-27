@@ -42,6 +42,7 @@ BASIC_PACKAGES=(
     "xorg-xinput"
     "xf86-input-wacom"
     "just"
+    "watchexec"
 )
 
 echo -e "${CYAN}Installing basic tools:${NC} ${BASIC_PACKAGES[@]}"

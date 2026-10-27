@@ -32,6 +32,7 @@ YAY_PACKAGES=(
     "pureref"
 
     "android-studio"
+    "lefthook-bin"
 )
 
 yay -S --needed ${YAY_PACKAGES[@]}
